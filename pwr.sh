@@ -92,7 +92,7 @@ echo -e "6. Java JDK 24\n"
 echo -e "Press any key to exit\n"
 
 read -p "Choose java version =>  " cJava
-until [[ "${dirFound}" =~ ^[0-6]+$ ]];
+until [[ "${cjava}" =~ ^[0-6]+$ ]];
 do
 myHeader;
 echo -e "List Supported Java Version : \n"
