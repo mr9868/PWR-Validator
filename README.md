@@ -1,7 +1,7 @@
 # PWR-Validator v.1.2
 * Fix bug intalling in different architecture
 * Add required packages and dependencies
-* Add auto unblock all blocked IPs that causes by previous PWR node
+* Add auto unblock all blocked IPs that caused by previous PWR node
 * Add feature upgrade PWR node
 
 ## PWR validator setup auto installer
