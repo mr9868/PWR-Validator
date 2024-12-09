@@ -24,7 +24,7 @@ echo -e "============================================================\n"
 echo -e "=             PWR validator setup auto installer           =\n"
 echo -e "=                    Created by : Mr9868                   =\n"
 echo -e "=             Github : https://github.io/Mr9868            =\n"
-echo -e "=           Your OS & architectur : $(uname -s) $(uname -m)          =\n"
+echo -e "=               Your OS info : $(uname -s) $(uname -m)              =\n"
 echo -e "============================================================\n"
 }
 
