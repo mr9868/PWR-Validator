@@ -10,6 +10,12 @@ jdkList=(jdk-23.0.1 jdk-24);
 set | grep ^javaList=
 set | grep ^jdkList=
 
+command -v screen >/dev/null 2>&1 || { echo >&2 "Screen is not found on this machine, Installing screen ... "; sleep 5;apt install -y screen;}
+command -v wget >/dev/null 2>&1 || { echo >&2 "Wget is not found on this machine, Installing wget ... "; sleep 5;apt install -y wget;}
+command -v tar >/dev/null 2>&1 || { echo >&2 "Tar is not found on this machine, Installing tar ... "; sleep 5;apt install -y tar;}
+command -v iptables >/dev/null 2>&1 || { echo >&2 "Iptables is not found on this machine, Installing iptables ... "; sleep 5;apt install -y iptables;}
+
+
 # My Header
 function myHeader(){
 clear;
@@ -24,16 +30,16 @@ echo -e "============================================================\n"
 function unblockIPs(){
 myHeader;
 echo -e "Unblock IPs from previous PWR node ... \n";
-daftarIP=$(iptables -L | grep DROP | awk '$4!="anywhere"{print $4}' |  grep -oE '\b([0-9]{1,3}\.){3}[0-9]{1,3}\b');
-daftarDm=$(iptables -L | grep DROP | grep -oiE '([a-zA-Z0-9][a-zA-Z0-9-]{1,61}\.){1,}(\.?[a-zA-Z]{2,}){1,}');
+daftarIP=$(sudo iptables -L | grep DROP | awk '$4!="anywhere"{print $4}' |  grep -oE '\b([0-9]{1,3}\.){3}[0-9]{1,3}\b');
+daftarDm=$(sudo iptables -L | grep DROP | grep -oiE '([a-zA-Z0-9][a-zA-Z0-9-]{1,61}\.){1,}(\.?[a-zA-Z]{2,}){1,}');
 list="listAddr=($daftarIP $daftarDm)";
 echo $list > listAddr.txt
 . listAddr.txt
 for i in $(seq 0 ${#listAddr[@]});
 do
 set | grep ^listAddr= > listAddr.txt;
-iptables -I INPUT -s ${listAddr[i]} -j ACCEPT;
-iptables -D INPUT -s ${listAddr[i]} -j DROP;
+sudo iptables -I INPUT -s ${listAddr[i]} -j ACCEPT;
+sudo iptables -D INPUT -s ${listAddr[i]} -j DROP;
 echo "Successful unblock address : ${listAddr[i]}";
 done
 myHeader;
@@ -54,7 +60,7 @@ sudo update-alternatives --remove-all java;
 
 # JDK latest (v23 and v24)
 function jdkLts(){
-apt install -y java-common &&
+sudo apt install -y java-common &&
 wget -O javalts.tar.gz ${javaVer} &&
 sudo mkdir /usr/local/java &&
 sudo mv javalts.tar.gz /usr/local/java &&
@@ -67,10 +73,10 @@ cd -;
 
 # List JDK version provided by default apt list
 function listJdk(){
-apt update-y  && apt upgrade -y &&
-apt install -y openjdk-${jdkVer}-jdk &&
-apt install -y openjdk-${jdkVer}-jre &&
-apt install -y java-common;
+sudo apt update -y  && sudo apt upgrade -y &&
+sudo apt install -y openjdk-${jdkVer}-jdk &&
+sudo apt install -y openjdk-${jdkVer}-jre &&
+sudo apt install -y java-common;
 }
 
 myHeader;
@@ -136,7 +142,7 @@ fi
 read -p "Do you want to remove blocks and rocksdb directories ? (y/n): " hapus
 if [[ $hapus == "y" ]];
 then
-rm -rf rocksdb blocks;
+sudo rm -rf rocksdb blocks;
 fi
 
 read -p "Do you want to redowload validator config ? (y/n): " download
