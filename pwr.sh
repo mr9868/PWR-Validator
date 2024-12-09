@@ -10,6 +10,7 @@ jdkList=(jdk-23.0.1 jdk-24);
 set | grep ^javaList=
 set | grep ^jdkList=
 
+# Required package
 command -v screen >/dev/null 2>&1 || { echo >&2 "Screen is not found on this machine, Installing screen ... "; sleep 5;apt install -y screen;}
 command -v wget >/dev/null 2>&1 || { echo >&2 "Wget is not found on this machine, Installing wget ... "; sleep 5;apt install -y wget;}
 command -v tar >/dev/null 2>&1 || { echo >&2 "Tar is not found on this machine, Installing tar ... "; sleep 5;apt install -y tar;}
