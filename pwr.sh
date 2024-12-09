@@ -33,8 +33,8 @@ function unblockIPs(){
 myHeader;
 echo -e "Unblock IPs from previous PWR node ... \n";
 daftarIP=$(sudo iptables -L | grep DROP | awk '$4!="anywhere"{print $4}' |  grep -oE '\b([0-9]{1,3}\.){3}[0-9]{1,3}\b');
-daftarDm=$(sudo iptables -L | grep DROP | grep -oiE '([a-zA-Z0-9][a-zA-Z0-9-]{1,61}\.){1,}(\.?[a-zA-Z]{2,}){1,}');
-list="listAddr=($daftarIP $daftarDm)";
+#daftarDm=$(sudo iptables -L | grep DROP | grep -oiE '([a-zA-Z0-9][a-zA-Z0-9-]{1,61}\.){1,}(\.?[a-zA-Z]{2,}){1,}');
+list="listAddr=($daftarIP)";
 echo $list > listAddr.txt
 . listAddr.txt
 for i in $(seq 0 ${#listAddr[@]});
