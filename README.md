@@ -1,6 +1,6 @@
 # PWR-Validator
 ## PWR validator setup auto installer
-Important Note: This is the inaugural testnet launch. While we strive for perfection, there might be unforeseen issues. We appreciate all feedback, bug reports, or any other issues reported in [ PWR Discord server ] ( https://discord.gg/6axprNfT )
+Important Note: This is the inaugural testnet launch. While we strive for perfection, there might be unforeseen issues. We appreciate all feedback, bug reports, or any other issues reported in [PWR Discord server](https://discord.gg/6axprNfT)
 ## Requirements
 * CPU: 1 vCPU
 * Memory: 1 GB RAM
