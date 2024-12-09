@@ -1,15 +1,16 @@
+# Set variables and array URL JDK latest
 myIP=$(curl -w "\n" ifconfig.me);
 arch=$(uname -m);
-if [ $arch == " x86_64" ];
+if [ $arch == "x86_64" ];
 then
 arch=x64;
 fi
-javaList=(https://download.oracle.com/java/23/latest/jdk-23_linux-${arch}_bin.tar.gz https://download.java.net/java/early_access/jdk24/27/GPL/openjdk-24-ea+27_linux-${arch}_bin.tar.gz );
+javaList=(https://download.oracle.com/java/23/latest/jdk-23_linux-${arch}_bin.tar.gz https://download.java.net/java/early_access/jdk24/27/GPL/openjdk-24-ea+27_linux-${arch}_bin.tar.gz);
 jdkList=(jdk-23.0.1 jdk-24);
 set | grep ^javaList=
 set | grep ^jdkList=
 
-
+# My Header
 function myHeader(){
 clear;
 echo -e "============================================================\n"
@@ -19,6 +20,7 @@ echo -e "=             Github : https://github.io/Mr9868            =\n"
 echo -e "============================================================\n"
 }
 
+# Unblock IPs and domain that blocked by pwr node
 function unblockIPs(){
 myHeader;
 echo -e "Unblock IPs from previous PWR node ... \n";
@@ -37,9 +39,9 @@ done
 myHeader;
 echo -e "Unblocked IPs successfully ✅ \n"
 }
-
 unblockIPs;
 
+# Install java function
 function install_java(){
 dpkg-query -W -f='${binary:Package}\n' | grep -E -e '^(ia32-)?(sun|oracle)-java' -e '^openjdk-' -e '^icedtea' -e '^(default|gcj)-j(re|dk)' -e '^gcj-(.*)-j(re|dk)' -e '^java-common' | xargs sudo apt-get -y remove;
 sudo apt-get -y autoremove;
@@ -50,6 +52,7 @@ sudo rm -rf /usr/local/java &&
 sudo apt purge -y java-common &&
 sudo update-alternatives --remove-all java;
 
+# JDK latest (v23 and v24)
 function jdkLts(){
 apt install -y java-common &&
 wget -O javalts.tar.gz ${javaVer} &&
@@ -62,6 +65,7 @@ sudo update-alternatives --install "/usr/bin/java" "java" "/usr/local/java/${jdk
 cd -;
 }
 
+# List JDK version provided by default apt list
 function listJdk(){
 apt update-y  && apt upgrade -y &&
 apt install -y openjdk-${jdkVer}-jdk &&
@@ -107,9 +111,8 @@ javaVer=${javaList[1]};
 jdkVer=${jdkList[1]};
 jdkLts;
 fi
-
-# end install_java function
 }
+# end install_java function
 
 pJava=("Java already installed, do you want to reinstall them ?" "Java doesn't installed, Do you want to install ?")
 function java_found(){
@@ -119,6 +122,8 @@ then
 install_java;
 fi
 }
+# end of java_found function
+
 if command -v java 2>&1 >/dev/null
 then
 qnJava=${pJava[0]};
@@ -147,5 +152,10 @@ myHeader;
 echo -e "You're currently using $(java --version) \n"
 echo -e "Running PWR node ... \n"
 sleep 2;
-sudo java -jar validator.jar password $myIP;
+screen -X -S pwr quit;
+screen -dmS pwr bash -c "sudo java -jar validator.jar password $myIP;exec bash";
+myHeader;
+echo -e "PWR node running successfully ✅ \n"
+echo -e "To view your PWR logs, exec 'screen -r pwr' \n"
+
 
