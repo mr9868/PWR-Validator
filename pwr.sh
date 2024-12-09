@@ -121,6 +121,7 @@ fi
 }
 # end install_java function
 
+myHeader;
 pJava=("Java already installed, do you want to reinstall them ?" "Java doesn't installed, Do you want to install ?")
 function java_found(){
 read -p "${qnJava} (y/n): " qJava
@@ -140,12 +141,16 @@ qnJava=${pJava[1]};
 java_found;
 fi
 
+myHeader;
+echo -e "You must remove blocks and rocksdb when upgrading PWR node version ! \n";
 read -p "Do you want to remove blocks and rocksdb directories ? (y/n): " hapus
 if [[ $hapus == "y" ]];
 then
 sudo rm -rf rocksdb blocks;
 fi
 
+myHeader;
+echo -e "You must redownload validator config when upgrading PWR node version ! \n";
 read -p "Do you want to redowload validator config ? (y/n): " download
 if [[ $download == "y" ]];
 then
