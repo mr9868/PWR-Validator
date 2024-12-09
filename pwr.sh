@@ -21,7 +21,7 @@ command -v iptables >/dev/null 2>&1 || { echo >&2 "Iptables is not found on this
 function myHeader(){
 clear;
 echo -e "============================================================\n"
-echo -e "=              EWM light-client auto installer             =\n"
+echo -e "=             PWR validator setup auto installer           =\n"
 echo -e "=                    Created by : Mr9868                   =\n"
 echo -e "=             Github : https://github.io/Mr9868            =\n"
 echo -e "============================================================\n"
