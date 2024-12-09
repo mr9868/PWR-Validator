@@ -9,6 +9,7 @@ Important Note: This is the inaugural testnet launch. While we strive for perfec
 * Open UDP Port: 7621
 
 To run the program you can execute this :
+```
 wget https://github.com/mr9868/PWR-Validator/raw/refs/heads/main/pwr.sh && chmod +x pwr.sh && ./pwr.sh && sudo rm pwr.sh
 ```
 
