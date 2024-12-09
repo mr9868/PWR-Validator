@@ -58,6 +58,7 @@ sudo bash -c 'ls -d /home/*/.java' | xargs sudo rm -rf &&
 sudo rm -rf /usr/lib/jvm/* &&
 sudo rm -rf /usr/local/java &&
 sudo apt purge -y java-common &&
+sudo mount /tmp -o remount,exec && 
 sudo update-alternatives --remove-all java;
 
 # JDK latest (v23 and v24)
