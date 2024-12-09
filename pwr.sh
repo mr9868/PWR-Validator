@@ -92,6 +92,23 @@ echo -e "6. Java JDK 24\n"
 echo -e "Press any key to exit\n"
 
 read -p "Choose java version =>  " cJava
+until [[ "${dirFound}" =~ ^[0-6]+$ ]];
+do
+myHeader;
+echo -e "List Supported Java Version : \n"
+echo -e "1. Java JDK 17\n"
+echo -e "2. Java JDK 18\n"
+echo -e "3. Java JDK 19\n"
+echo -e "4. Java JDK 21\n"
+echo -e "5. Java JDK 23\n"
+echo -e "6. Java JDK 24\n" 
+echo -e "0. Exit\n"
+
+echo -e "Error: Please select valid option ! \n"
+read -p "Choose java version =>  " cJava
+done
+
+
 if [[ $cJava == "1" ]];
 then
 jdkVer=17;
