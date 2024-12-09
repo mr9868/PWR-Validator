@@ -7,6 +7,8 @@ Important Note: This is the inaugural testnet launch. While we strive for perfec
 * Disk: 50 GB HDD or higher
 * Open TCP Ports: 8231, 8085
 * Open UDP Port: 7621
+* You must have validator role
+* You must have 100k PWR balances
 
 To run the program you can execute this :
 ```
