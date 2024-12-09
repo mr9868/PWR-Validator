@@ -19,6 +19,26 @@ echo -e "=             Github : https://github.io/Mr9868            =\n"
 echo -e "============================================================\n"
 }
 
+function unblockIPs(){
+myHeader;
+echo -e "Unblock IPs from previous PWR node ... \n";
+daftarIP=$(iptables -L | grep DROP | awk '$4!="anywhere"{print $4}' |  grep -oE '\b([0-9]{1,3}\.){3}[0-9]{1,3}\b');
+daftarDm=$(iptables -L | grep DROP | grep -oiE '([a-zA-Z0-9][a-zA-Z0-9-]{1,61}\.){1,}(\.?[a-zA-Z]{2,}){1,}');
+list="listAddr=($daftarIP $daftarDm)";
+echo $list > listAddr.txt
+. listAddr.txt
+for i in $(seq 0 ${#listAddr[@]});
+do
+set | grep ^listAddr= > listAddr.txt;
+iptables -I INPUT -s ${listAddr[i]} -j ACCEPT;
+iptables -D INPUT -s ${listAddr[i]} -j DROP;
+echo "Successful unblock address : ${listAddr[i]}";
+done
+myHeader;
+echo -e "Unblocked IPs successfully ✅ \n"
+}
+
+unblockIPs;
 
 function install_java(){
 dpkg-query -W -f='${binary:Package}\n' | grep -E -e '^(ia32-)?(sun|oracle)-java' -e '^openjdk-' -e '^icedtea' -e '^(default|gcj)-j(re|dk)' -e '^gcj-(.*)-j(re|dk)' -e '^java-common' | xargs sudo apt-get -y remove;
