@@ -18,7 +18,7 @@ PWR Chain is the first true Layer 0 blockchain, designed for unmatched scalabili
 > * Added Java JDK 23 & 24 
 ## PWR validator setup auto installer
 > [!IMPORTANT]
-> Important Note: This is the inaugural testnet launch. While we strive for perfection, there might be unforeseen issues. We appreciate all feedback, bug reports, or any other issues reported in [PWR Discord server](https://discord.gg/6axprNfT)
+> This is the inaugural testnet launch. While we strive for perfection, there might be unforeseen issues. We appreciate all feedback, bug reports, or any other issues reported in [PWR Discord server](https://discord.gg/6axprNfT)
 ## Requirements
 > [!IMPORTANT]
 > * CPU: 1 vCPU
