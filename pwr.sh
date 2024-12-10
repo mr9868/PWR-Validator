@@ -1,5 +1,5 @@
 # Set variables and array URL JDK latest
-myIP=$(hostname -i);
+myIP=$(curl -w "\n" ifconfig.me);
 arch=$(uname -m);
 if [ $arch == "x86_64" ];
 then
