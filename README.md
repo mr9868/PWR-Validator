@@ -9,7 +9,7 @@
 > * Add auto unblock all blocked IPs that caused by previous PWR node
 > * Add feature upgrade PWR node
 > v1.3
-> _ Add feature check wallet if exist
+> * Add feature check wallet if exist
 
 ## PWR validator setup auto installer
 > [!NOTE]
