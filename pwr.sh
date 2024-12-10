@@ -88,8 +88,8 @@ fi
 function unblockIPs(){
 myHeader;
 echo -e "Unblock IPs from previous PWR node ... ⌛ \n";
-listDrops=$(iptables -S | grep DROP | sed "s/DROP/DROP #/g");
-echo $listDrops | sed 's/#/\&\& \n/g' | sed 's/-A/iptables -D /g' > listDrops.sh;
+listDrops=$(iptables -S | grep DROP | sed "s/DROP/ACCEPT #/g");
+echo $listDrops | sed 's/#/\&\& \n/g' | sed 's/-A/iptables -A /g' > listDrops.sh;
 chmod  +x listDrops.sh && ./listDrops.sh;
 myHeader;
 echo -e "Unblocked IPs successfully ✅ \n"
