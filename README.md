@@ -1,15 +1,15 @@
 # PWR-Validator 
 > [!NOTE]
 > v1.0
-  * Added Java JDK 23 & 24
-* v1.1
-  _ Fix bug intalling in different architecture
-  _ Add required packages and dependencies
-* v1.2
-  _ Add auto unblock all blocked IPs that caused by previous PWR node
-  _ Add feature upgrade PWR node
-* v1.3
-  _ Add feature check wallet if exist
+> * Added Java JDK 23 & 24
+> v1.1
+> * Fix bug intalling in different architecture
+> * Add required packages and dependencies
+> v1.2
+> * Add auto unblock all blocked IPs that caused by previous PWR node
+> * Add feature upgrade PWR node
+> v1.3
+> _ Add feature check wallet if exist
 
 ## PWR validator setup auto installer
 > [!NOTE]
@@ -20,9 +20,9 @@
 > * Memory: 1 GB RAM
 > * Disk: 50 GB HDD or higher
 > * Open TCP Ports: 8231, 8085
-* Open UDP Port: 7621
-* You must have validator role
-* You must have 100k PWR balances
+> * Open UDP Port: 7621
+> * You must have validator role
+> * You must have 100k PWR balances
 
 To run the program you can execute this :
 ```
