@@ -5,6 +5,7 @@
 > [!IMPORTANT]
 > This is the inaugural testnet launch. While we strive for perfection, there might be unforeseen issues. We appreciate all feedback, bug reports, or any other issues reported in [PWR Discord Server](https://discord.gg/6axprNfT).
 
+## Changelog
 > [!NOTE]
 > v1.3
 > * Add feature check wallet
