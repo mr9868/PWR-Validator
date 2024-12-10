@@ -248,6 +248,7 @@ fi
 # run PWR
 myHeader;
 echo -e "You're currently using $(java --version) \n"
+sleep 2;
 checkWallet &&
 myHeader;
 echo -e "Running PWR node ... ⌛ \n"
