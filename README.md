@@ -1,8 +1,9 @@
-# PWR-Validator v.1.2
+# PWR-Validator v.1.3
 * Fix bug intalling in different architecture
 * Add required packages and dependencies
 * Add auto unblock all blocked IPs that caused by previous PWR node
 * Add feature upgrade PWR node
+* Add feature check wallet if exist
 
 ## PWR validator setup auto installer
 Important Note: This is the inaugural testnet launch. While we strive for perfection, there might be unforeseen issues. We appreciate all feedback, bug reports, or any other issues reported in [PWR Discord server](https://discord.gg/6axprNfT)
