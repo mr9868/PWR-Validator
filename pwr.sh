@@ -31,7 +31,6 @@ echo -e "============================================================\n"
 function checkIfExist(){
 if [[ -f password ]];
 then
-myHeader;
 echo -e "Please wait, chacking if PWR wallet is exist ...";
 sleep 5;
 checkWallet=$(sudo java -jar validator.jar get-private-key password | grep Private | awk '{print $3}');
@@ -68,6 +67,7 @@ echo -e "Password file cannot be NULL ! \n"
 read -p "Input your password => " pwrPass
 done
 echo $pwrPass > password;
+checkWallet;
 fi
 }
 # end of checkIfExist function
@@ -75,7 +75,6 @@ fi
 function checkWallet(){
 if [[ -f pwrWallet ]];
 then
-myHeader;
 echo -e "Wallet found, next step ...";
 sleep 2;
 else
@@ -196,9 +195,8 @@ fi
 # end install_java function
 
 myHeader;
-pJava=("Java already installed, do you want to reinstall them ?" "Java doesn't installed, Do you want to install ?")
 function java_found(){
-read -p "${qnJava} (y/n): " qJava
+read -p "Java already installed, do you want to reinstall them ? (y/n): " qJava
 if [[ $qJava == "y" ]];
 then
 install_java;
@@ -208,12 +206,9 @@ fi
 
 if command -v java 2>&1 >/dev/null
 then
-qnJava=${pJava[0]};
 java_found;
-checkWallet;
 else
-qnJava=${pJava[1]};
-java_found;
+install_java;
 fi
 
 myHeader;
@@ -237,6 +232,8 @@ fi
 # run PWR
 myHeader;
 echo -e "You're currently using $(java --version) \n"
+checkWallet &&
+myHeader;
 echo -e "Running PWR node ... \n"
 sleep 2;
 screen -X -S pwr quit;
