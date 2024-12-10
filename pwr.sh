@@ -218,7 +218,7 @@ if [ -d blocks ] && [ -d rocksdb ];
 then
 
 myHeader;
-echo -e "You must remove blocks and rocksdb when upgrading PWR node version ! \n";
+echo -e "If you remove blocks and rocksdb, the node will resync from the stratch! \n";
 read -p "Do you want to remove blocks and rocksdb directories ? (y/n): " hapus
 if [[ $hapus == "y" ]];
 then
