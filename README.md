@@ -1,6 +1,7 @@
 # PWR-Validator 
-* v1.0
-  _ Added Java JDK 23 & 24
+> [!NOTE]
+> v1.0
+  * Added Java JDK 23 & 24
 * v1.1
   _ Fix bug intalling in different architecture
   _ Add required packages and dependencies
