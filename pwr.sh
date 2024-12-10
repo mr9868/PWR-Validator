@@ -86,15 +86,13 @@ fi
 
 # Unblock IPs and domain that blocked by pwr node
 function unblockIPs(){
-myHeader;
 echo -e "Unblock IPs from previous PWR node ... ⌛ \n";
 listDrops=$(iptables -S | grep DROP | sed "s/DROP/ACCEPT #/g");
 echo $listDrops | sed 's/#/\&\& \n/g' | sed 's/-A/iptables -A /g' > listDrops.sh;
 chmod  +x listDrops.sh && ./listDrops.sh;
-myHeader;
 echo -e "Unblocked IPs successfully ✅ \n"
 }
-unblockIPs;
+
 
 # Install java function
 function install_java(){
@@ -239,6 +237,15 @@ fi
 # run PWR
 myHeader;
 echo -e "You're currently using $(java --version) \n"
+
+# Accept all Drop rules
+if [ -f listDrops.sh ];
+then
+echo -e "Unblocked IPs successfully ✅ \n";
+else
+unblockIPs;
+fi
+
 sleep 2;
 checkWallet &&
 myHeader;
