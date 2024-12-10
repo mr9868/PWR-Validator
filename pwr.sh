@@ -192,6 +192,8 @@ then
 javaVer=${javaList[1]};
 jdkVer=${jdkList[1]};
 jdkLts;
+else
+exit 1;
 fi
 }
 # end install_java function
