@@ -2,6 +2,7 @@
 > [!NOTE]
 > v1.0
 > * Added Java JDK 23 & 24
+>
 > v1.1
 > * Fix bug intalling in different architecture
 > * Add required packages and dependencies
