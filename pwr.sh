@@ -60,6 +60,8 @@ echo -e "Next step ... ⌛ \n"
 sleep 5;
 fi
 # End of if checkWallet
+
+
 else
 echo -e "Password file not found, You must create password File ! \n"
 read -p "Input your password => " pwrPass
@@ -69,7 +71,19 @@ echo -e "Password file cannot be NULL ! \n"
 read -p "Input your password => " pwrPass
 done
 echo $pwrPass > password;
+myHeader;
+echo -e "Wallet not found, please generate PWR wallet first !";
+read -p "Input your PWR Wallet Private Key without 0x => " pwrPK
+until [[ "${pwrPK}" =~ ^[0-9a-fA-F]{64}$ ]];
+do
+myHeader;
+echo -e "Please submit a valid private key !";
+read -p "Input your PWR Wallet Private Key without 0x => " pwrPK
+done
+sudo java -jar validator.jar --import-key ${pwrPK} password
 checkWallet;
+echo -e "Next step ... ⌛ \n"
+sleep 5;
 fi
 }
 # end of checkIfExist function
