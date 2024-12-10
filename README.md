@@ -1,6 +1,7 @@
 # PWR Chain project
 PWR Chain is the first true Layer 0 blockchain, designed for unmatched scalability and seamless integration. Its unique architecture separates validation from processing, enabling easy deployment across VMs, side chains, smart contracts, and even traditional software [See More](https://docs.pwrlabs.io)
 
+## PWR-Validator Setup
 > [!NOTE]
 > v1.3
 > * Add feature check wallet
