@@ -28,6 +28,33 @@ echo -e "=               Your OS info : $(uname -s) $(uname -m)              =\n
 echo -e "============================================================\n"
 }
 
+function checkIfExist(){
+if [[ -f password ]];
+then
+myHeader;
+echo -e "Please wait, chacking if PWR wallet is exist ...";
+sleep 5;
+checkWallet=$(sudo java -jar validator.jar get-private-key password | grep Private | awk '{print $3}');
+if [[ -z $checkWallet ]];
+then
+echo -e "Wallet not found, please generate PWR wallet first !";
+sleep 5;
+else
+echo -e "Wallet found, Your PrivateKey is $checkWallet";
+echo -e "Wallet found, Your PrivateKey is $checkWallet" > pwrWallet;
+sleep 5;
+fi
+fi
+}
+
+if [[ -f pwrWallet ]];
+then
+echo -e "Wallet found, next step ...";
+sleep 2;
+else
+checkIfExist;
+fi
+
 # Unblock IPs and domain that blocked by pwr node
 function unblockIPs(){
 myHeader;
