@@ -38,7 +38,7 @@
 > ```
 
 ## Wanna donate me ?
-> [!IMPORTANT]
+> [!NOTE]
 > my EVM address :
 > ```
 > 0xE7D71e4bAbdD80b5dcDAf5B547Fb2A393d82D9c7
