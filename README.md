@@ -13,7 +13,6 @@
 
 > v1.0
 > * Added Java JDK 23 & 24 
-
 ## PWR validator setup auto installer
 > [!IMPORTANT]
 > Important Note: This is the inaugural testnet launch. While we strive for perfection, there might be unforeseen issues. We appreciate all feedback, bug reports, or any other issues reported in [PWR Discord server](https://discord.gg/6axprNfT)
