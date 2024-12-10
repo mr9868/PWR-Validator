@@ -21,14 +21,12 @@
 > This is the inaugural testnet launch. While we strive for perfection, there might be unforeseen issues. We appreciate all feedback, bug reports, or any other issues reported in [PWR Discord server](https://discord.gg/6axprNfT)
 ## Requirements
 > [!IMPORTANT]
-> Minimum Hardware Specification 
+> Minimum Hardware Specification and Other Required Condition 
 > * CPU: 1 vCPU
 > * Memory: 1 GB RAM
 > * Disk: 50 GB HDD or higher
-> Required Port 
 > * Open TCP Ports: 8231, 8085
 > * Open UDP Port: 7621
-> Other required 
 > * You must have validator role
 > * You must have 100k PWR balances
 
