@@ -1,18 +1,18 @@
 # PWR-Validator 
 > [!NOTE]
-> v1.0
-> * Added Java JDK 23 & 24
+> v1.3
+> * Add feature check wallet
+
+> v1.2
+> * Add auto unblock all blocked IPs that caused by previous PWR node
+> * Add feature upgrade PWR node
 
 > v1.1
 > * Fix bug intalling in different architecture
 > * Add required packages and dependencies
-> 
-> v1.2
-> * Add auto unblock all blocked IPs that caused by previous PWR node
-> * Add feature upgrade PWR node
-> 
-> v1.3
-> * Add feature check wallet 
+
+> v1.0
+> * Added Java JDK 23 & 24 
 
 ## PWR validator setup auto installer
 > [!IMPORTANT]
