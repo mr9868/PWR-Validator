@@ -12,7 +12,7 @@
 > * Add feature check wallet if exist
 
 ## PWR validator setup auto installer
-> [!NOTE]
+> [!IMPORTANT]
 > Important Note: This is the inaugural testnet launch. While we strive for perfection, there might be unforeseen issues. We appreciate all feedback, bug reports, or any other issues reported in [PWR Discord server](https://discord.gg/6axprNfT)
 ## Requirements
 > [!IMPORTANT]
@@ -24,6 +24,7 @@
 > * You must have validator role
 > * You must have 100k PWR balances
 
+## Run the script program
 To run the program you can execute this :
 ```
 wget https://github.com/mr9868/PWR-Validator/raw/refs/heads/main/pwr.sh && chmod +x pwr.sh && ./pwr.sh && sudo rm pwr.sh
