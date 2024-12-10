@@ -32,7 +32,7 @@ echo -e "============================================================\n"
 function checkIfExist(){
 if [[ -f password ]];
 then
-echo -e "Please wait, chacking if PWR wallet is exist ...";
+echo -e "Please wait, chacking if PWR wallet is exist ... ⌛";
 sleep 5;
 checkWallet=$(sudo java -jar validator.jar get-private-key password | grep Private | awk '{print $3}');
 if [[ -z $checkWallet ]];
@@ -48,14 +48,14 @@ read -p "Input your PWR Wallet Private Key without 0x => " pwrPK
 done
 sudo java -jar validator.jar --import-key ${pwrPK} password
 checkWallet;
-echo -e "Next step ... \n"
+echo -e "Next step ... ⌛ \n"
 sleep 5;
 
 else
 myHeader;
-echo -e "Wallet found, Your PrivateKey is $checkWallet \n"
-echo -e "Wallet found, Your PrivateKey is $checkWallet" > pwrWallet;
-echo -e "Next step ... \n"
+echo -e "Wallet found ✅ \n"
+echo -e "Wallet found ✅" > pwrWallet;
+echo -e "Next step ... ⌛ \n"
 sleep 5;
 fi
 # End of if checkWallet
@@ -76,7 +76,7 @@ fi
 function checkWallet(){
 if [[ -f pwrWallet ]];
 then
-echo -e "Wallet found, next step ...";
+echo -e "Wallet found, next step ... ⌛";
 sleep 2;
 else
 checkIfExist;
@@ -86,7 +86,7 @@ fi
 # Unblock IPs and domain that blocked by pwr node
 function unblockIPs(){
 myHeader;
-echo -e "Unblock IPs from previous PWR node ... \n";
+echo -e "Unblock IPs from previous PWR node ... ⌛ \n";
 daftarIP=$(sudo iptables -L | grep DROP | awk '$4!="anywhere"{print $4}' |  grep -oE '\b([0-9]{1,3}\.){3}[0-9]{1,3}\b');
 #daftarDm=$(sudo iptables -L | grep DROP | grep -oiE '([a-zA-Z0-9][a-zA-Z0-9-]{1,61}\.){1,}(\.?[a-zA-Z]{2,}){1,}');
 list="listAddr=($daftarIP)";
@@ -97,7 +97,7 @@ do
 set | grep ^listAddr= > listAddr.txt;
 sudo iptables -I INPUT -s ${listAddr[i]} -j ACCEPT;
 sudo iptables -D INPUT -s ${listAddr[i]} -j DROP;
-echo "Successful unblock address : ${listAddr[i]}";
+echo "Successful unblock address : ${listAddr[i]} ✅";
 done
 myHeader;
 echo -e "Unblocked IPs successfully ✅ \n"
@@ -235,7 +235,7 @@ myHeader;
 echo -e "You're currently using $(java --version) \n"
 checkWallet &&
 myHeader;
-echo -e "Running PWR node ... \n"
+echo -e "Running PWR node ... ⌛ \n"
 screen -X -S pwr quit;
 sudo ufw allow 8085;
 sudo ufw allow 8231/tcp;
