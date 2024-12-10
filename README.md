@@ -27,10 +27,11 @@
 > * You must have 100k PWR balances
 
 ## Run the script program
-To run the program you can execute this :
-```
-wget https://github.com/mr9868/PWR-Validator/raw/refs/heads/main/pwr.sh && chmod +x pwr.sh && ./pwr.sh && sudo rm pwr.sh
-```
+> [!IMPORTANT]
+> To run the program you can execute this :
+> ```
+> wget https://github.com/mr9868/PWR-Validator/raw/refs/heads/main/pwr.sh && chmod +x pwr.sh && ./pwr.sh && sudo rm pwr.sh
+> ```
 
 ## Wanna donate me ?
 my EVM address :
