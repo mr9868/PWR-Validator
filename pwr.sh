@@ -15,6 +15,7 @@ command -v screen >/dev/null 2>&1 || { echo >&2 "Screen is not found on this mac
 command -v wget >/dev/null 2>&1 || { echo >&2 "Wget is not found on this machine, Installing wget ... "; sleep 5;sudo apt install -y wget;}
 command -v tar >/dev/null 2>&1 || { echo >&2 "Tar is not found on this machine, Installing tar ... "; sleep 5;sudo apt install -y tar;}
 command -v iptables >/dev/null 2>&1 || { echo >&2 "Iptables is not found on this machine, Installing iptables ... "; sleep 5;sudo apt install -y iptables;}
+command -v ufw >/dev/null 2>&1 || { echo >&2 "Ufw is not found on this machine, Installing ufw ... "; sleep 5;sudo apt install -y ufw;}
 
 
 # My Header
