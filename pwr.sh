@@ -213,6 +213,10 @@ else
 install_java;
 fi
 
+
+if [ -d blocks ] && [ -d rocksdb ];
+then
+
 myHeader;
 echo -e "You must remove blocks and rocksdb when upgrading PWR node version ! \n";
 read -p "Do you want to remove blocks and rocksdb directories ? (y/n): " hapus
@@ -220,6 +224,12 @@ if [[ $hapus == "y" ]];
 then
 sudo rm -rf rocksdb blocks;
 fi
+
+fi
+
+
+if [ -f validator.jar ] && [ -f config.json ];
+then
 
 myHeader;
 echo -e "You must redownload validator config when upgrading PWR node version ! \n";
@@ -229,6 +239,8 @@ then
 sudo rm -rf validator.jar config.json  &&
 wget https://github.com/pwrlabs/PWR-Validator/releases/latest/download/validator.jar &&
 wget https://github.com/pwrlabs/PWR-Validator/raw/refs/heads/main/config.json
+fi
+
 fi
 
 # run PWR
