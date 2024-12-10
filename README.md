@@ -1,7 +1,7 @@
 # PWR-Validator 
 > [!NOTE]
 > v1.3
-* Add feature check wallet
+> * Add feature check wallet
 
 > v1.2
 > * Add auto unblock all blocked IPs that caused by previous PWR node
