@@ -21,7 +21,7 @@
 > This is the inaugural testnet launch. While we strive for perfection, there might be unforeseen issues. We appreciate all feedback, bug reports, or any other issues reported in [PWR Discord server](https://discord.gg/6axprNfT)
 ## Requirements
 > [!IMPORTANT]
-> Minimum Hardware Specification and Other Required Condition 
+> Minimum hardware specification and other required condition 
 > * CPU: 1 vCPU
 > * Memory: 1 GB RAM
 > * Disk: 50 GB HDD or higher
