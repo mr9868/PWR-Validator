@@ -235,6 +235,9 @@ echo -e "You're currently using $(java --version) \n"
 checkWallet &&
 myHeader;
 echo -e "Running PWR node ... \n"
+sudo ufw allow 8085;
+sudo ufw allow 8231/tcp;
+sudo ufw allow 7621/udp;
 sleep 2;
 screen -X -S pwr quit;
 screen -dmS pwr bash -c "sudo java -jar validator.jar password $myIP;exec bash";
