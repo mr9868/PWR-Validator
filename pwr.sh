@@ -37,23 +37,51 @@ sleep 5;
 checkWallet=$(sudo java -jar validator.jar get-private-key password | grep Private | awk '{print $3}');
 if [[ -z $checkWallet ]];
 then
+myHeader;
 echo -e "Wallet not found, please generate PWR wallet first !";
+read -p "Input your PWR Wallet Private Key without 0x => " pwrPK
+until [[ "${pwrPK}" =~ ^[0-9a-fA-F]{64}$ ]];
+do
+myHeader;
+echo -e "Please submit a valid private key !";
+read -p "Input your PWR Wallet Private Key without 0x => " pwrPK
+done
+sudo java -jar validator.jar --import-key ${pwrPK} password
+checkWallet;
+echo -e "Next step ... \n"
 sleep 5;
+
 else
-echo -e "Wallet found, Your PrivateKey is $checkWallet";
+myHeader;
+echo -e "Wallet found, Your PrivateKey is $checkWallet \n"
 echo -e "Wallet found, Your PrivateKey is $checkWallet" > pwrWallet;
+echo -e "Next step ... \n"
 sleep 5;
 fi
+# End of if checkWallet
+else
+echo -e "Password file not found, You must create password File ! \n"
+read -p "Input your password => " pwrPass
+until [[ -n $pwrPass ]]
+do
+echo -e "Password file cannot be NULL ! \n"
+read -p "Input your password => " pwrPass
+done
+echo $pwrPass > password;
 fi
 }
+# end of checkIfExist function
 
+function checkWallet(){
 if [[ -f pwrWallet ]];
 then
+myHeader;
 echo -e "Wallet found, next step ...";
 sleep 2;
 else
 checkIfExist;
 fi
+}
 
 # Unblock IPs and domain that blocked by pwr node
 function unblockIPs(){
@@ -182,6 +210,7 @@ if command -v java 2>&1 >/dev/null
 then
 qnJava=${pJava[0]};
 java_found;
+checkWallet;
 else
 qnJava=${pJava[1]};
 java_found;
