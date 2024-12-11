@@ -8,6 +8,7 @@
 ## Changelog
 > [!NOTE]
 > v1.3
+> * Fix bug unblocking IP
 > * Add feature check wallet
 
 > v1.2
