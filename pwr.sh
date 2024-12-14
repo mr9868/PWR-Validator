@@ -217,6 +217,65 @@ fi
 }
 # end of java_found function
 
+function tgQnCheck(){
+read -p "Please provide your bot API Key from @botFather : " tgApiQn
+until [ -n "${tgApiQn}" ];
+do
+myHeader
+echo "Please input the API ! "
+read -p "Please provide your bot API Key from @botFather : " tgApiQn
+done
+myHeader
+echo "Please provide your bot API Key from @botFather : ${tgApiQn}"
+read -p "Please provide your telegram ID's from @getidsbot : " tgIdQn
+until [ -n "${tgIdQn}" ];
+do
+myHeader
+echo "Please input chat id !"
+echo "Please provide your bot API Key from @botFather : ${tgApiQn}"
+read -p "Please provide your telegram ID's from @getidsbot : " tgIdQn
+done
+}
+
+# Entrypoint for telegram monitor question
+function entryPointTg(){
+myHeader
+read -p "Do you want to add telegram monitor ? (y/n)  : " tgQn
+if [[ "${tgQn}" =~ ^([yY][eE][sS]|[yY])$ ]];
+then   
+tgQnCheck
+API_TOKEN=${tgApiQn}
+CHAT_ID=${tgIdQn}
+myHeader
+msgTg=$(echo -e "<b>[ INFO ]</b> Authorized !\nPlease wait for up to 1 minute ... ")
+tgTest=$(curl -s -X POST https://api.telegram.org/bot${API_TOKEN}/sendMessage -d chat_id=${CHAT_ID} -d text="${msgTg}" -d parse_mode="HTML" | grep 'error_code') 
+tgTest=$(echo ${tgTest})
+until [ -z "${tgTest}" ];
+do
+myHeader
+echo -e "[ ERROR ] Unauthorized !\nPlease recheck your API and CHAT ID and make sure you starting your bot"
+tgQnCheck
+API_TOKEN=${tgApiQn}
+CHAT_ID=${tgIdQn}
+tgTest=$(curl -s -X POST https://api.telegram.org/bot${API_TOKEN}/sendMessage -d chat_id=${CHAT_ID} -d text="${msgTg}" -d parse_mode="HTML" | grep 'error_code')
+tgTest=$(echo ${tgTest})
+done
+echo -e ${msgTg}
+if grep -wq "tgApiQn" ${cfgDir}/config; then    
+sudo pkill -f "ewmLog"
+sed -r -i "s/tgApiQn=.*/tgApiQn=${tgApiQn}/g" ~/.mr9868/pwr/config
+sed -r -i "s/tgIdQn=.*/tgIdQn=${tgIdQn}/g" ~/.mr9868/pwr/config
+else         
+echo "tgApiQn=${tgApiQn}" >> ~/.mr9868/pwr/config
+echo "tgIdQn=${tgIdQn}" >> ~/.mr9868/pwr/config
+fi
+else
+echo "See yaa ..."
+fi
+}
+
+
+
 if command -v java 2>&1 >/dev/null
 then
 java_found;
