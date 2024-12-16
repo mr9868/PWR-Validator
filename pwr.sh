@@ -279,7 +279,6 @@ done
 
 screen -dmS tgServer bash -c "chmod +x ~/.mr9868/pwr/tgServer && bash ~/.mr9868/pwr/tgServer";
 sleep 2;
-done
 
 
 }
