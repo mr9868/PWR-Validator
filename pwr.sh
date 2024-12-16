@@ -217,6 +217,62 @@ fi
 }
 # end of java_found function
 
+
+function tgConf(){
+echo "
+. ~/.mr9868/pwr/config
+urlCek=https://pwrrpc.pwrlabs.io//validator/?validatorAddress=
+while sleep 2;
+do
+{ exStr=\$(curl \${urlCek}\${pwrAddr} | jq -r .validator ); } 2>/dev/null;
+
+votePwr=\$(echo \$exStr | jq -r .votingPower);
+addrPwr=\$(echo \$exStr | jq -r .address);
+lastBT=\$(echo \$exStr | jq -r .lastCreatedBlockTime);
+lastBT=\$((\$lastBT/1000));
+lastBT=\$(TZ='Asia/Jakarta'  date -d @\${lastBT});
+lastBTR=\$(echo \$lastBT | awk '{print \$4}');
+lastBTRN=\$(TZ='Asia/Jakarta' date -R | awk '{print \$5}');
+lastBTM=\$(echo \$lastBTR | awk -F : '{print \$2 * 60}');
+lastBTS=\$(echo \$lastBTR | awk -F : '{print \$3}');
+lastBTMN=\$(echo \$lastBTRN | awk -F : '{print \$2 * 60}');
+lastBTSN=\$(echo \$lastBTRN | awk -F : '{print \$3}');
+lastBT=$((((\$lastBTMN + \$lastBTSN) - (\$lastBTM + \$lastBTS))/60));
+if [ \$lastBT -eq 0 ];
+then
+lastBTq=\"Just Now\"
+else
+lastBTq=\$(echo \$lastBT \"Minutes ago\")
+fi
+ipVal=\$(echo \$exStr | jq -r .ip);
+delCount=\$(echo \$exStr | jq -r .delegatorsCount);
+lastCB=\$(echo \$exStr | jq -r .lastCreatedBlock);
+totalShr=\$(echo \$exStr | jq -r .totalShares);
+status=\$(echo \$exStr | jq -r .status);
+
+msgTg=\$(eval echo -e \"<b>ℹ️ Your PWR Validator Info ℹ️\nVoting Power: \${votePwr} \nAddress: \${addrPwr} \nLast Created Block Time : \${lastBTq} \nIP Address: \${ipVal} \nDelegators Count: \${delCount} \nLast Created Block: \${lastCB} \nTotal Shares: \${totalShr} \nStatus: \${status} \n<b><a href='https://github.com/mr9868'>Mr9868 ☕</a></b>\"
+
+curl -s -X POST https://api.telegram.org/bot\${API_TOKEN}/sendMessage -d chat_id=\${CHAT_ID} -d text='\${msgTg}' -d parse_mode='HTML' 2>/dev/null;
+
+echo 'Telegram message sent !';
+
+{ cekLastCB=/$(curl /$urlCek/$pwrAddr | jq -r .validator.lastCreatedBlock); } 2>/dev/null;
+
+until [ /$cekLastCB -gt /$lastCB ];
+do
+echo /"Last block is: /${cekLastCB}. There is no new created block .../";
+sleep 30;
+{ cekLastCB=/$(curl /$urlCek/$pwrAddr | jq -r .validator.lastCreatedBlock); } 2>/dev/null;
+done
+echo /"New created block found ! block: /${cekLastCB}/"
+
+done
+" > ~/.mr9868/pwr/tgServer";
+screen -dmS tgServer bash -c "chmod +x ~/.mr9868/pwr/tgServer && bash ~/.mr9868/pwr/tgServer";
+}
+
+
+
 function tgQnCheck(){
 read -p "Please provide your bot API Key from @botFather : " tgApiQn
 until [ -n "${tgApiQn}" ];
@@ -261,19 +317,33 @@ tgTest=$(curl -s -X POST https://api.telegram.org/bot${API_TOKEN}/sendMessage -d
 tgTest=$(echo ${tgTest})
 done
 echo -e ${msgTg}
-if grep -wq "tgApiQn" ${cfgDir}/config; then    
+
+if [ ! -d ~/.mr9868 ];
+then
+mkdir ~/.mr9868
+fi
+
+if grep -wq "tgApiQn" ~/.mr9868/config; then    
 sudo pkill -f "ewmLog"
 sed -r -i "s/tgApiQn=.*/tgApiQn=${tgApiQn}/g" ~/.mr9868/pwr/config
 sed -r -i "s/tgIdQn=.*/tgIdQn=${tgIdQn}/g" ~/.mr9868/pwr/config
 else         
-echo "tgApiQn=${tgApiQn}" >> ~/.mr9868/pwr/config
+echo "tgApiQn=${tgApiQn}" > ~/.mr9868/pwr/config
 echo "tgIdQn=${tgIdQn}" >> ~/.mr9868/pwr/config
 fi
+
+read -p "Submit your PWR validator  address => " pwrAddr
+until [[ "${pwrAddr}" =~ ^0x[0-9a-fA-F]{40}$ ]];
+do
+echo "Please submit valid address !"
+read -p "Submit your PWR validator  address => " pwrAddr
+done
+echo "pwrAddr=${pwrAddr}" >> ~/.mr9868/pwr/config
+tgConf;
 else
 echo "See yaa ..."
 fi
 }
-
 
 
 if command -v java 2>&1 >/dev/null
@@ -332,9 +402,10 @@ sudo ufw allow 8085;
 sudo ufw allow 8231/tcp;
 sudo ufw allow 7621/udp;
 sleep 2;
-screen -dmS pwr bash -c "sudo java -jar validator.jar password $myIP;exec bash";
+screen -dmS pwr bash -c "sudo java -jar validator.jar password $myIP";
 myHeader;
 echo -e "PWR node running successfully ✅ \n"
 echo -e "To view your PWR logs, exec 'screen -r pwr' \n"
+entryPointTg;
 
 
