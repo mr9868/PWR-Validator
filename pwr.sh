@@ -345,6 +345,14 @@ echo "tgApiQn=${tgApiQn}" > ~/.mr9868/pwr/config
 echo "tgIdQn=${tgIdQn}" >> ~/.mr9868/pwr/config
 fi
 
+adaScr=$(screen -ls | grep pwr);
+until [[ -n $adaScr ]];
+do
+screen -dmS pwr bash -c "sudo java -jar validator.jar password $myIP";
+echo "Creating pwr screen ...";
+adaScr=$(screen -ls | grep pwr);
+sleep 2;
+done
 
 echo "pwrAddr=$(curl localhost:8085/address/)" >> ~/.mr9868/pwr/config
 tgConf;
@@ -412,15 +420,7 @@ screen -X -S pwr tgServer;
 sudo ufw allow 8085;
 sudo ufw allow 8231/tcp;
 sudo ufw allow 7621/udp;
-sleep 5;
-adaScr=$(screen -ls | grep pwr);
-until [[ -n $adaScr ]];
-do
-screen -dmS pwr bash -c "sudo java -jar validator.jar password $myIP";
-echo "Creating pwr screen ...";
-adaScr=$(screen -ls | grep pwr);
-sleep 2;
-done
+screen -dmS pwr bash -c "sudo java -jar validator.jar password $myIP" && sleep 5;
 myHeader;
 echo -e "PWR node running successfully ✅ \n"
 echo -e "To view your PWR logs, exec 'screen -r pwr' \n"
