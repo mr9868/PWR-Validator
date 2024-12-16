@@ -43,6 +43,7 @@
 > wget https://github.com/mr9868/PWR-Validator/raw/refs/heads/main/pwr.sh && chmod +x pwr.sh && ./pwr.sh && sudo rm pwr.sh
 > ```
 
+## Setting Telegram Bot
 > [!TIP]
 > How to setting up telegram bot and get your bot API KEY
 > 1. Go to [https://t.me/botfather]
@@ -52,6 +53,7 @@
 > 5. Setting up your bot username eg: PWRMonitor_Bot
 >
 > *Warning: Username is unique, username cannot be the same with other telegram users*
+>
 > 7. Write up your HTTP API
 > 8. Start your bot
 >
