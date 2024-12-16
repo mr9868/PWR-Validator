@@ -12,6 +12,7 @@ set | grep ^jdkList=
 
 screen -X -S pwr quit;
 pkill -f "java";
+pkill -9 java;
 pkill java;
 screen -X -S pwr tgServer;
 
@@ -236,8 +237,8 @@ votePwr=\$(echo \$exStr | jq -r .votingPower);
 addrPwr=\$(echo \$exStr | jq -r .address);
 lastBT=\$(echo \$exStr | jq -r .lastCreatedBlockTime);
 lastBT=\$((\$lastBT/1000));
-lastBT=\$(TZ='Asia/Jakarta'  date -d @\${lastBT});
-lastBTR=\$(echo \$lastBT | awk '{print \$4}');
+lastBTO=\$(TZ='Asia/Jakarta'  date -d @\${lastBT});
+lastBTR=\$(echo \$lastBTO | awk '{print \$4}');
 lastBTRN=\$(TZ='Asia/Jakarta' date -R | awk '{print \$5}');
 lastBTM=\$(echo \$lastBTR | awk -F : '{print \$2 * 60}');
 lastBTS=\$(echo \$lastBTR | awk -F : '{print \$3}');
