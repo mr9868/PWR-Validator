@@ -7,6 +7,9 @@
 
 ## Changelog
 > [!NOTE]
+> v1.4
+> * Add telegram bot monitor
+
 > v1.3
 > * Fix bug unblocking IP
 > * Add feature check wallet
