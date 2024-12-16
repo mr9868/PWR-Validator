@@ -272,12 +272,7 @@ echo \"New created block found ! block: \${cekLastCB}\"
 done
 " > ~/.mr9868/pwr/tgServer;
 
-adaScr=$(screen -ls | grep tgServer);
-until [[ -n $adaScr ]];
-do
 screen -dmS tgServer bash -c "chmod +x ~/.mr9868/pwr/tgServer && bash ~/.mr9868/pwr/tgServer";
-echo "Creating tgServer screen ...";
-adaScr=$(screen -ls | grep tgServer);
 sleep 2;
 done
 
@@ -344,15 +339,6 @@ else
 echo "tgApiQn=${tgApiQn}" > ~/.mr9868/pwr/config
 echo "tgIdQn=${tgIdQn}" >> ~/.mr9868/pwr/config
 fi
-
-adaScr=$(screen -ls | grep pwr);
-until [[ -n $adaScr ]];
-do
-screen -dmS pwr bash -c "sudo java -jar validator.jar password $myIP";
-echo "Creating pwr screen ...";
-adaScr=$(screen -ls | grep pwr);
-sleep 2;
-done
 
 echo "pwrAddr=$(curl localhost:8085/address/)" >> ~/.mr9868/pwr/config
 tgConf;
@@ -424,6 +410,7 @@ screen -dmS pwr bash -c "sudo java -jar validator.jar password $myIP" && sleep 5
 myHeader;
 echo -e "PWR node running successfully ✅ \n"
 echo -e "To view your PWR logs, exec 'screen -r pwr' \n"
+sleep 2;
 entryPointTg;
 
 
