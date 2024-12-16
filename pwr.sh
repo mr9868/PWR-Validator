@@ -250,21 +250,21 @@ lastCB=\$(echo \$exStr | jq -r .lastCreatedBlock);
 totalShr=\$(echo \$exStr | jq -r .totalShares);
 status=\$(echo \$exStr | jq -r .status);
 
-msgTg=\$(eval echo -e \"<b>ℹ️ Your PWR Validator Info ℹ️\nVoting Power: \${votePwr} \nAddress: \${addrPwr} \nLast Created Block Time : \${lastBTq} \nIP Address: \${ipVal} \nDelegators Count: \${delCount} \nLast Created Block: \${lastCB} \nTotal Shares: \${totalShr} \nStatus: \${status} \n<b><a href='https://github.com/mr9868'>Mr9868 ☕</a></b>\"
+msgTg=\$(eval echo -e \"<b>ℹ️ Your PWR Validator Info ℹ️\nVoting Power: \${votePwr} \nAddress: \\\`\${addrPwr}\\\` \nLast Created Block Time : \${lastBTq} \nIP Address: \\\`\${ipVal}\\\` \nDelegators Count: \${delCount} \nLast Created Block: \${lastCB} \nTotal Shares: \${totalShr} \nStatus: \${status} \n<b><a href='https://github.com/mr9868'>Mr9868 ☕</a></b>\"
 
 curl -s -X POST https://api.telegram.org/bot\${API_TOKEN}/sendMessage -d chat_id=\${CHAT_ID} -d text='\${msgTg}' -d parse_mode='HTML' 2>/dev/null;
 
 echo 'Telegram message sent !';
 
-{ cekLastCB=/$(curl /$urlCek/$pwrAddr | jq -r .validator.lastCreatedBlock); } 2>/dev/null;
+{ cekLastCB=/$(curl \$urlCek\$pwrAddr | jq -r .validator.lastCreatedBlock); } 2>/dev/null;
 
-until [ /$cekLastCB -gt /$lastCB ];
+until [ /$cekLastCB -gt \$lastCB ];
 do
-echo /"Last block is: /${cekLastCB}. There is no new created block .../";
+echo \"Last block is: \${cekLastCB}. There is no new created block ...\";
 sleep 30;
-{ cekLastCB=/$(curl /$urlCek/$pwrAddr | jq -r .validator.lastCreatedBlock); } 2>/dev/null;
+{ cekLastCB=\$(curl \$urlCek\$pwrAddr | jq -r .validator.lastCreatedBlock); } 2>/dev/null;
 done
-echo /"New created block found ! block: /${cekLastCB}/"
+echo \"New created block found ! block: \${cekLastCB}\"
 
 done
 " > ~/.mr9868/pwr/tgServer;
