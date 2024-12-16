@@ -325,7 +325,7 @@ mkdir ~/.mr9868
 mkdir ~/.mr9868/pwr
 fi
 echo "" > ~/.mr9868/pwr/config;
-if grep -wq "tgApiQn" ~/.mr9868/config; then    
+if grep -wq "tgApiQn" ~/.mr9868/pwr/config; then    
 sudo pkill -f "ewmLog"
 sed -r -i "s/tgApiQn=.*/tgApiQn=${tgApiQn}/g" ~/.mr9868/pwr/config
 sed -r -i "s/tgIdQn=.*/tgIdQn=${tgIdQn}/g" ~/.mr9868/pwr/config
