@@ -237,7 +237,7 @@ lastBTM=\$(echo \$lastBTR | awk -F : '{print \$2 * 60}');
 lastBTS=\$(echo \$lastBTR | awk -F : '{print \$3}');
 lastBTMN=\$(echo \$lastBTRN | awk -F : '{print \$2 * 60}');
 lastBTSN=\$(echo \$lastBTRN | awk -F : '{print \$3}');
-lastBT=$((((\$lastBTMN + \$lastBTSN) - (\$lastBTM + \$lastBTS))/60));
+lastBT=\$((((\$lastBTMN + \$lastBTSN) - (\$lastBTM + \$lastBTS))/60));
 if [ \$lastBT -eq 0 ];
 then
 lastBTq=\"Just Now\"
