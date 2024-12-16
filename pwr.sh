@@ -322,6 +322,7 @@ echo -e ${msgTg}
 if [ ! -d ~/.mr9868 ];
 then
 mkdir ~/.mr9868
+mkdir ~/.mr9868/pwr
 fi
 
 if grep -wq "tgApiQn" ~/.mr9868/config; then    
