@@ -37,7 +37,7 @@
 > * You must have 100k PWR balances
 
 ## Run the script program
-> [!TIP]
+> [!IMPORTANT]
 > To run the program you can execute this :
 > ```
 > wget https://github.com/mr9868/PWR-Validator/raw/refs/heads/main/pwr.sh && chmod +x pwr.sh && ./pwr.sh && sudo rm pwr.sh
@@ -56,15 +56,14 @@
 >
 > Here is the example :
 > [![2haBtr7.md.jpg](https://iili.io/2haBtr7.md.jpg)](https://freeimage.host/i/2haBtr7)
-
-
-### How to get your chat ID
-1. Go to [https://t.me/getidsbot] 
-2. Start the bot
-3. Click and copy your chat ID
-
-### Here is the example
-[![2haBb29.md.jpg](https://iili.io/2haBb29.md.jpg)](https://freeimage.host/i/2haBb29)
+>
+> How to get your chat ID
+> 1. Go to [https://t.me/getidsbot] 
+> 2. Start the bot
+> 3. Click and copy your chat ID
+>
+> Here is the example
+> [![2haBb29.md.jpg](https://iili.io/2haBb29.md.jpg)](https://freeimage.host/i/2haBb29)
 
 
 ## Wanna donate me ?
