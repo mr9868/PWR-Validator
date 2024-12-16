@@ -10,6 +10,11 @@ jdkList=(jdk-23.0.1 jdk-24);
 set | grep ^javaList=
 set | grep ^jdkList=
 
+screen -X -S pwr quit;
+pkill -f "java";
+pkill java;
+screen -X -S pwr tgServer;
+
 # Required package
 command -v screen >/dev/null 2>&1 || { echo >&2 "Screen is not found on this machine, Installing screen ... "; sleep 5;sudo apt install -y screen;}
 command -v wget >/dev/null 2>&1 || { echo >&2 "Wget is not found on this machine, Installing wget ... "; sleep 5;sudo apt install -y wget;}
@@ -399,10 +404,6 @@ sleep 2;
 checkWallet &&
 myHeader;
 echo -e "Running PWR node ... ⌛ \n"
-screen -X -S pwr quit;
-pkill -f "java";
-pkill java;
-screen -X -S pwr tgServer;
 sudo ufw allow 8085;
 sudo ufw allow 8231/tcp;
 sudo ufw allow 7621/udp;
