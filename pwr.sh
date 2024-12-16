@@ -413,8 +413,8 @@ screen -X -S pwr tgServer;
 sudo ufw allow 8085;
 sudo ufw allow 8231/tcp;
 sudo ufw allow 7621/udp;
-sleep 2;
-
+sleep 10;
+screen -dmS pwr bash -c "sudo java -jar validator.jar password $myIP";
 adaScr=$(screen -ls | grep pwr);
 until [[ -n $adaScr ]];
 do
