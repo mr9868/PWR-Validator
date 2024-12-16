@@ -400,6 +400,7 @@ sudo ufw allow 8231/tcp;
 sudo ufw allow 7621/udp;
 sleep 2;
 screen -dmS pwr bash -c "sudo java -jar validator.jar password $myIP";
+sleep 5
 myHeader;
 echo -e "PWR node running successfully ✅ \n"
 echo -e "To view your PWR logs, exec 'screen -r pwr' \n"
