@@ -251,9 +251,9 @@ lastCB=\$(echo \$exStr | jq -r .lastCreatedBlock);
 totalShr=\$(echo \$exStr | jq -r .totalShares);
 status=\$(echo \$exStr | jq -r .status);
 
-msgTg=\$(eval 'echo -e \"<b> ℹ️ Your PWR Validator Info ℹ️ </b> \nVoting Power: \${votePwr} \nAddress: \\\`\${addrPwr}\\\` \nLast Created Block Time : \${lastBTq} \nIP Address: \\\`\${ipVal}\\\` \nDelegators Count: \${delCount} \nLast Created Block: \${lastCB} \nTotal Shares: \${totalShr} \nStatus: \${status} \n <b> <a href=\"https://www\\.github\\.com/mr9868\" >Mr9868 ☕ </a></b>\"')
+msgTg=\$(eval 'echo -e \"<b> ℹ️ Your PWR Validator Info ℹ️ </b> \nVoting Power: \${votePwr} \nAddress: <pre>\${addrPwr}</pre> \nLast Created Block Time : \${lastBTq} \nIP Address: <pre>\${ipVal}</pre> \nDelegators Count: \${delCount} \nLast Created Block: \${lastCB} \nTotal Shares: \${totalShr} \nStatus: \${status} \n <b> <a href=\"https://www\\.github\\.com/mr9868\" >Mr9868 ☕ </a></b>\"')
 
-curl -s -X POST https://api.telegram.org/bot\${API_TOKEN}/sendMessage -d chat_id=\${CHAT_ID} -d text=\"\${msgTg}\" -d parse_mode='HTML' 2>/dev/null;
+curl -s -X POST https://api.telegram.org/bot\${tgApiQn}/sendMessage -d chat_id=\${tgIdQn} -d text=\"\${msgTg}\" -d parse_mode='HTML' 2>/dev/null;
 
 echo 'Telegram message sent !';
 
