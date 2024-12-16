@@ -334,13 +334,8 @@ echo "tgApiQn=${tgApiQn}" > ~/.mr9868/pwr/config
 echo "tgIdQn=${tgIdQn}" >> ~/.mr9868/pwr/config
 fi
 
-read -p "Submit your PWR validator  address => " pwrAddr
-until [[ "${pwrAddr}" =~ ^0x[0-9a-fA-F]{40}$ ]];
-do
-echo "Please submit valid address !"
-read -p "Submit your PWR validator  address => " pwrAddr
-done
-echo "pwrAddr=${pwrAddr}" >> ~/.mr9868/pwr/config
+
+echo "pwrAddr=$(curl localhost:8085/address/)" >> ~/.mr9868/pwr/config
 tgConf;
 else
 echo "See yaa ..."
