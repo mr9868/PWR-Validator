@@ -43,6 +43,30 @@
 > wget https://github.com/mr9868/PWR-Validator/raw/refs/heads/main/pwr.sh && chmod +x pwr.sh && ./pwr.sh && sudo rm pwr.sh
 > ```
 
+## How to setting up telegram bot and get your bot API KEY
+1. Go to [https://t.me/botfather]
+2. Start the bot
+3. type */newbot*
+4. Setting up your bot names eg: Covalent Monitor Bot
+5. Setting up your bot username eg: MyCovalentMonitor_Bot
+
+*Warning: Username is unique, username cannot be the same with other telegram users*
+
+7. Write up your HTTP API
+8. Start your bot
+
+### Here is the example :
+[![2BcmmUF.md.jpg](https://iili.io/2BcmmUF.md.jpg)](https://freeimage.host/i/2BcmmUF)
+
+### How to get your chat ID
+1. Go to [https://t.me/getidsbot] 
+2. Start the bot
+3. Click and copy your chat ID
+
+### Here is the example
+[![2Bcsn1a.md.jpg](https://iili.io/2Bcsn1a.md.jpg)](https://freeimage.host/i/2Bcsn1a)
+
+
 ## Wanna donate me ?
 > [!NOTE]
 > my EVM address :
