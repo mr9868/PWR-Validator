@@ -256,9 +256,9 @@ curl -s -X POST https://api.telegram.org/bot\${API_TOKEN}/sendMessage -d chat_id
 
 echo 'Telegram message sent !';
 
-{ cekLastCB=/$(curl \$urlCek\$pwrAddr | jq -r .validator.lastCreatedBlock); } 2>/dev/null;
+{ cekLastCB=\$(curl \$urlCek\$pwrAddr | jq -r .validator.lastCreatedBlock); } 2>/dev/null;
 
-until [ /$cekLastCB -gt \$lastCB ];
+until [ \$cekLastCB -gt \$lastCB ];
 do
 echo \"Last block is: \${cekLastCB}. There is no new created block ...\";
 sleep 30;
