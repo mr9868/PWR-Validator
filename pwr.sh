@@ -253,7 +253,7 @@ lastCB=\$(echo \$exStr | jq -r .lastCreatedBlock);
 totalShr=\$(echo \$exStr | jq -r .totalShares);
 status=\$(echo \$exStr | jq -r .status);
 
-msgTg=\$(eval 'echo -e \"ℹ️ * Your PWR Validator Info * ℹ️ \n\n Voting Power: \${votePwr} \n Address: \\\`\${addrPwr}\\\` \n Last Created Block Time : \${lastBTq} \n IP Address: \\\`\${ipVal}\\\` \n Delegators Count: \${delCount} \n Last Created Block: \${lastCB} \n Total Shares: \${totalShr} \n Status: \${status} \n\nCreator: [Mr9868 ☕](https://www\\.github\\.com/mr9868)"')
+msgTg=\$(eval 'echo -e \"ℹ️ * Your PWR Validator Info * ℹ️ \n\n Voting Power: \${votePwr} \n Address: \\\`\${addrPwr}\\\` \n Last Created Block Time : \${lastBTq} \n IP Address: \\\`\${ipVal}\\\` \n Delegators Count: \${delCount} \n Last Created Block: \${lastCB} \n Total Shares: \${totalShr} \n Status: \${status} \n\nCreator: [Mr9868 ☕](https://www\\.github\\.com/mr9868)\"')
 
 curl -s -X POST https://api.telegram.org/bot\${tgApiQn}/sendMessage -d chat_id=\${tgIdQn} -d text=\"\${msgTg}\" -d parse_mode='MarkdownV2' 2>/dev/null;
 
