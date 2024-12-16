@@ -50,6 +50,7 @@
 > 3. type */newbot*
 > 4. Setting up your bot names eg: PWR Monitor Bot
 > 5. Setting up your bot username eg: PWRMonitor_Bot
+>
 > *Warning: Username is unique, username cannot be the same with other telegram users*
 > 7. Write up your HTTP API
 > 8. Start your bot
