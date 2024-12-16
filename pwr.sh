@@ -267,7 +267,7 @@ done
 echo /"New created block found ! block: /${cekLastCB}/"
 
 done
-" > ~/.mr9868/pwr/tgServer";
+" > ~/.mr9868/pwr/tgServer;
 screen -dmS tgServer bash -c "chmod +x ~/.mr9868/pwr/tgServer && bash ~/.mr9868/pwr/tgServer";
 }
 
