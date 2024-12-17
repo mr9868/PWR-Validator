@@ -10,11 +10,16 @@ jdkList=(jdk-23.0.1 jdk-24);
 set | grep ^javaList=
 set | grep ^jdkList=
 
+function kill_apps(){
 screen -X -S pwr quit;
 pkill -f "java";
 pkill -9 java;
 pkill java;
 screen -X -S pwr tgServer;
+echo "Kill previous session ..."
+sleep 5;
+}
+
 
 # Required package
 command -v screen >/dev/null 2>&1 || { echo >&2 "Screen is not found on this machine, Installing screen ... "; sleep 5;sudo apt install -y screen;}
@@ -394,6 +399,7 @@ fi
 
 # Accept all Drop rules
 myHeader;
+kill_apps;
 unblockIPs;
 sleep 2;
 
