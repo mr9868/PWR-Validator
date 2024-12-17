@@ -281,11 +281,15 @@ done
 echo \"New created block found ! block: \${cekLastCB}\"
 
 done
+
 " > ~/.mr9868/pwr/tgServer;
-
+echo '
 screen -dmS tgServer bash -c "chmod +x ~/.mr9868/pwr/tgServer && bash ~/.mr9868/pwr/tgServer";
-sleep 2;
-
+echo "Starting screen ..."
+sleep 5;
+echo "Success ✅"
+' > ~/.mr9868/pwr/tgInit;
+chmod 777 ~/.mr9868/pwr/tgInit && bash ~/.mr9868/pwr/tgInit;
 
 }
 
