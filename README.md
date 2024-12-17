@@ -48,7 +48,7 @@
 > How to setting up telegram bot and get your bot API KEY
 > 1. Go to [https://t.me/botfather]
 > 2. Start the bot
-> 3. type `*/newbot*`
+> 3. type */newbot*
 > 4. Setting up your bot names eg: PWR Monitor Bot
 > 5. Setting up your bot username eg: PWRMonitor_Bot
 >
