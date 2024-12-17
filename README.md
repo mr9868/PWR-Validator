@@ -8,6 +8,7 @@
 ## Changelog
 > [!NOTE]
 > v1.4
+> * Fix minor bug
 > * Add telegram bot monitor
 
 > v1.3
