@@ -58,7 +58,7 @@
 > 8. Start your bot
 >
 > Here is the example :
-> [![2haBtr7.md.jpg](https://iili.io/2haBtr7.md.jpg)](https://freeimage.host/i/2haBtr7)
+> [![2haBb29.md.jpg](https://iili.io/2haBb29.md.jpg)](https://freeimage.host/i/2haBb29) 
 >
 > How to get your chat ID
 > 1. Go to [https://t.me/getidsbot] 
@@ -66,7 +66,7 @@
 > 3. Click and copy your chat ID
 >
 > Here is the example
-> [![2haBb29.md.jpg](https://iili.io/2haBb29.md.jpg)](https://freeimage.host/i/2haBb29)
+> [![2haBtr7.md.jpg](https://iili.io/2haBtr7.md.jpg)](https://freeimage.host/i/2haBtr7)
 
 
 ## Wanna donate me ?
