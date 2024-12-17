@@ -251,12 +251,17 @@ lastBTS=\$( echo \$lastBTS | sed 's/^0*//');
 lastBTMN=\$( echo \$lastBTRN | awk -F : '{ print \$2 *  60 }');
 lastBTSN=\$( echo \$lastBTRN | awk -F : '{ print \$3 }');
 lastBTSN=\$( echo \$lastBTSN | sed 's/^0*//');
+
+if [ -z \$lastBTSN ];                                                                                      then                                                                                                      lastBTSN=0;                                                                                               fi                                                                                                        if [ -z \$lastBTSN ];                                                                                      then
+lastBTSN=0;
+fi
+
 lastBT=\$(( ((( \$lastBTMN + \$lastBTSN ) - ( \$lastBTM + \$lastBTS )) / 60 ) ));
 if [ \$lastBT -eq 0 ];
 then
-lastBTq=\"Just Now\"
+lastBTq=\"Just Now\";
 else
-lastBTq=\$( echo \$lastBT \"Minutes ago\")
+lastBTq=\$( echo \$lastBT \"Minutes ago\" );
 fi
 ipVal=\$( echo \$exStr | jq -r .ip );
 delCount=\$( echo \$exStr | jq -r .delegatorsCount );
