@@ -55,7 +55,7 @@
 > *( Warning: Username is unique, username cannot be the same with other telegram users )*
 >
 > 7. Write up your HTTP API
-> 8. Start your bot
+> 8. Start your bot ( Mandatory )
 >
 > Here is the example :
 > [![2haBb29.md.jpg](https://iili.io/2haBb29.md.jpg)](https://freeimage.host/i/2haBb29) 
