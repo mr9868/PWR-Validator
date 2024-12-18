@@ -355,7 +355,7 @@ then
 mkdir ~/.mr9868
 mkdir ~/.mr9868/pwr
 fi
-pwrAddr=$(curl localhost:8085\/address\/);
+pwrAddr=$(curl localhost:8085/address/);
 if grep -wq "tgApiQn" ~/.mr9868/pwr/config; 
 then    
 sed -r -i "s/tgApiQn=.*/tgApiQn=${tgApiQn}/g" ~/.mr9868/pwr/config;
