@@ -355,16 +355,19 @@ then
 mkdir ~/.mr9868
 mkdir ~/.mr9868/pwr
 fi
-
-if grep -wq "tgApiQn" ~/.mr9868/pwr/config; then    
-sed -r -i "s/tgApiQn=.*/tgApiQn=${tgApiQn}/g" ~/.mr9868/pwr/config
-sed -r -i "s/tgIdQn=.*/tgIdQn=${tgIdQn}/g" ~/.mr9868/pwr/config
+pwrAddr=$(curl localhost:8085\/address\/);
+if grep -wq "tgApiQn" ~/.mr9868/pwr/config; 
+then    
+sed -r -i "s/tgApiQn=.*/tgApiQn=${tgApiQn}/g" ~/.mr9868/pwr/config;
+sed -r -i "s/tgIdQn=.*/tgIdQn=${tgIdQn}/g" ~/.mr9868/pwr/config;
+sed -r -i "s/pwrAddr=.*/pwrAddr=${pwrAddr}/g"  ~/.mr9868/pwr/config
 else         
 echo "tgApiQn=${tgApiQn}" > ~/.mr9868/pwr/config
 echo "tgIdQn=${tgIdQn}" >> ~/.mr9868/pwr/config
+echo "pwrAddr=${pwrAddr}" >> ~/.mr9868/pwr/config
 fi
 
-echo "pwrAddr=$(curl localhost:8085/address/)" >> ~/.mr9868/pwr/config
+
 tgConf;
 else
 echo "See yaa ..."
