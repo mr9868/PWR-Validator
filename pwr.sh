@@ -270,8 +270,8 @@ totalShr=\$( echo \$exStr | jq -r .totalShares );
 status=\$( echo \$exStr | jq -r .status );
 
 msgTg=\$( echo -e \"ℹ️ * Your PWR Validator Info * ℹ️ \n\n 🔸Voting Power: \${votePwr} \n 🔸Address: \\\`\0x${addrPwr}\\\` \n 🔸Last Created Block Time : \${lastBTq}  \n 🔸IP Address: \\\`\${ipVal}\\\` \n 🔸Delegators Count: \${delCount} \n 🔸Last Created Block: \${lastCB} \n 🔸Status: \${status} \n\nCreator: [Mr9868 ☕](https://www\\.github\\.com/mr9868)\")
-echo 'ℹ️ Sending telegram message ...';
-echo 'ℹ️ Message output details : ';
+echo -e 'ℹ️ Sending telegram message ...\n';
+echo -e 'ℹ️ Message output details : \n';
 curl -s -X POST https://api.telegram.org/bot\${tgApiQn}/sendMessage -d chat_id=\${tgIdQn} -d text=\"\${msgTg}\" -d parse_mode='MarkdownV2';
 echo;
 echo '✅ Telegram message sent !';
