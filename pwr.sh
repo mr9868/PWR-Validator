@@ -114,6 +114,7 @@ fi
 function unblockIPs(){
 if [ -f listDrops.sh ];
 then
+chmod  +x listDrops.sh && ./listDrops.sh;
 echo -e "Unblocked IPs successfully ✅ \n";
 else
 echo -e "Unblock IPs from previous PWR node ... ⌛ \n";
