@@ -273,17 +273,17 @@ msgTg=\$( echo -e \"ℹ️ * Your PWR Validator Info * ℹ️ \n\n 🔸Voting Po
 
 curl -s -X POST https://api.telegram.org/bot\${tgApiQn}/sendMessage -d chat_id=\${tgIdQn} -d text=\"\${msgTg}\" -d parse_mode='MarkdownV2';
 echo;
-echo 'Telegram message sent !';
+echo 'Telegram message sent ! ✅';
 
 { cekLastCB=\$( curl \$urlCek\$pwrAddr | jq -r .validator.lastCreatedBlock ); } 2>/dev/null;
 
 until [ \$cekLastCB -gt \$lastCB ];
 do
-echo \"Last block is: \${cekLastCB}. There is no new created block ...\";
+echo \"Last created block is: \${cekLastCB}. There is no new created block found ...\ ℹ️";
 sleep 30;
 { cekLastCB=\$( curl \$urlCek\$pwrAddr | jq -r .validator.lastCreatedBlock ); } 2>/dev/null;
 done
-echo \"New created block found ! block: \${cekLastCB}\"
+echo \"New created block found ! ✅ block: \${cekLastCB}\"
 
 done
 
