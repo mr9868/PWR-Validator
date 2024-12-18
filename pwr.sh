@@ -252,7 +252,7 @@ lastBTMN=\$( echo \$lastBTRN | awk -F : '{ print \$2 *  60 }');
 lastBTSN=\$( echo \$lastBTRN | awk -F : '{ print \$3 }');
 lastBTSN=\$( echo \$lastBTSN | sed 's/^0*//');
 
-if [ -z \$lastBTSN ];                                                                                      then                                                                                                      lastBTSN=0;                                                                                               fi                                                                                                        if [ -z \$lastBTSN ];                                                                                      then
+if [ -z \$lastBTSN ];                                                                                      then                                                                                                      lastBTSN=0;                                                                                               fi                                                                                                        if [ -z \$lastBTS ];                                                                                      then
 lastBTSN=0;
 fi
 
