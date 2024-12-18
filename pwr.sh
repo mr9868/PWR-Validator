@@ -256,7 +256,7 @@ if [ -z \$lastBTSN ];                                                           
 lastBTS=0;
 fi
 
-lastBT=\$(( ((( \$lastBTMN + \$lastBTSN ) - ( \$lastBTM + \$lastBTS )) / 60 ) ));
+lastBT=\$(( (( \$lastBTMN + \$lastBTSN ) - ( \$lastBTM + \$lastBTS )) / 60 ));
 if [ \$lastBT -eq 0 ];
 then
 lastBTq=\"Just Now\";
