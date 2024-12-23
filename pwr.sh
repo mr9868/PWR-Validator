@@ -253,14 +253,17 @@ lastBTMN=\$( echo \$lastBTRN | awk -F : '{ print \$2 *  60 }');
 lastBTSN=\$( echo \$lastBTRN | awk -F : '{ print \$3 }');
 lastBTSN=\$( echo \$lastBTSN | sed 's/^0*//');
 
-if [ -z \$lastBTSN ];                                                                                      then                                                                                                      lastBTSN=0;                                                                                               fi                                                                                                        if [ -z \$lastBTS ];                                                                                      then
+if [ -z \$lastBTSN ]; 
+then 
 lastBTSN=0;
 fi
-if [ -z \$lastBTS ];                                                                                      then                                                                                                      lastBTSN=0;                                                                                               fi                                                                                                        if [ -z \$lastBTS ];                                                                                      then
+if [ -z \$lastBTS ]; 
+then 
 lastBTS=0;
 fi
 
 lastBT=\$(( (( \$lastBTMN + \$lastBTSN ) - ( \$lastBTM + \$lastBTS )) / 60 ));
+
 if [ \$lastBT -eq 0 ];
 then
 lastBTq=\"Just Now\";
