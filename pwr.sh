@@ -33,12 +33,12 @@ command -v jq >/dev/null 2>&1 || { echo >&2 "JQ is not found on this machine, In
 # My Header
 function myHeader(){
 clear;
-echo -e "============================================================\n"
-echo -e "=             PWR validator setup auto installer           =\n"
-echo -e "=                    Created by : Mr9868                   =\n"
-echo -e "=             Github : https://github.io/Mr9868            =\n"
-echo -e "=               Your OS info : $(uname -s) $(uname -m)              =\n"
-echo -e "=                 IP Address : ${myIP}               =\n"
+echo -e "============================================================"
+echo -e "=             PWR validator setup auto installer           ="
+echo -e "=                    Created by : Mr9868                   ="
+echo -e "=             Github : https://github.io/Mr9868            ="
+echo -e "=                Your OS info : $(uname -s) $(uname -m)              ="
+echo -e "=                 IP Address : ${myIP}               ="
 echo -e "============================================================\n"
 }
 
