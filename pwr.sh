@@ -436,7 +436,10 @@ checkWallet &&
 myHeader;
 echo -e "Running PWR node ... ⌛ \n"
 sudo ufw allow 8085;
+sudo ufw allow 8085/tcp
+sudo ufw allow 8231
 sudo ufw allow 8231/tcp;
+sudo ufw allow 7621
 sudo ufw allow 7621/udp;
 screen -dmS pwr bash -c "sudo java -jar validator.jar password $myIP" && sleep 5;
 myHeader;
