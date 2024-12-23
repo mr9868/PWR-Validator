@@ -118,8 +118,13 @@ chmod  +x listDrops.sh && ./listDrops.sh;
 echo -e "Unblocked IPs successfully ✅ \n";
 else
 echo -e "Unblock IPs from previous PWR node ... ⌛ \n";
-listDrops=$(iptables -S | grep DROP | sed "s/DROP/ACCEPT #/g");
-echo $listDrops | sed 's/#/\&\& \n/g' | sed 's/-A/iptables -A /g' > listDrops.sh;
+#listDrops=$(iptables -S | grep DROP | sed "s/DROP/ACCEPT #/g");
+#echo $listDrops | sed 's/#/\&\& \n/g' | sed 's/-A/iptables -A /g' > listDrops.sh;
+#echo "echo 'Success ✅'" >> listDrops.sh;
+#chmod  +x listDrops.sh && ./listDrops.sh;
+
+listDrops=$(iptables -S | grep DROP | sed "s/DROP/DROP #/g");
+echo $listDrops | sed 's/#/\&\& \n/g' | sed 's/-A/iptables -D /g' > listDrops.sh;
 echo "echo 'Success ✅'" >> listDrops.sh;
 chmod  +x listDrops.sh && ./listDrops.sh;
 echo -e "Unblocked IPs successfully ✅ \n"
