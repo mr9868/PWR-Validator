@@ -31,7 +31,7 @@ echo -e "============================================================\n"
 }
 
 
-
+# function check if PWR node run properly
 function checkPwr(){
 myHeader;
 if [ -z $pwrAddr ];
@@ -64,7 +64,7 @@ echo "Kill previous session ..."
 sleep 5;
 }
 
-
+# Check if PWR wallet password is exist
 function checkIfExist(){
 if [[ -f password ]];
 then
@@ -123,6 +123,8 @@ fi
 }
 # end of checkIfExist function
 
+
+# Check if PWR wallet is exist
 function checkWallet(){
 if [[ -f pwrWallet ]];
 then
@@ -141,23 +143,19 @@ chmod  +x listDrops.sh && ./listDrops.sh;
 echo -e "Unblocked IPs successfully ✅ \n";
 else
 echo -e "Unblock IPs from previous PWR node ... ⌛ \n";
-#listDrops=$(iptables -S | grep DROP | sed "s/DROP/ACCEPT #/g");
-#echo $listDrops | sed 's/#/\&\& \n/g' | sed 's/-A/iptables -A /g' > listDrops.sh;
-#echo "echo 'Success ✅'" >> listDrops.sh;
-#chmod  +x listDrops.sh && ./listDrops.sh;
 
 listDrops=$(iptables -S | grep DROP | sed "s/DROP/DROP #/g");
 echo $listDrops | sed 's/#/\&\& \n/g' | sed 's/-A/iptables -D /g' > listDrops.sh;
 echo "echo 'Success ✅'" >> listDrops.sh;
 chmod  +x listDrops.sh && ./listDrops.sh;
 echo -e "Unblocked IPs successfully ✅ \n"
+sleep 2;
 fi
 }
 
 
 # Install java function
 function install_java(){
-
 
 javaList=(https://download.oracle.com/java/23/latest/jdk-23_linux-${arch}_bin.tar.gz https://download.java.net/java/early_access/jdk24/27/GPL/openjdk-24-ea+27_linux-${arch}_bin.tar.gz);
 jdkList=(jdk-23.0.1 jdk-24);
@@ -255,7 +253,7 @@ fi
 }
 # end install_java function
 
-
+# TeleBot Configuration 
 function tgConf(){
 screen -X -S tgServer quit;
 echo "
@@ -349,7 +347,7 @@ fi
 }
 
 
-
+# Check if teleBot question is valid
 function tgQnCheck(){
 read -p "Please provide your bot API Key from @botFather : " tgApiQn
 until [ -n "${tgApiQn}" ];
@@ -417,6 +415,7 @@ fi
 }
 # end of entryPointTg function
 
+# Check if teleBot variable is exist in config file
 function varCheck(){
 if grep -wq "tgApiQn" ~/.mr9868/pwr/config && grep -wq "tgIdQn" ~/.mr9868/pwr/config;
 then
@@ -431,9 +430,11 @@ entryPointTg;
 fi
 }
 
+# Main installation
 function mainInstall(){
 
 myHeader;
+# Check if java is found
 function java_found(){
 read -p "Java already installed, do you want to reinstall them ? (y/n): " qJava
 if [[ $qJava == "y" ]];
@@ -443,7 +444,7 @@ fi
 }
 # end of java_found function
 
-
+# java entryPoint
 if command -v java 2>&1 >/dev/null
 then
 java_found;
@@ -451,7 +452,7 @@ else
 install_java;
 fi
 
-
+# Check if the directories is exist
 if [ -d blocks ] && [ -d rocksdb ];
 then
 
@@ -465,7 +466,7 @@ fi
 
 fi
 
-
+# Check if the file is exist
 if [ -f validator.jar ] && [ -f config.json ];
 then
 
@@ -513,6 +514,7 @@ echo -e "To view your PWR logs, exec 'screen -r pwr' \n"
 }
 # End of Main install;
 
+# Main menu
 myHeader;
 echo -e "<==========( Main Menu )==========>\n"
 echo "1. Full Installation"
