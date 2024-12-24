@@ -319,8 +319,6 @@ echo -e '\n[INFO] Telegram message sent ! ✅';
 
 until [ \$cekLastCB -gt \$lastCB ];
 do
-echo \"[INFO] Last created block is: \${cekLastCB}. There is no new created block found ...\";
-sleep 30;
 { cekLastCB=\$( curl \$urlCek\$pwrAddr | jq -r .validator.lastCreatedBlock ); } 2>/dev/null;
 { cekStatus=\$( curl \$urlCek\$pwrAddr | jq -r .validator.status ); } 2>/dev/null;
 if [ ! \$cekStatus == 'active' ];
@@ -338,6 +336,9 @@ echo '[ERROR] Your node is Standby, please restart your PWR node !';
 echo 'Telegram bot server is Standby, sleep for 3 minutes ... ⏳';
 echo;
 sleep 180;
+else
+echo \"[INFO] Last created block is: \${cekLastCB}. There is no new created block found ...\";
+sleep 30;
 fi
 done
 
