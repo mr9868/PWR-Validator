@@ -357,7 +357,7 @@ echo "
 screen -X -S pwr quit;
 screen -dmS pwr bash -c \"sudo java -jar validator.jar password ${myIP}\"; sleep 5;
 bash ~/.mr9868/pwr/tgInit;
-" > ~/.mr9868/pwr/run_pwr.sh;
+" > ~/.mr9868/pwr/run_pwr;
 
 
 echo '
