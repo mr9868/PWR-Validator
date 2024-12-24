@@ -383,7 +383,6 @@ echo "tgIdQn=${tgIdQn}" >> ~/.mr9868/pwr/config
 echo "pwrAddr=${pwrAddr}" >> ~/.mr9868/pwr/config
 fi
 
-
 tgConf;
 else
 echo "See yaa ..."
@@ -394,9 +393,10 @@ fi
 function varCheck(){
 if grep -wq "tgApiQn" ~/.mr9868/pwr/config && grep -wq "tgIdQn" ~/.mr9868/pwr/config;
 then
-echo "Config file found ! Next ..."
+echo "Config file found ! Next ...";
+tgConf;
 sleep 2;
-echo "Telegram already configured ✅"
+echo "Telegram already configured ✅";
 sleep 2;
 else
 entryPointTg;
