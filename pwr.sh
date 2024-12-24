@@ -29,7 +29,7 @@ echo  "=                Your OS info : $(uname -s) $(uname -m)              ="
 echo  "=                 IP Address : ${myIP}               ="
 echo -e "============================================================\n"
 }
-
+# End of myHeader
 
 # function check if PWR node run properly
 function checkPwr(){
@@ -49,7 +49,7 @@ else
 echo "[INFO] PWR node running successfully ...";
 fi
 }
-
+# End of checkPwr
 
 
 
@@ -63,6 +63,8 @@ screen -X -S tgServer quit;
 echo "Kill previous session ..."
 sleep 5;
 }
+# End of kill_apps
+
 
 # Check if PWR wallet password is exist
 function checkIfExist(){
@@ -94,7 +96,7 @@ echo -e "Wallet Address = ${pwrAddr}" > pwrWallet;
 echo -e "Next step ... ⌛ \n"
 sleep 5;
 fi
-# End of if checkWallet
+# End of if check password file
 
 
 else
@@ -121,7 +123,7 @@ echo -e "Next step ... ⌛ \n"
 sleep 5;
 fi
 }
-# end of checkIfExist function
+# End of checkIfExist function
 
 
 # Check if PWR wallet is exist
@@ -134,6 +136,7 @@ else
 checkIfExist;
 fi
 }
+# End of checkWallet
 
 # Unblock IPs and domain that blocked by pwr node
 function unblockIPs(){
@@ -152,6 +155,7 @@ echo -e "Unblocked IPs successfully ✅ \n"
 sleep 2;
 fi
 }
+# End of unblockIPs
 
 
 # Install java function
@@ -345,6 +349,7 @@ then
 sudo rm -rf pwr.sh
 fi
 }
+# End of tgConf
 
 
 # Check if teleBot question is valid
@@ -367,6 +372,7 @@ echo "Please provide your bot API Key from @botFather : ${tgApiQn}"
 read -p "Please provide your telegram ID's from @getidsbot : " tgIdQn
 done
 }
+# End of tgQnCheck
 
 # Entrypoint for telegram monitor question
 function entryPointTg(){
@@ -429,6 +435,7 @@ myHeader;
 entryPointTg;
 fi
 }
+# End of varCheck
 
 # Main installation
 function mainInstall(){
@@ -515,6 +522,7 @@ echo -e "To view your PWR logs, exec 'screen -r pwr' \n"
 # End of Main install;
 
 # Main menu
+function main_Menu(){
 myHeader;
 echo -e "<==========( Main Menu )==========>\n"
 echo "1. Full Installation"
@@ -548,4 +556,7 @@ sudo rm -rf pwr.sh
 fi
 exit 1;
 fi
+}
+# End of mainMenu
+main_Menu;
 
