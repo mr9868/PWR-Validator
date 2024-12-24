@@ -17,7 +17,7 @@
 
 > v1.2
 > * Add auto unblock all blocked IPs that caused by previous PWR node
-> * Add feature upgrade PWR node
+> * Add feature auto upgrade PWR node, just rerun this script
 
 > v1.1
 > * Fix bug intalling in different architecture
