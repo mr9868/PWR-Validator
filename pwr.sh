@@ -17,8 +17,23 @@ command -v ufw >/dev/null 2>&1 || { echo >&2 "Ufw is not found on this machine, 
 command -v jq >/dev/null 2>&1 || { echo >&2 "JQ is not found on this machine, Installing jq ... "; sleep 5;sudo apt install -y jq;}
 
 
+# My Header
+function myHeader(){
+clear;
+echo  "============================================================"
+echo  "=             PWR validator setup auto installer           ="
+echo  "=                    Created by : Mr9868                   ="
+echo  "=             Github : https://github.io/Mr9868            ="
+echo  "=                 Your OS info : $(uname -s) $(uname -m)              ="
+echo  "=                 IP Address : ${myIP}               ="
+echo -e "============================================================\n"
+}
+
+
+
 function checkPwr(){
 { pwrAddr=$(curl localhost:8085/address/); } 2>/dev/null;
+myHeader;
 if [ -z $pwrAddr ];
 then
 echo "[ERROR] There is an error on your PWR node !"
@@ -47,18 +62,6 @@ echo "Kill previous session ..."
 sleep 5;
 }
 
-
-# My Header
-function myHeader(){
-clear;
-echo  "============================================================"
-echo  "=             PWR validator setup auto installer           ="
-echo  "=                    Created by : Mr9868                   ="
-echo  "=             Github : https://github.io/Mr9868            ="
-echo  "=                 Your OS info : $(uname -s) $(uname -m)              ="
-echo  "=                 IP Address : ${myIP}               ="
-echo -e "============================================================\n"
-}
 
 function checkIfExist(){
 if [[ -f password ]];
@@ -510,6 +513,7 @@ echo "1. Full Installation"
 echo "2. Update telegram configuration"
 echo "3. Setup TeleBot Monitor"
 echo "4. Exit"
+echo;
 read -p "Your selection => " mainMenu
 until [[ "${mainMenu}" =~ ^[1-4]+$ ]];
 do
@@ -519,6 +523,7 @@ echo "1. Full Installation"
 echo "2. Update telegram configuration"
 echo "3. Setup TeleBot Monitor"
 echo "4. Exit"
+echo;
 read -p "Your selection => " mainMenu
 done
 if [[ $mainMenu == "1" ]];
