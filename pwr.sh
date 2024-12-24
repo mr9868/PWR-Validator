@@ -1,6 +1,7 @@
 # Set variables and array URL JDK latest
-myIP=$(curl -w "\n" ifconfig.me);
+{ myIP=$(curl -w "\n" ifconfig.me); } 2>/dev/null;
 arch=$(uname -m);
+{ pwrAddr=$(curl localhost:8085/address/); } 2>/dev/null;
 if [ $arch == "x86_64" ];
 then
 arch=x64;
@@ -32,7 +33,6 @@ echo -e "============================================================\n"
 
 
 function checkPwr(){
-{ pwrAddr=$(curl localhost:8085/address/); } 2>/dev/null;
 myHeader;
 if [ -z $pwrAddr ];
 then
@@ -45,6 +45,8 @@ else
 echo -e "There is ERROR on your PWR node !\nPlease restart your PWR node !"
 exit 1;
 fi
+else
+echo "[INFO] PWR node running successfully ...";
 fi
 }
 
@@ -88,7 +90,7 @@ sleep 5;
 else
 myHeader;
 echo -e "Wallet found ✅ \n"
-echo -e "Wallet found ✅" > pwrWallet;
+echo -e "Wallet Address = ${pwrAddr}" > pwrWallet;
 echo -e "Next step ... ⌛ \n"
 sleep 5;
 fi
@@ -394,7 +396,6 @@ then
 mkdir ~/.mr9868
 mkdir ~/.mr9868/pwr
 fi
-{ pwrAddr=$(curl localhost:8085/address/); } 2>/dev/null;
 if grep -wq "tgApiQn" ~/.mr9868/pwr/config; 
 then    
 sed -r -i "s/tgApiQn=.*/tgApiQn=${tgApiQn}/g" ~/.mr9868/pwr/config;
@@ -500,6 +501,7 @@ sudo ufw allow 7621
 sudo ufw allow 7621/udp;
 screen -dmS pwr bash -c "sudo java -jar validator.jar password $myIP" && sleep 5;
 sleep 2;
+checkPwr;
 varCheck;
 sleep 5;
 echo -e "PWR node running successfully ✅ \n"
