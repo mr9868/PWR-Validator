@@ -15,7 +15,7 @@ screen -X -S pwr quit;
 pkill -f "java";
 pkill -9 java;
 pkill java;
-screen -X -S pwr tgServer;
+screen -X -S tgServer quit;
 echo "Kill previous session ..."
 sleep 5;
 }
@@ -389,7 +389,19 @@ else
 echo "See yaa ..."
 fi
 }
+# end of entryPointTg function
 
+function varCheck(){
+if grep -wq "tgApiQn" ~/.mr9868/pwr/config && grep -wq "tgIdQn" ~/.mr9868/pwr/config;
+then
+echo "Config file found ! Next ..."
+sleep 2;
+echo "Telegram already configured ✅"
+sleep 2;
+else
+entryPointTg;
+fi
+}
 
 if command -v java 2>&1 >/dev/null
 then
@@ -450,10 +462,10 @@ sudo ufw allow 8231/tcp;
 sudo ufw allow 7621
 sudo ufw allow 7621/udp;
 screen -dmS pwr bash -c "sudo java -jar validator.jar password $myIP" && sleep 5;
-myHeader;
+sleep 2;
+varCheck;
+sleep 5;
 echo -e "PWR node running successfully ✅ \n"
 echo -e "To view your PWR logs, exec 'screen -r pwr' \n"
-sleep 2;
-entryPointTg;
 
 
