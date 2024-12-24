@@ -279,7 +279,7 @@ lastBT=\$( date --date \"\$lastBT\" +%s);
 lastBTN=\$( TZ='Asia/Jakarta' date '+%m/%d/%Y %H:%M:%S');
 lastBTN=\$( date --date \"\$lastBTN\" +%s);
 diffBT=\$(( lastBTN - lastBT ));
-diffBT=\$( echo  \$(date +%S -ud @\${diffBT})' Second ago');
+diffBT=\$( echo  \$(date +%S -ud @\${diffBT})' Seconds ago');
 ipVal=\$( echo \$exStr | jq -r .ip );
 delCount=\$( echo \$exStr | jq -r .delegatorsCount );
 lastCB=\$( echo \$exStr | jq -r .lastCreatedBlock );
