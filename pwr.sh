@@ -354,14 +354,14 @@ done
 " > ~/.mr9868/pwr/tgServer;
 
 echo "
-screen -S -X pwr quit
+screen -X -S pwr quit;
 screen -dmS pwr bash -c \"sudo java -jar validator.jar password ${myIP}\"; sleep 5;
 bash ~/.mr9868/pwr/tgInit;
 " > ~/.mr9868/pwr/run_pwr.sh;
 
 
 echo '
-screen -S -X tgServer quit;
+screen -X -S tgServer quit;
 screen -dmS tgServer bash -c "chmod +x ~/.mr9868/pwr/tgServer && bash ~/.mr9868/pwr/tgServer";
 echo "Starting screen ..."
 sleep 5;
