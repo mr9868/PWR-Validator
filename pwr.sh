@@ -341,8 +341,11 @@ sleep 5;
 echo "Success ✅"
 ' > ~/.mr9868/pwr/tgInit;
 chmod 777 ~/.mr9868/pwr/tgInit && bash ~/.mr9868/pwr/tgInit;
-sudo rm -rf pwr.sh
 
+if [ -f pwr.sh ];
+then
+sudo rm -rf pwr.sh
+fi
 }
 
 
