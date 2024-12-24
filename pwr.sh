@@ -274,12 +274,12 @@ do
 votePwr=\$( echo \$exStr | jq -r .votingPower );
 addrPwr=\$( echo \$exStr | jq -r .address );
 lastBT=\$( echo \$exStr | jq -r .lastCreatedBlockTime );
-lastBT=\$( TZ='Asia/Jakarta'  date -d @\${lastBT} '+%m/%d/%Y %H:%M:%S');
-lastBT=\$( date --date \"\$lastBT\" +%s);
-lastBTN=\$( TZ='Asia/Jakarta' date '+%m/%d/%Y %H:%M:%S');
-lastBTN=\$( date --date \"\$lastBTN\" +%s);
+lastBT=\$(( \$lastBT / 1000 ));                                                                             lastBT=$( TZ='Asia/Jakarta'  date -d @${lastBT} '+%Y-%m-%d %H:%M:%S');                                    lastBT=$( date -d "${lastBT}" +%s);                                                                       echo $lastBT;
+lastBTN=\$( TZ='Asia/Jakarta' date '+%Y-%m-%d %H:%M:%S');
+lastBTN=\$( date -d \"\$lastBTN\" +%s);
 diffBT=\$(( lastBTN - lastBT ));
-diffBT=\$( echo  \$(date +%S -ud @\${diffBT})' Seconds ago');
+echo \$diffBT;
+diffBT=\$( echo  \${diffBT} ' Seconds ago');
 ipVal=\$( echo \$exStr | jq -r .ip );
 delCount=\$( echo \$exStr | jq -r .delegatorsCount );
 lastCB=\$( echo \$exStr | jq -r .lastCreatedBlock );
