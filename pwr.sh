@@ -1,7 +1,6 @@
 # Set variables and array URL JDK latest
 { myIP=$(curl -w "\n" ifconfig.me); } 2>/dev/null;
 arch=$(uname -m);
-{ pwrAddr=$(curl localhost:8085/address/); } 2>/dev/null;
 if [ $arch == "x86_64" ];
 then
 arch=x64;
@@ -84,15 +83,18 @@ myHeader;
 echo -e "Please submit a valid private key !";
 read -p "Input your PWR Wallet Private Key without 0x => " pwrPK
 done
-sudo java -jar validator.jar --import-key ${pwrPK} password
-checkWallet;
+sudo java -jar validator.jar --import-key ${pwrPK} password;
+echo -e "Wallet added ✅ \n"
+echo -e "Wallet added ✅" > pwrWallet;
+echo -e "Next step ... ⌛ \n"
+sleep 5;
 echo -e "Next step ... ⌛ \n"
 sleep 5;
 
 else
 myHeader;
 echo -e "Wallet found ✅ \n"
-echo -e "Wallet Address = ${pwrAddr}" > pwrWallet;
+echo -e "Wallet added ✅" > pwrWallet;
 echo -e "Next step ... ⌛ \n"
 sleep 5;
 fi
@@ -118,7 +120,8 @@ echo -e "Please submit a valid private key !";
 read -p "Input your PWR Wallet Private Key without 0x => " pwrPK
 done
 sudo java -jar validator.jar --import-key ${pwrPK} password
-checkWallet;
+echo -e "Wallet found ✅ \n"
+echo -e "Wallet added ✅" > pwrWallet;
 echo -e "Next step ... ⌛ \n"
 sleep 5;
 fi
@@ -403,6 +406,7 @@ then
 mkdir ~/.mr9868
 mkdir ~/.mr9868/pwr
 fi
+{ pwrAddr=$(curl localhost:8085/address/); } 2>/dev/null;
 if grep -wq "tgApiQn" ~/.mr9868/pwr/config; 
 then    
 sed -r -i "s/tgApiQn=.*/tgApiQn=${tgApiQn}/g" ~/.mr9868/pwr/config;
