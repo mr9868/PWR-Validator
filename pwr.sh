@@ -252,6 +252,7 @@ fi
 
 
 function tgConf(){
+screen -X -S tgServer quit;
 echo "
 . ~/.mr9868/pwr/config
 urlCek=https://pwrrpc.pwrlabs.io//validator/?validatorAddress=
