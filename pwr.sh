@@ -278,31 +278,8 @@ lastBT=\$( TZ='Asia/Jakarta'  date -d @\${lastBT} '+%m/%d/%Y %H:%M:%S');
 lastBT=\$( date --date \"\$lastBT\" +%s);
 lastBTN=\$( TZ='Asia/Jakarta' date '+%m/%d/%Y %H:%M:%S');
 lastBTN=\$( date --date \"\$lastBTN\" +%s);
-diffBT=\$(( \$lastBTN - \$lastBT ))
-# lastBTM=\$( echo \$lastBTR | awk -F : '{print \$2 * 60}');
-# lastBTS=\$( echo \$lastBTR | awk -F : '{print \$3}');
-# lastBTS=\$( echo \$lastBTS | sed 's/^0*//');
-# lastBTMN=\$( echo \$lastBTRN | awk -F : '{print \$2 *  60}');
-# lastBTSN=\$( echo \$lastBTRN | awk -F : '{print \$3}');
-# lastBTSN=\$( echo \$lastBTSN | sed 's/^0*//');
-
-# if [ -z \$lastBTSN ]; 
-# then 
-# lastBTSN=0;
-# fi
-# if [ -z \$lastBTS ]; 
-# then 
-# lastBTS=0;
-# fi
-
-# lastBT=\$(( ( (( \$lastBTMN + \$lastBTSN ) - ( \$lastBTM + \$lastBTS )) / 60 ) ));
-
-# if [ \$lastBT -eq 0 ];
-# then
-# lastBTq=\"Just Now\";
-# else
-# lastBTq=\$( echo \$lastBT \"Minutes ago\" );
-# fi
+diffBT=\$(( lastBTN - lastBT ));
+diffBT=\$( echo  \$(date +%S -ud @\${diffBT})' Second ago');
 ipVal=\$( echo \$exStr | jq -r .ip );
 delCount=\$( echo \$exStr | jq -r .delegatorsCount );
 lastCB=\$( echo \$exStr | jq -r .lastCreatedBlock );
