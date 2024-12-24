@@ -274,41 +274,42 @@ do
 votePwr=\$( echo \$exStr | jq -r .votingPower );
 addrPwr=\$( echo \$exStr | jq -r .address );
 lastBT=\$( echo \$exStr | jq -r .lastCreatedBlockTime );
-lastBT=\$(( \$lastBT / 1000 ));
-lastBTO=\$( TZ='Asia/Jakarta'  date -d @\${lastBT});
-lastBTR=\$( echo \$lastBTO | awk '{print \$4}');
-lastBTRN=\$( TZ='Asia/Jakarta' date -R | awk '{print \$5}');
-lastBTM=\$( echo \$lastBTR | awk -F : '{print \$2 * 60}');
-lastBTS=\$( echo \$lastBTR | awk -F : '{print \$3}');
-lastBTS=\$( echo \$lastBTS | sed 's/^0*//');
-lastBTMN=\$( echo \$lastBTRN | awk -F : '{print \$2 *  60}');
-lastBTSN=\$( echo \$lastBTRN | awk -F : '{print \$3}');
-lastBTSN=\$( echo \$lastBTSN | sed 's/^0*//');
+lastBT=\$( TZ='Asia/Jakarta'  date -d @\${lastBT} '+%m/%d/%Y %H:%M:%S');
+lastBT=\$( date --date \"\$lastBT\" +%s);
+lastBTN=\$( TZ='Asia/Jakarta' date '+%m/%d/%Y %H:%M:%S');
+lastBTN=\$( date --date \"\$lastBTN\" +%s);
+diffBT=\$(( \$lastBTN - \$lastBT ))
+# lastBTM=\$( echo \$lastBTR | awk -F : '{print \$2 * 60}');
+# lastBTS=\$( echo \$lastBTR | awk -F : '{print \$3}');
+# lastBTS=\$( echo \$lastBTS | sed 's/^0*//');
+# lastBTMN=\$( echo \$lastBTRN | awk -F : '{print \$2 *  60}');
+# lastBTSN=\$( echo \$lastBTRN | awk -F : '{print \$3}');
+# lastBTSN=\$( echo \$lastBTSN | sed 's/^0*//');
 
-if [ -z \$lastBTSN ]; 
-then 
-lastBTSN=0;
-fi
-if [ -z \$lastBTS ]; 
-then 
-lastBTS=0;
-fi
+# if [ -z \$lastBTSN ]; 
+# then 
+# lastBTSN=0;
+# fi
+# if [ -z \$lastBTS ]; 
+# then 
+# lastBTS=0;
+# fi
 
-lastBT=\$(( ( (( \$lastBTMN + \$lastBTSN ) - ( \$lastBTM + \$lastBTS )) / 60 ) ));
+# lastBT=\$(( ( (( \$lastBTMN + \$lastBTSN ) - ( \$lastBTM + \$lastBTS )) / 60 ) ));
 
-if [ \$lastBT -eq 0 ];
-then
-lastBTq=\"Just Now\";
-else
-lastBTq=\$( echo \$lastBT \"Minutes ago\" );
-fi
+# if [ \$lastBT -eq 0 ];
+# then
+# lastBTq=\"Just Now\";
+# else
+# lastBTq=\$( echo \$lastBT \"Minutes ago\" );
+# fi
 ipVal=\$( echo \$exStr | jq -r .ip );
 delCount=\$( echo \$exStr | jq -r .delegatorsCount );
 lastCB=\$( echo \$exStr | jq -r .lastCreatedBlock );
 totalShr=\$( echo \$exStr | jq -r .totalShares );
 status=\$( echo \$exStr | jq -r .status );
 
-msgTg=\$( echo -e \"ℹ️ * Your PWR Validator Info * ℹ️ \n\n 🔸Voting Power: \${votePwr} \n 🔸Address: \\\`0x\${addrPwr}\\\` \n 🔸Last Created Block Time : \${lastBTq}  \n 🔸IP Address: \\\`\${ipVal}\\\` \n 🔸Delegators Count: \${delCount} \n 🔸Last Created Block: \${lastCB} \n 🔸Status: \${status} \n 🔸Details: [Go to The Explorer](https://explorer\\.pwrlabs\\.io/address/0x\${addrPwr}) \n\nCreator: [Mr9868 ☕](https://www\\.github\\.com/mr9868)\")
+msgTg=\$( echo -e \"ℹ️ * Your PWR Validator Info * ℹ️ \n\n 🔸Voting Power: \${votePwr} \n 🔸Address: \\\`0x\${addrPwr}\\\` \n 🔸Last Created Block Time : \${diffBT}  \n 🔸IP Address: \\\`\${ipVal}\\\` \n 🔸Delegators Count: \${delCount} \n 🔸Last Created Block: \${lastCB} \n 🔸Status: \${status} \n 🔸Details: [Go to The Explorer](https://explorer\\.pwrlabs\\.io/address/0x\${addrPwr}) \n\nCreator: [Mr9868 ☕](https://www\\.github\\.com/mr9868)\")
 echo -e '[INFO] Sending telegram message ... ⏳';
 echo -e '[INFO] Message output details : \n';
 curl -s -X POST https://api.telegram.org/bot\${tgApiQn}/sendMessage -d chat_id=\${tgIdQn} -d text=\"\${msgTg}\" -d parse_mode='MarkdownV2';
