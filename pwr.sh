@@ -339,7 +339,7 @@ sleep 5;
 echo "Success ✅"
 ' > ~/.mr9868/pwr/tgInit;
 chmod 777 ~/.mr9868/pwr/tgInit && bash ~/.mr9868/pwr/tgInit;
-rm pwr.sh
+sudo rm -rf pwr.sh
 
 }
 
@@ -536,6 +536,6 @@ else
 myHeader;
 echo "Bye bye !"
 exit 1;
-rm pwr.sh
+sudo rm -rf pwr.sh
 fi
 
