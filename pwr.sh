@@ -340,8 +340,8 @@ echo 'Telegram bot server is Standby, sleep for 3 minutes ... ⏳';
 echo;
 sleep 180;
 else
-{ cekLastCB=\$( curl \$urlCek\$pwrAddr | jq -r .validator.lastCreatedBlock ); } 2>/dev/null;
 echo \"[INFO] Last created block is: \${cekLastCB}. There is no new created block found ...\";
+{ cekLastCB=\$( curl \$urlCek\$pwrAddr | jq -r .validator.lastCreatedBlock ); } 2>/dev/null;
 sleep 30;
 fi
 done
