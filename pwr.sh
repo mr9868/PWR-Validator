@@ -428,7 +428,7 @@ fi
 
 # Check if teleBot variable is exist in config file
 function varCheck(){
-if grep -wq "tgApiQn" ~/.mr9868/pwr/config && grep -wq "tgIdQn" ~/.mr9868/pwr/config;
+if { grep -wq "tgApiQn" ~/.mr9868/pwr/config && grep -wq "tgIdQn" ~/.mr9868/pwr/config; } 2>/dev/null;
 then
 echo "Config file found ! Next ...";
 tgConf;
