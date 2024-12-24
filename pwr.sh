@@ -510,31 +510,24 @@ echo -e "To view your PWR logs, exec 'screen -r pwr' \n"
 myHeader;
 echo -e "<==========( Main Menu )==========>\n"
 echo "1. Full Installation"
-echo "2. Update telegram configuration"
-echo "3. Setup TeleBot Monitor"
-echo "4. Exit"
+echo "2. Setup TeleBot Monitor"
+echo "3. Exit"
 echo;
 read -p "Your selection => " mainMenu
-until [[ "${mainMenu}" =~ ^[1-4]+$ ]];
+until [[ "${mainMenu}" =~ ^[1-3]+$ ]];
 do
 myHeader;
 echo -e "=( Main Menu )=\n"
 echo "1. Full Installation"
-echo "2. Update telegram configuration"
-echo "3. Setup TeleBot Monitor"
-echo "4. Exit"
+echo "2. Setup TeleBot Monitor"
+echo "3. Exit"
 echo;
 read -p "Your selection => " mainMenu
 done
 if [[ $mainMenu == "1" ]];
 then
 mainInstall;
-
 elif [[ $mainMenu == "2" ]];
-then
-checkPwr;
-varCheck;
-elif [[ $mainMenu == "3" ]];
 then
 checkPwr;
 varCheck;
