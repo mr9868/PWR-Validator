@@ -360,7 +360,7 @@ chmod 777 ~/.mr9868/pwr/tgInit && bash ~/.mr9868/pwr/tgInit;
 
 if [ -f pwr.sh ];
 then
-sudo rm -rf pwr.sh 2>/dev/null;
+{ sudo rm -rf pwr.sh } 2>/dev/null;
 fi
 }
 # End of tgConf
@@ -567,7 +567,7 @@ myHeader;
 echo "Bye bye !";
 if [ -f pwr.sh ];
 then
-sudo rm -rf pwr.sh 2>/dev/null;
+{ sudo rm -rf pwr.sh } 2>/dev/null;
 fi
 exit 1;
 fi
