@@ -280,7 +280,7 @@ lastBT=\$( date -d \"\${lastBT}\" +%s);
 lastBTN=\$( TZ='Asia/Jakarta' date '+%Y-%m-%d %H:%M:%S');
 lastBTN=\$( date -d \"\$lastBTN\" +%s);
 diffBT=\$(( lastBTN - lastBT ));
-if [ \"\${diffBTH}\" -gt \"0\" ];
+if [[ \"\${diffBTH}\" -gt \"0\" ]];
 then
 diffBTH=\$( echo \$diffBTH ' Hrs ');
 else
@@ -360,7 +360,7 @@ chmod 777 ~/.mr9868/pwr/tgInit && bash ~/.mr9868/pwr/tgInit;
 
 if [ -f pwr.sh ];
 then
-sudo rm -rf pwr.sh
+sudo rm -rf pwr.sh 2>/dev/null;
 fi
 }
 # End of tgConf
@@ -567,7 +567,7 @@ myHeader;
 echo "Bye bye !";
 if [ -f pwr.sh ];
 then
-sudo rm -rf pwr.sh
+sudo rm -rf pwr.sh 2>/dev/null;
 fi
 exit 1;
 fi
