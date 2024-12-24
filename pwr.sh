@@ -327,7 +327,6 @@ if [ ! \$cekStatus == 'active' ];
 then
 echo;
 echo '[ERROR] Your node can't create a block ! ❌';
-echo '[ERROR] Your node is Standby, please restart your PWR node !';
 echo -e '[INFO] Sending telegram message ... ⏳';
 echo -e '[INFO] Message output details : \n';
 curl -s -X POST https://api.telegram.org/bot\${tgApiQn}/sendMessage -d chat_id=\${tgIdQn} -d text=\"[ERROR] Your node can't create a block ! ❌ \" -d parse_mode='MarkdownV2';
@@ -335,7 +334,8 @@ echo;
 curl -s -X POST https://api.telegram.org/bot\${tgApiQn}/sendMessage -d chat_id=\${tgIdQn} -d text=\"[ERROR] Your node is Standby, please restart your PWR node ! \" -d parse_mode='MarkdownV2';
 echo;
 echo -e '\n[INFO] Telegram message sent ! ✅';
-echo 'Telegram server bot is Standby, sleep for 3 minutes ... ⏳';
+echo '[ERROR] Your node is Standby, please restart your PWR node !';
+echo 'Telegram bot server is Standby, sleep for 3 minutes ... ⏳';
 echo;
 sleep 180;
 fi
