@@ -282,7 +282,7 @@ lastBTN=\$( date -d \"\$lastBTN\" +%s);
 diffBT=\$(( lastBTN - lastBT ));
 if [[ \"\${diffBTH}\" -gt \"0\" ]];
 then
-diffBTH=\$( echo \$diffBTH ' Hrs ');
+diffBTH=\$( echo \$diffBTH ' hrs ');
 else
 diffBTH='';
 fi
@@ -291,7 +291,7 @@ diffBTM=\$((\$diffBT %3600 / 60));
 
 if [ \"\${diffBTM}\" -gt \"0\" ];
 then
-diffBTM=\$( echo \$diffBTM ' Min ');
+diffBTM=\$( echo \$diffBTM ' min ');
 else
 diffBTM='';
 fi
@@ -300,7 +300,7 @@ diffBTS=\$((\$diffBT % 60));
 
 if [ \"\${diffBTS}\" -gt \"0\" ];
 then
-diffBTS2=\$( echo \$diffBTS ' Sec ');
+diffBTS2=\$( echo \$diffBTS ' sec ');
 else
 diffBTS2='';
 fi
