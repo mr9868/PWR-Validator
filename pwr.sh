@@ -274,12 +274,38 @@ do
 votePwr=\$( echo \$exStr | jq -r .votingPower );
 addrPwr=\$( echo \$exStr | jq -r .address );
 lastBT=\$( echo \$exStr | jq -r .lastCreatedBlockTime );
-lastBT=\$(( \$lastBT / 1000 ));                                                                             lastBT=$( TZ='Asia/Jakarta'  date -d @${lastBT} '+%Y-%m-%d %H:%M:%S');                                    lastBT=$( date -d "${lastBT}" +%s);                                                                       echo $lastBT;
+lastBT=\$(( \$lastBT / 1000 ));                                                                            
+lastBT=\$( TZ='Asia/Jakarta'  date -d @\${lastBT} '+%Y-%m-%d %H:%M:%S');                                   
+lastBT=\$( date -d \"\${lastBT}\" +%s);                                                                    
 lastBTN=\$( TZ='Asia/Jakarta' date '+%Y-%m-%d %H:%M:%S');
 lastBTN=\$( date -d \"\$lastBTN\" +%s);
 diffBT=\$(( lastBTN - lastBT ));
-echo \$diffBT;
-diffBT=\$( echo  \${diffBT} ' Seconds ago');
+if [ \"\${diffBTH}\" -gt \"0\" ];
+then
+diffBTH=\$( echo \$diffBTH ' Hrs ');
+else
+diffBTH='';
+fi
+
+diffBTM=\$((\$diffBT %3600 / 60));
+
+if [ \"\${diffBTM}\" -gt \"0\" ];
+then
+diffBTM=\$( echo \$diffBTM ' Min ');
+else
+diffBTM='';
+fi
+
+diffBTS=\$((\$diffBT % 60));
+
+if [ \"\${diffBTS}\" -gt \"0\" ];
+then
+diffBTS=\$( echo \$diffBTS ' Sec ');
+else
+diffBTS='';
+fi
+
+diffBT=\$( echo  \${diffBTH}\${diffBTM}\${diffBTS} 'ago');
 ipVal=\$( echo \$exStr | jq -r .ip );
 delCount=\$( echo \$exStr | jq -r .delegatorsCount );
 lastCB=\$( echo \$exStr | jq -r .lastCreatedBlock );
