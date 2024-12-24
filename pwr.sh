@@ -325,6 +325,7 @@ sleep 30;
 { cekStatus=\$( curl \$urlCek\$pwrAddr | jq -r .validator.status ); } 2>/dev/null;
 if [ ! \$cekStatus == 'active' ];
 then
+echo;
 echo '[ERROR] Your node can't create a block ! ❌';
 echo '[ERROR] Your node is Standby, please restart your PWR node !';
 echo -e '[INFO] Sending telegram message ... ⏳';
@@ -335,6 +336,7 @@ curl -s -X POST https://api.telegram.org/bot\${tgApiQn}/sendMessage -d chat_id=\
 echo;
 echo -e '\n[INFO] Telegram message sent ! ✅';
 echo 'Telegram server bot is Standby, sleep for 3 minutes ... ⏳';
+echo;
 sleep 180;
 fi
 done
