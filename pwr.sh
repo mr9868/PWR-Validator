@@ -345,9 +345,9 @@ echo \"[INFO] Last created block is: \${cekLastCB}. There is no new created bloc
 sleep 30;
 fi
 done
-echo '[INFO] Time taken to create block: \${diffBTS}ms'
-echo '[INFO] Block created: \${cekLastCB}'
 
+echo \"[INFO] Time taken to create block: \${diffBTS}ms \"
+echo \"[INFO] Block created: \${cekLastCB} \"
 echo \"[INFO] New created block found ! block: \${cekLastCB} ✅ \"
 done
 
