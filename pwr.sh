@@ -309,7 +309,7 @@ totalShr=\$( echo \$exStr | jq -r .totalShares );
 status=\$( echo \$exStr | jq -r .status );
 
 msgTg=\$( echo -e \"ℹ️ * Your PWR Validator Info * ℹ️ \n\n 🔸Voting Power: \${votePwr} \n 🔸Address: \\\`0x\${addrPwr}\\\` \n 🔸Last Created Block Time : \${lastBTq}  \n 🔸IP Address: \\\`\${ipVal}\\\` \n 🔸Delegators Count: \${delCount} \n 🔸Last Created Block: \${lastCB} \n 🔸Status: \${status} \n 🔸Details: [Go to The Explorer](https://explorer\\.pwrlabs\\.io/address/0x\${addrPwr}) \n\nCreator: [Mr9868 ☕](https://www\\.github\\.com/mr9868)\")
-echo -e '[INFO] Sending telegram message ...';
+echo -e '[INFO] Sending telegram message ... ⏳';
 echo -e '[INFO] Message output details : \n';
 curl -s -X POST https://api.telegram.org/bot\${tgApiQn}/sendMessage -d chat_id=\${tgIdQn} -d text=\"\${msgTg}\" -d parse_mode='MarkdownV2';
 echo;
@@ -325,13 +325,16 @@ sleep 30;
 { cekStatus=\$( curl \$urlCek\$pwrAddr | jq -r .validator.status ); } 2>/dev/null;
 if [ ! \$cekStatus == 'active' ];
 then
+echo '[ERROR] Your node can't create a block ! ❌';
 echo '[ERROR] Your node is Standby, please restart your PWR node !';
-echo -e '[INFO] Sending telegram message ...';
+echo -e '[INFO] Sending telegram message ... ⏳';
 echo -e '[INFO] Message output details : \n';
-curl -s -X POST https://api.telegram.org/bot\${tgApiQn}/sendMessage -d chat_id=\${tgIdQn} -d text=\"[ERROR] Your node is Standby, please restart your PWR node !\" -d parse_mode='MarkdownV2';
+curl -s -X POST https://api.telegram.org/bot\${tgApiQn}/sendMessage -d chat_id=\${tgIdQn} -d text=\"[ERROR] Your node can't create a block ! ❌ \" -d parse_mode='MarkdownV2';
+echo;
+curl -s -X POST https://api.telegram.org/bot\${tgApiQn}/sendMessage -d chat_id=\${tgIdQn} -d text=\"[ERROR] Your node is Standby, please restart your PWR node ! \" -d parse_mode='MarkdownV2';
 echo;
 echo -e '\n[INFO] Telegram message sent ! ✅';
-echo 'Telegram server bot is Standby, sleep for 3 minutes ...';
+echo 'Telegram server bot is Standby, sleep for 3 minutes ... ⏳';
 sleep 180;
 fi
 done
