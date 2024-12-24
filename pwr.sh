@@ -508,7 +508,7 @@ echo -e "To view your PWR logs, exec 'screen -r pwr' \n"
 # End of Main install;
 
 myHeader;
-echo -e "=( Main Menu )=\n"
+echo -e "<==========( Main Menu )==========>\n"
 echo "1. Full Installation"
 echo "2. Update telegram configuration"
 echo "3. Setup TeleBot Monitor"
