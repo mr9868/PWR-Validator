@@ -540,7 +540,10 @@ varCheck;
 else
 myHeader;
 echo "Bye bye !";
-sudo rm -rf pwr.sh;
+if [ -f pwr.sh ];
+then
+sudo rm -rf pwr.sh
+fi
 exit 1;
 fi
 
