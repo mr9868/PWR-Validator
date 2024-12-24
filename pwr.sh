@@ -299,9 +299,9 @@ sleep 30;
 if [ ! \$cekStatus == 'active' ];
 then
 echo '[ERROR] Your node is Standby, please restart your PWR node !';
-curl -s -X POST https://api.telegram.org/bot\${tgApiQn}/sendMessage -d chat_id=\${tgIdQn} -d text=\"[ERROR] Your node is Standby, please restart your PWR node !\" -d parse_mode='MarkdownV2';
-echo 'Telegram server bot is Standby, sleep for 5 minutes ...'
-sleep 300;
+{ curl -s -X POST https://api.telegram.org/bot\${tgApiQn}/sendMessage -d chat_id=\${tgIdQn} -d text=\"[ERROR] Your node is Standby, please restart your PWR node !\" -d parse_mode='MarkdownV2' } 2>/dev/null;
+echo 'Telegram server bot is Standby, sleep for 3 minutes ...'
+sleep 180;
 fi
 done
 
