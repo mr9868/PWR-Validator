@@ -510,7 +510,7 @@ echo -e "To view your PWR logs, exec 'screen -r pwr' \n"
 myHeader;
 echo -e "<==========( Main Menu )==========>\n"
 echo "1. Full Installation"
-echo "2. Setup TeleBot Monitor"
+echo "2. Setup and Re-configure TeleBot Monitor"
 echo "3. Exit"
 echo;
 read -p "Your selection => " mainMenu
@@ -519,7 +519,7 @@ do
 myHeader;
 echo -e "=( Main Menu )=\n"
 echo "1. Full Installation"
-echo "2. Setup TeleBot Monitor"
+echo "2. Setup and Re-configure TeleBot Monitor"
 echo "3. Exit"
 echo;
 read -p "Your selection => " mainMenu
