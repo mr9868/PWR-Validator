@@ -18,7 +18,7 @@ command -v jq >/dev/null 2>&1 || { echo >&2 "JQ is not found on this machine, In
 
 
 function checkPwr(){
-pwrAddr=$(curl localhost:8085/address/);
+{ pwrAddr=$(curl localhost:8085/address/); } 2>/dev/null;
 if [ -z $pwrAddr ];
 then
 echo "[ERROR] There is an error on your PWR node !"
@@ -390,7 +390,7 @@ then
 mkdir ~/.mr9868
 mkdir ~/.mr9868/pwr
 fi
-pwrAddr=$(curl localhost:8085/address/);
+{ pwrAddr=$(curl localhost:8085/address/); } 2>/dev/null;
 if grep -wq "tgApiQn" ~/.mr9868/pwr/config; 
 then    
 sed -r -i "s/tgApiQn=.*/tgApiQn=${tgApiQn}/g" ~/.mr9868/pwr/config;
