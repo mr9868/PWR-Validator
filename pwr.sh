@@ -37,7 +37,7 @@ echo  "============================================================"
 echo  "=             PWR validator setup auto installer           ="
 echo  "=                    Created by : Mr9868                   ="
 echo  "=             Github : https://github.io/Mr9868            ="
-echo  "=                Your OS info : $(uname -s) $(uname -m)              ="
+echo  "=                 Your OS info : $(uname -s) $(uname -m)              ="
 echo  "=                 IP Address : ${myIP}               ="
 echo -e "============================================================\n"
 }
@@ -295,9 +295,17 @@ do
 echo \"[INFO] Last created block is: \${cekLastCB}. There is no new created block found ...\";
 sleep 30;
 { cekLastCB=\$( curl \$urlCek\$pwrAddr | jq -r .validator.lastCreatedBlock ); } 2>/dev/null;
+{ cekStatus=\$( curl \$urlCek\$pwrAddr | jq -r .validator.status ); } 2>/dev/null;
+if [ ! \$cekStatus == 'active' ];
+then
+echo '[ERROR] Your node is Standby, please restart your PWR node !';
+curl -s -X POST https://api.telegram.org/bot\${tgApiQn}/sendMessage -d chat_id=\${tgIdQn} -d text=\"[ERROR] Your node is Standby, please restart your PWR node !\" -d parse_mode='MarkdownV2';
+echo 'Telegram server bot is Standby, sleep for 5 minutes ...'
+sleep 300;
+fi
 done
-echo \"[INFO] New created block found ! block: \${cekLastCB} ✅ \"
 
+echo \"[INFO] New created block found ! block: \${cekLastCB} ✅ \"
 done
 
 " > ~/.mr9868/pwr/tgServer;
