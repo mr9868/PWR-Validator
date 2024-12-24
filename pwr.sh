@@ -300,12 +300,12 @@ diffBTS=\$((\$diffBT % 60));
 
 if [ \"\${diffBTS}\" -gt \"0\" ];
 then
-diffBTS=\$( echo \$diffBTS ' Sec ');
+diffBTS2=\$( echo \$diffBTS ' Sec ');
 else
-diffBTS='';
+diffBTS2='';
 fi
 
-diffBT=\$( echo  \${diffBTH}\${diffBTM}\${diffBTS} 'ago');
+diffBT=\$( echo  \${diffBTH}\${diffBTM}\${diffBTS2} 'ago');
 ipVal=\$( echo \$exStr | jq -r .ip );
 delCount=\$( echo \$exStr | jq -r .delegatorsCount );
 lastCB=\$( echo \$exStr | jq -r .lastCreatedBlock );
@@ -345,6 +345,8 @@ echo \"[INFO] Last created block is: \${cekLastCB}. There is no new created bloc
 sleep 30;
 fi
 done
+echo '[INFO] Time taken to create block: \${diffBTS}ms'
+echo '[INFO] Block created: \${cekLastCB}'
 
 echo \"[INFO] New created block found ! block: \${cekLastCB} ✅ \"
 done
