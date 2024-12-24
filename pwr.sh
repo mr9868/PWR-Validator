@@ -32,6 +32,7 @@ echo -e "============================================================\n"
 
 # function check if PWR node run properly
 function checkPwr(){
+{ pwrAddr=$(curl localhost:8085/address/); } 2>/dev/null;
 myHeader;
 if [ -z $pwrAddr ];
 then
