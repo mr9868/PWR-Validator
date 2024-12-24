@@ -324,7 +324,7 @@ do
 if [ ! \$cekStatus == 'active' ];
 then
 echo;
-echo '[ERROR] Your node can't create a block ! ❌';
+echo \"[ERROR] Your node can't create a block ! ❌\";
 echo -e '[INFO] Sending telegram message ... ⏳';
 echo -e '[INFO] Message output details : \n';
 curl -s -X POST https://api.telegram.org/bot\${tgApiQn}/sendMessage -d chat_id=\${tgIdQn} -d text=\"[ERROR] Your node can't create a block ! ❌ \" -d parse_mode='MarkdownV2';
