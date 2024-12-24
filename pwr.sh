@@ -5,20 +5,7 @@ if [ $arch == "x86_64" ];
 then
 arch=x64;
 fi
-javaList=(https://download.oracle.com/java/23/latest/jdk-23_linux-${arch}_bin.tar.gz https://download.java.net/java/early_access/jdk24/27/GPL/openjdk-24-ea+27_linux-${arch}_bin.tar.gz);
-jdkList=(jdk-23.0.1 jdk-24);
-set | grep ^javaList=
-set | grep ^jdkList=
 
-function kill_apps(){
-screen -X -S pwr quit;
-pkill -f "java";
-pkill -9 java;
-pkill java;
-screen -X -S tgServer quit;
-echo "Kill previous session ..."
-sleep 5;
-}
 
 
 # Required package
@@ -28,6 +15,37 @@ command -v tar >/dev/null 2>&1 || { echo >&2 "Tar is not found on this machine, 
 command -v iptables >/dev/null 2>&1 || { echo >&2 "Iptables is not found on this machine, Installing iptables ... "; sleep 5;sudo apt install -y iptables;}
 command -v ufw >/dev/null 2>&1 || { echo >&2 "Ufw is not found on this machine, Installing ufw ... "; sleep 5;sudo apt install -y ufw;}
 command -v jq >/dev/null 2>&1 || { echo >&2 "JQ is not found on this machine, Installing jq ... "; sleep 5;sudo apt install -y jq;}
+
+
+function checkPwr(){
+pwrAddr=$(curl localhost:8085/address/);
+if [ -z $pwrAddr ];
+then
+echo "[ERROR] There is an error on your PWR node !"
+read -p "Do you want to run full installation ? (y/n) => " errQn
+if [ $errQn == "y" ]; 
+then
+mainInstall;
+else
+echo -e "There is ERROR on your PWR node !\nPlease restart your PWR node !"
+exit 1;
+fi
+fi
+}
+
+
+
+
+# Kill previous
+function kill_apps(){
+screen -X -S pwr quit;
+pkill -f "java";
+pkill -9 java;
+pkill java;
+screen -X -S tgServer quit;
+echo "Kill previous session ..."
+sleep 5;
+}
 
 
 # My Header
@@ -134,6 +152,13 @@ fi
 
 # Install java function
 function install_java(){
+
+
+javaList=(https://download.oracle.com/java/23/latest/jdk-23_linux-${arch}_bin.tar.gz https://download.java.net/java/early_access/jdk24/27/GPL/openjdk-24-ea+27_linux-${arch}_bin.tar.gz);
+jdkList=(jdk-23.0.1 jdk-24);
+set | grep ^javaList=
+set | grep ^jdkList=
+
 dpkg-query -W -f='${binary:Package}\n' | grep -E -e '^(ia32-)?(sun|oracle)-java' -e '^openjdk-' -e '^icedtea' -e '^(default|gcj)-j(re|dk)' -e '^gcj-(.*)-j(re|dk)' -e '^java-common' | xargs sudo apt-get -y remove;
 sudo apt-get -y autoremove;
 
@@ -224,16 +249,6 @@ exit 1;
 fi
 }
 # end install_java function
-
-myHeader;
-function java_found(){
-read -p "Java already installed, do you want to reinstall them ? (y/n): " qJava
-if [[ $qJava == "y" ]];
-then
-install_java;
-fi
-}
-# end of java_found function
 
 
 function tgConf(){
@@ -343,7 +358,6 @@ done
 
 # Entrypoint for telegram monitor question
 function entryPointTg(){
-myHeader
 read -p "Do you want to add telegram monitor ? (y/n)  : " tgQn
 if [[ "${tgQn}" =~ ^([yY][eE][sS]|[yY])$ ]];
 then   
@@ -399,9 +413,23 @@ sleep 2;
 echo "Telegram already configured ✅";
 sleep 2;
 else
+myHeader;
 entryPointTg;
 fi
 }
+
+function mainInstall(){
+
+myHeader;
+function java_found(){
+read -p "Java already installed, do you want to reinstall them ? (y/n): " qJava
+if [[ $qJava == "y" ]];
+then
+install_java;
+fi
+}
+# end of java_found function
+
 
 if command -v java 2>&1 >/dev/null
 then
@@ -468,4 +496,41 @@ sleep 5;
 echo -e "PWR node running successfully ✅ \n"
 echo -e "To view your PWR logs, exec 'screen -r pwr' \n"
 
+}
+# End of Main install;
+
+myHeader;
+echo -e "=( Main Menu )=\n"
+echo "1. Full Installation"
+echo "2. Update telegram configuration"
+echo "3. Setup TeleBot Monitor"
+echo "4. Exit"
+read -p "Your selection => " mainMenu
+until [[ "${mainMenu}" =~ ^[1-4]+$ ]];
+do
+myHeader;
+echo -e "=( Main Menu )=\n"
+echo "1. Full Installation"
+echo "2. Update telegram configuration"
+echo "3. Setup TeleBot Monitor"
+echo "4. Exit"
+read -p "Your selection => " mainMenu
+done
+if [[ $mainMenu == "1" ]];
+then
+mainInstall;
+
+elif [[ $mainMenu == "2" ]];
+then
+checkPwr;
+varCheck;
+elif [[ $mainMenu == "3" ]];
+then
+checkPwr;
+varCheck;
+else
+myHeader;
+echo "Bye bye !"
+exit 1;
+fi
 
