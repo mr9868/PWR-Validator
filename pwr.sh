@@ -20,13 +20,15 @@ command -v jq >/dev/null 2>&1 || { echo >&2 "JQ is not found on this machine, In
 # My Header
 function myHeader(){
 clear;
-echo  "=<=()===================================================()=>"
+echo  "<=()====================================================()=>"
 echo  "=             PWR validator setup auto installer           ="
 echo  "=                    Created by : Mr9868                   ="
 echo  "=             Github : https://github.io/Mr9868            ="
-echo -e "=<=()===================================================()=>\n"
+echo -e "<=()====================================================()=>\n"
 echo  "<=                 Your OS info : $(uname -s) $(uname -m)              =>"
 echo  "<=                 IP Address : ${myIP}               =>"
+echo  "<=()=====================================================()=>"
+
 echo;
 }
 # End of myHeader
@@ -316,10 +318,10 @@ status=\$( echo \$exStr | jq -r .status );
 msgTg=\$( echo -e \"ℹ️ * Your PWR Validator Info * ℹ️ \n\n 🔸Voting Power: \${votePwr} \n 🔸Address: \\\`0x\${addrPwr}\\\` \n 🔸Last Created Block Time : \${diffBT}  \n 🔸IP Address: \\\`\${ipVal}\\\` \n 🔸Delegators Count: \${delCount} \n 🔸Last Created Block: \${lastCB} \n 🔸Status: \${status} \n 🔸Details: [Go to The Explorer](https://explorer\\.pwrlabs\\.io/address/0x\${addrPwr}) \n\nCreator: [Mr9868 ☕](https://www\\.github\\.com/mr9868)\")
 echo -e '[INFO] Sending telegram message ... ⏳';
 echo -e '[INFO] Message output details : \n';
-echo -e \"=<=()===================================================()=>\n\"
+echo -e \"<=()====================================================()=>\n\"
 curl -s -X POST https://api.telegram.org/bot\${tgApiQn}/sendMessage -d chat_id=\${tgIdQn} -d text=\"\${msgTg}\" -d parse_mode='MarkdownV2' | jq -r .result.text ;
 echo;
-echo -e \"=<=()===================================================()=>\n\"
+echo -e \"<=()====================================================()=>\n\"
 echo -e '[INFO] Telegram message sent ! ✅';
 
 { cekLastCB=\$( curl \$urlCek\$pwrAddr | jq -r .validator.lastCreatedBlock ); } 2>/dev/null;
@@ -333,12 +335,12 @@ echo;
 echo \"[ERROR] Your node can't create a block ! ❌\";
 echo -e '[INFO] Sending telegram message ... ⏳';
 echo -e '[INFO] Message output details : \n';
-echo -e \"=<=()===================================================()=>\n\"
+echo -e \"<=()====================================================()=>\n\"
 curl -s -X POST https://api.telegram.org/bot\${tgApiQn}/sendMessage -d chat_id=\${tgIdQn} -d text=\"[ERROR] Your node can't create a block ! ❌ \" -d parse_mode='MarkdownV2' | jq -r .result.text ;
 echo;
 curl -s -X POST https://api.telegram.org/bot\${tgApiQn}/sendMessage -d chat_id=\${tgIdQn} -d text=\"[ERROR] Your node is Standby, please restart your PWR node ! \" -d parse_mode='MarkdownV2' | jq -r .result.text
 echo;
-echo -e \"=<=()===================================================()=>\n\"
+echo -e \"<=()====================================================()=>\n\"
 echo -e '[INFO] Telegram message sent ! ✅';
 echo '[ERROR] Your node is Standby, please restart your PWR node !';
 echo 'Telegram bot server is Standby, sleep for 3 minutes ... ⏳';
