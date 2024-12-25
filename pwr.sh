@@ -320,7 +320,7 @@ echo -e \"=<=()===================================================()=>\n\"
 curl -s -X POST https://api.telegram.org/bot\${tgApiQn}/sendMessage -d chat_id=\${tgIdQn} -d text=\"\${msgTg}\" -d parse_mode='MarkdownV2' | jq -r .result.text ;
 echo;
 echo -e \"=<=()===================================================()=>\n\"
-echo -e '\n[INFO] Telegram message sent ! ✅';
+echo -e '[INFO] Telegram message sent ! ✅';
 
 { cekLastCB=\$( curl \$urlCek\$pwrAddr | jq -r .validator.lastCreatedBlock ); } 2>/dev/null;
 
@@ -339,7 +339,7 @@ echo;
 curl -s -X POST https://api.telegram.org/bot\${tgApiQn}/sendMessage -d chat_id=\${tgIdQn} -d text=\"[ERROR] Your node is Standby, please restart your PWR node ! \" -d parse_mode='MarkdownV2' | jq -r .result.text
 echo;
 echo -e \"=<=()===================================================()=>\n\"
-echo -e '\n[INFO] Telegram message sent ! ✅';
+echo -e '[INFO] Telegram message sent ! ✅';
 echo '[ERROR] Your node is Standby, please restart your PWR node !';
 echo 'Telegram bot server is Standby, sleep for 3 minutes ... ⏳';
 echo;
