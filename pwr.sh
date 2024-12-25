@@ -25,9 +25,9 @@ echo  "=             PWR validator setup auto installer           ="
 echo  "=                    Created by : Mr9868                   ="
 echo  "=             Github : https://github.io/Mr9868            ="
 echo -e "=<=()===================================================()=>\n"
-echo;
 echo  "<=                 Your OS info : $(uname -s) $(uname -m)              =>"
 echo  "<=                 IP Address : ${myIP}               =>"
+echo;
 }
 # End of myHeader
 
