@@ -545,7 +545,8 @@ sudo ufw allow 8231/tcp;
 sudo ufw allow 7621
 sudo ufw allow 7621/udp;
 screen -dmS pwr bash -c "sudo java -jar validator.jar password $myIP" && sleep 5;
-sleep 2;
+echo "Please wait ... "
+sleep 10;
 checkPwr;
 varCheck;
 sleep 5;
