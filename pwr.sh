@@ -315,6 +315,25 @@ lastCB=\$( echo \$exStr | jq -r .lastCreatedBlock );
 totalShr=\$( echo \$exStr | jq -r .totalShares );
 status=\$( echo \$exStr | jq -r .status );
 
+if [ ! \$status == 'active' ];
+then
+echo;
+echo \"[ERROR] Your node can't create a block ! ❌\";
+echo -e '[INFO] Sending telegram message ... ⏳';
+echo -e '[INFO] Message output details : \n';
+echo -e \"<=()=======================( BEGIN )=====================()=>\n\"
+curl -s -X POST https://api.telegram.org/bot\${tgApiQn}/sendMessage -d chat_id=\${tgIdQn} -d text=\"[ERROR] Your node can't create a block ! ❌ \" -d parse_mode='MarkdownV2' | jq -r .result.text ;
+echo;
+curl -s -X POST https://api.telegram.org/bot\${tgApiQn}/sendMessage -d chat_id=\${tgIdQn} -d text=\"[ERROR] Your node is Standby, please restart your PWR node ! \" -d parse_mode='MarkdownV2' | jq -r .result.text
+echo;
+echo -e \"<=()========================( END )======================()=>\n\"
+echo -e '[INFO] Telegram message sent ! ✅';
+echo '[ERROR] Your node is Standby, please restart your PWR node !';
+echo 'Telegram bot server is Standby, sleep for 3 minutes ... ⏳';
+echo;
+sleep 180;
+else
+
 msgTg=\$( echo -e \"ℹ️ * Your PWR Validator Info * ℹ️ \n\n 🔸Voting Power: \${votePwr} \n 🔸Address: \\\`0x\${addrPwr}\\\` \n 🔸Last Created Block Time : \${diffBT}  \n 🔸IP Address: \\\`\${ipVal}\\\` \n 🔸Delegators Count: \${delCount} \n 🔸Last Created Block: \${lastCB} \n 🔸Status: \${status} \n 🔸Details: [Go to The Explorer](https://explorer\\.pwrlabs\\.io/address/0x\${addrPwr}) \n\nCreator: [Mr9868 ☕](https://www\\.github\\.com/mr9868)\")
 echo -e '[INFO] Sending telegram message ... ⏳';
 echo -e '[INFO] Message output details : \n';
@@ -357,6 +376,7 @@ echo \"[INFO] Finished creating block ✅ \"
 echo \"[INFO] Time taken to create block: \${diffBTS}ms \"
 echo \"[INFO] Block created: \${cekLastCB} \"
 echo \"[INFO] New created block found ! block: \${cekLastCB} ✅ \"
+fi
 done
 
 " > ~/.mr9868/pwr/tgServer;
