@@ -320,8 +320,6 @@ echo "
 urlCek=https://pwrrpc.pwrlabs.io//validator/?validatorAddress=
 
 function showVer(){
-if [ -f validator.jar ]; 
-then
 pwrVer=\$( sudo java -jar validator.jar password 2>/dev/null | grep version | awk '{print \$3}' ) ;
 pwrLtsVer=\$( curl https://api.github.com/repos/pwrlabs/PWR-Validator/releases/latest 2>/dev/null | jq -r .html_url | sed \"s/.*tag\///g\" );
 myVer=\$( echo \$pwrVer | sed \"s/\.//g\" );
@@ -338,8 +336,6 @@ echo -e \"<=()========================( END )======================()=>\n\"
 echo -e '[INFO] Telegram message sent ! ✅';
 else
 echo \"[INFO] Your PWR node version is : \${pwrVer}\"
-fi
-echo \"[ERROR] Validator config not found !\"
 fi
 }
 
