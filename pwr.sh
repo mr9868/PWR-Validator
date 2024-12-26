@@ -20,15 +20,16 @@ command -v jq >/dev/null 2>&1 || { echo >&2 "JQ is not found on this machine, In
 
 function install_pwr(){
 sudo rm -rf validator.jar config.json;
-wget https://github.com/pwrlabs/PWR-Validator/releases/latest/download/validator.jar;
-wget https://github.com/pwrlabs/PWR-Validator/raw/refs/heads/main/config.json;
+echo "Downloading ... ⏳";
+wget https://github.com/pwrlabs/PWR-Validator/releases/latest/download/validator.jar 2>/dev/null;
+wget https://github.com/pwrlabs/PWR-Validator/raw/refs/heads/main/config.json 2>/dev/null;
 }
 
 function showVer(){
 if [ -f validator.jar ]; 
 then
-pwrVer=$( sudo java -jar validator.jar password | grep version | awk '{print $3}' ) ;
-pwrLtsVer=$( curl https://api.github.com/repos/pwrlabs/PWR-Validator/releases/latest | jq -r .html_url | sed "s/.*tag\///g" );
+pwrVer=$( sudo java -jar validator.jar password 2>/dev/null | grep version | awk '{print $3}' ) ;
+pwrLtsVer=$( curl https://api.github.com/repos/pwrlabs/PWR-Validator/releases/latest 2>/dev/null | jq -r .html_url | sed "s/.*tag\///g" );
 myVer=$( echo $pwrVer | sed "s/\.//g" );
 ltsVer=$( echo $pwrLtsVer | sed "s/\.//g" );
 if [ "$ltsVer" -gt "$myVer" ];
