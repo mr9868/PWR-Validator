@@ -34,10 +34,10 @@ myVer=$( echo $pwrVer | sed "s/\.//g" );
 ltsVer=$( echo $pwrLtsVer | sed "s/\.//g" );
 if [ "$ltsVer" -gt "$myVer" ];
 then
-echo "Your PWR version is : ${pwrVer}"
-echo "PWR version ${pwrLtsVer} found !";
+echo "Your PWR node version is : ${pwrVer}"
+echo "PWR node version ${pwrLtsVer} found !";
 else
-echo "Your PWR version is : ${pwrVer}"
+echo "Your PWR node version is : ${pwrVer}"
 fi
 else
 echo "Validator config not found ! Installing ...";
@@ -57,6 +57,7 @@ echo  "============================================================"
 echo  "=                Your OS info : $(uname -s) $(uname -m)               ="
 echo  "=                 IP Address : ${myIP}               ="
 echo  "<=()=====================================================()=>"
+echo;
 showVer;
 echo;
 }
@@ -327,16 +328,16 @@ myVer=\$( echo \$pwrVer | sed \"s/\.//g\" );
 ltsVer=\$( echo \$pwrLtsVer | sed \"s/\.//g\" );
 if [ \"\$ltsVer\" -gt \"\$myVer\" ];
 then
-echo \"[INFO] Your PWR version is : \${pwrVer}\"
-echo \"[INFO] Latest PWR version \${pwrLtsVer} found, Please rerun the installation script !\";
+echo \"[INFO] Your PWR node version is : \${pwrVer}\"
+echo \"[INFO] Latest PWR node version \${pwrLtsVer} found, Please rerun the installation script !\";
 echo -e '[INFO] Sending telegram message ... ⏳';
 echo -e '[INFO] Message output details : \n';
 echo -e \"<=()=======================( BEGIN )=====================()=>\n\"
-curl -s -X POST https://api.telegram.org/bot\${tgApiQn}/sendMessage -d chat_id=\${tgIdQn} -d text=\"[INFO] Latest PWR version \${pwrLtsVer} found ! \" -d parse_mode='MarkdownV2' | jq -r .result.text ;
+curl -s -X POST https://api.telegram.org/bot\${tgApiQn}/sendMessage -d chat_id=\${tgIdQn} -d text=\"[INFO] Latest PWR node version \${pwrLtsVer} found ! \" -d parse_mode='MarkdownV2' | jq -r .result.text ;
 echo -e \"<=()========================( END )======================()=>\n\"
 echo -e '[INFO] Telegram message sent ! ✅';
 else
-echo \"[INFO] Your PWR version is : \${pwrVer}\"
+echo \"[INFO] Your PWR node version is : \${pwrVer}\"
 fi
 echo \"[ERROR] Validator config not found !\"
 fi
