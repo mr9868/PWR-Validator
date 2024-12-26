@@ -38,6 +38,7 @@ echo "PWR version ${pwrLtsVer} found !";
 else
 echo "Your PWR version is : ${pwrVer}"
 fi
+else
 echo "Validator config not found ! Installing ...";
 install_pwr;
 fi
