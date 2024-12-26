@@ -181,7 +181,7 @@ fi
 
 
 # Check if PWR wallet is exist
-function checkWallet(){
+function checkPwrWallet(){
 if [[ -f pwrWallet ]];
 then
 echo -e "Wallet found, next step ... ⌛";
@@ -594,7 +594,7 @@ sleep 2;
 myHeader;
 echo -e "You're currently using $(java --version) \n"
 sleep 2;
-checkWallet &&
+checkPwrWallet &&
 myHeader;
 echo -e "Running PWR node ... ⌛ \n"
 sudo ufw allow 8085;
