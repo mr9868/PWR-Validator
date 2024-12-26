@@ -324,14 +324,15 @@ pwrVer=\$( sudo java -jar validator.jar password 2>/dev/null | grep version | aw
 pwrLtsVer=\$( curl https://api.github.com/repos/pwrlabs/PWR-Validator/releases/latest 2>/dev/null | jq -r .html_url | sed \"s/.*tag\///g\" );
 myVer=\$( echo \$pwrVer | sed \"s/\.//g\" );
 ltsVer=\$( echo \$pwrLtsVer | sed \"s/\.//g\" );
-if [ \"\$ltsVer\" -gt \"\$myVer\" ];
+if [ \$ltsVer -gt \$myVer ];
 then
 echo \"[INFO] Your PWR node version is : \${pwrVer}\"
 echo \"[INFO] Latest PWR node version \${pwrLtsVer} found, Please rerun the installation script !\";
+ltsFound=\$( echo -e \"[INFO] Latest PWR node version \${pwrLtsVer} found !\nPlease rerun this script !\n<pre> wget https://raw\\.githubusercontent\\.com/mr9868/PWR\\-Validator/refs/heads/main/pwr\\.sh %26%26 chmod %2Bx pwr\\.sh %26%26 \\./pwr\\.sh; sudo rm pwr\\.sh </pre>\" );
 echo -e '[INFO] Sending telegram message ... ⏳';
 echo -e '[INFO] Message output details : \n';
 echo -e \"<=()=======================( BEGIN )=====================()=>\n\"
-curl -s -X POST https://api.telegram.org/bot\${tgApiQn}/sendMessage -d chat_id=\${tgIdQn} -d text=\"[INFO] Latest PWR node version \${pwrLtsVer} found ! \" -d parse_mode='MarkdownV2' | jq -r .result.text ;
+curl -s -X POST https://api.telegram.org/bot\${tgApiQn}/sendMessage -d chat_id=\${tgIdQn} -d text=\"\${ltsFound}\" -d parse_mode='HTML' | jq -r .result.text ;
 echo -e \"<=()========================( END )======================()=>\n\"
 echo -e '[INFO] Telegram message sent ! ✅';
 else
@@ -347,7 +348,8 @@ echo -e '[INFO] Message output details : \n';
 echo -e \"<=()=======================( BEGIN )=====================()=>\n\"
 curl -s -X POST https://api.telegram.org/bot\${tgApiQn}/sendMessage -d chat_id=\${tgIdQn} -d text=\"[ERROR] Your node can't create a block ! ❌ \" -d parse_mode='MarkdownV2' | jq -r .result.text ;
 echo;
-curl -s -X POST https://api.telegram.org/bot\${tgApiQn}/sendMessage -d chat_id=\${tgIdQn} -d text=\"[ERROR] Your node is Standby, please restart your PWR node ! \" -d parse_mode='MarkdownV2' | jq -r .result.text
+errFound=\$( echo -e \"[ERROR] Your node is Standby !\nPlease rerun this script !\n<pre> wget https://raw\\.githubusercontent\\.com/mr9868/PWR\\-Validator/refs/heads/main/pwr\\.sh %26%26 chmod %2Bx pwr\\.sh %26%26 \\./pwr\\.sh; sudo rm pwr\\.sh </pre>\" );
+curl -s -X POST https://api.telegram.org/bot\${tgApiQn}/sendMessage -d chat_id=\${tgIdQn} -d text=\"\${errFound}\" -d parse_mode='HTML' | jq -r .result.text
 echo;
 echo -e \"<=()========================( END )======================()=>\n\"
 echo -e '[INFO] Telegram message sent ! ✅';
