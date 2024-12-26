@@ -35,7 +35,7 @@ ltsVer=$( echo $pwrLtsVer | sed "s/\.//g" );
 if [ "$ltsVer" -gt "$myVer" ];
 then
 echo "Your PWR node version is : ${pwrVer}"
-echo "PWR node version ${pwrLtsVer} found !";
+echo "Latest PWR node version ${pwrLtsVer} found !";
 else
 echo "Your PWR node version is : ${pwrVer}"
 fi
