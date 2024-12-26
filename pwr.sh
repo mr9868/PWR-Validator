@@ -328,7 +328,7 @@ if [ \$ltsVer -gt \$myVer ];
 then
 echo \"[INFO] Your PWR node version is : \${pwrVer}\"
 echo \"[INFO] Latest PWR node version \${pwrLtsVer} found, Please rerun the installation script !\";
-ltsFound=\$( echo -e \"[INFO] Latest PWR node version \${pwrLtsVer} found !\nPlease rerun this script !\n<pre> wget https://raw\\.githubusercontent\\.com/mr9868/PWR\\-Validator/refs/heads/main/pwr\\.sh %26%26 chmod %2Bx pwr\\.sh %26%26 \\./pwr\\.sh; sudo rm pwr\\.sh </pre>\" );
+ltsFound=\$( echo -e \"[INFO] Latest PWR node version \${pwrLtsVer} found !\nPlease rerun this script !\n<pre> wget https://raw.githubusercontent.com/mr9868/PWR-Validator/refs/heads/main/pwr.sh %26%26 chmod %2Bx pwr.sh %26%26 ./pwr.sh; sudo rm pwr.sh </pre>\" );
 echo -e '[INFO] Sending telegram message ... ⏳';
 echo -e '[INFO] Message output details : \n';
 echo -e \"<=()=======================( BEGIN )=====================()=>\n\"
@@ -348,7 +348,7 @@ echo -e '[INFO] Message output details : \n';
 echo -e \"<=()=======================( BEGIN )=====================()=>\n\"
 curl -s -X POST https://api.telegram.org/bot\${tgApiQn}/sendMessage -d chat_id=\${tgIdQn} -d text=\"[ERROR] Your node can't create a block ! ❌ \" -d parse_mode='MarkdownV2' | jq -r .result.text ;
 echo;
-errFound=\$( echo -e \"[ERROR] Your node is Standby !\nPlease rerun this script !\n<pre> wget https://raw\\.githubusercontent\\.com/mr9868/PWR\\-Validator/refs/heads/main/pwr\\.sh %26%26 chmod %2Bx pwr\\.sh %26%26 \\./pwr\\.sh; sudo rm pwr\\.sh </pre>\" );
+errFound=\$( echo -e \"Your node is Standby !\nPlease rerun this script !\n<pre>wget https://raw.githubusercontent.com/mr9868/PWR-Validator/refs/heads/main/pwr.sh %26%26 chmod %2Bx pwr.sh %26%26 ./pwr.sh; sudo rm pwr.sh </pre>\" );
 curl -s -X POST https://api.telegram.org/bot\${tgApiQn}/sendMessage -d chat_id=\${tgIdQn} -d text=\"\${errFound}\" -d parse_mode='HTML' | jq -r .result.text
 echo;
 echo -e \"<=()========================( END )======================()=>\n\"
