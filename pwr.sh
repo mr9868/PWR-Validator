@@ -8,6 +8,7 @@ fi
 
 
 
+
 # Required package
 command -v screen >/dev/null 2>&1 || { echo >&2 "Screen is not found on this machine, Installing screen ... "; sleep 5;sudo apt install -y screen;}
 command -v wget >/dev/null 2>&1 || { echo >&2 "Wget is not found on this machine, Installing wget ... "; sleep 5;sudo apt install -y wget;}
@@ -15,6 +16,32 @@ command -v tar >/dev/null 2>&1 || { echo >&2 "Tar is not found on this machine, 
 command -v iptables >/dev/null 2>&1 || { echo >&2 "Iptables is not found on this machine, Installing iptables ... "; sleep 5;sudo apt install -y iptables;}
 command -v ufw >/dev/null 2>&1 || { echo >&2 "Ufw is not found on this machine, Installing ufw ... "; sleep 5;sudo apt install -y ufw;}
 command -v jq >/dev/null 2>&1 || { echo >&2 "JQ is not found on this machine, Installing jq ... "; sleep 5;sudo apt install -y jq;}
+
+
+function install_pwr(){
+sudo rm -rf validator.jar config.json;
+wget https://github.com/pwrlabs/PWR-Validator/releases/latest/download/validator.jar;
+wget https://github.com/pwrlabs/PWR-Validator/raw/refs/heads/main/config.json;
+}
+
+function showVer(){
+if [ -f validator.jar ]; 
+then
+pwrVer=$( sudo java -jar validator.jar password | grep version | awk '{print $3}' ) ;
+pwrLtsVer=$( curl https://api.github.com/repos/pwrlabs/PWR-Validator/releases/latest | jq -r .html_url | sed "s/.*tag\///g" );
+myVer=$( echo $pwrVer | sed "s/\.//g" );
+ltsVer=$( echo $pwrLtsVer | sed "s/\.//g" );
+if [ "$ltsVer" -gt "$myVer" ];
+then
+echo "Your PWR version is : ${pwrVer}"
+echo "PWR version ${pwrLtsVer} found !";
+else
+echo "Your PWR version is : ${pwrVer}"
+fi
+echo "Validator config not found ! Installing ...";
+install_pwr;
+fi
+}
 
 
 # My Header
@@ -28,10 +55,29 @@ echo  "============================================================"
 echo  "=                Your OS info : $(uname -s) $(uname -m)               ="
 echo  "=                 IP Address : ${myIP}               ="
 echo  "<=()=====================================================()=>"
-
+echo;
+showVer;
 echo;
 }
 # End of myHeader
+
+
+# checkVersion function 
+function checkVersion(){
+if [ "$ltsVer" -gt "$myVer" ];
+then
+echo "Latest version found ! installing ... ⏳"
+install_pwr;
+else
+read -p "There is no latest version found, Do you want to redownload config file ? (y/n) => " download
+if [[ $download == "y" ]];
+then
+install_pwr;
+fi
+fi
+
+}
+# Enf of checkVersion
 
 # function check if PWR node run properly
 function checkPwr(){
@@ -531,14 +577,7 @@ if [ -f validator.jar ] && [ -f config.json ];
 then
 
 myHeader;
-echo -e "You must redownload validator config when upgrading PWR node version ! \n";
-read -p "Do you want to redowload validator config ? (y/n): " download
-if [[ $download == "y" ]];
-then
-sudo rm -rf validator.jar config.json  &&
-wget https://github.com/pwrlabs/PWR-Validator/releases/latest/download/validator.jar &&
-wget https://github.com/pwrlabs/PWR-Validator/raw/refs/heads/main/config.json
-fi
+checkVersion;
 
 fi
 
