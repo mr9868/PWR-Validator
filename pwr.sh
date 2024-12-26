@@ -371,7 +371,6 @@ echo \"[INFO] Last created block is: \${cekLastCB}. There is no new created bloc
 { cekLastCB=\$( curl \$urlCek\$pwrAddr | jq -r .validator.lastCreatedBlock ); } 2>/dev/null;
 fi
 done
-clear;
 echo \"[INFO] Finished creating block ✅ \"
 echo \"[INFO] Time taken to create block: \${diffBTS}ms \"
 echo \"[INFO] Block created: \${cekLastCB} \"
