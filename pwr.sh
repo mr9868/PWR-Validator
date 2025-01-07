@@ -10,12 +10,12 @@ fi
 
 
 # Required package
-command -v screen >/dev/null 2>&1 || { echo >&2 "Screen is not found on this machine, Installing screen ... "; sleep 5;sudo apt install -y screen;}
-command -v wget >/dev/null 2>&1 || { echo >&2 "Wget is not found on this machine, Installing wget ... "; sleep 5;sudo apt install -y wget;}
-command -v tar >/dev/null 2>&1 || { echo >&2 "Tar is not found on this machine, Installing tar ... "; sleep 5;sudo apt install -y tar;}
-command -v iptables >/dev/null 2>&1 || { echo >&2 "Iptables is not found on this machine, Installing iptables ... "; sleep 5;sudo apt install -y iptables;}
-command -v ufw >/dev/null 2>&1 || { echo >&2 "Ufw is not found on this machine, Installing ufw ... "; sleep 5;sudo apt install -y ufw;}
-command -v jq >/dev/null 2>&1 || { echo >&2 "JQ is not found on this machine, Installing jq ... "; sleep 5;sudo apt install -y jq;}
+command -v screen >/dev/null 2>&1 || { echo >&2 "Screen is not found on this machine, Installing screen ... "; sudo apt install -y screen;}
+command -v wget >/dev/null 2>&1 || { echo >&2 "Wget is not found on this machine, Installing wget ... "; sudo apt install -y wget;}
+command -v tar >/dev/null 2>&1 || { echo >&2 "Tar is not found on this machine, Installing tar ... "; sudo apt install -y tar;}
+command -v iptables >/dev/null 2>&1 || { echo >&2 "Iptables is not found on this machine, Installing iptables ... "; sudo apt install -y iptables;}
+command -v ufw >/dev/null 2>&1 || { echo >&2 "Ufw is not found on this machine, Installing ufw ... "; sudo apt install -y ufw;}
+command -v jq >/dev/null 2>&1 || { echo >&2 "JQ is not found on this machine, Installing jq ... "; sudo apt install -y jq;}
 
 
 function install_pwr(){
@@ -120,7 +120,7 @@ pkill -9 java;
 pkill java;
 screen -X -S tgServer quit;
 echo "Kill previous session ..."
-sleep 5;
+
 }
 # End of kill_apps
 
@@ -130,7 +130,7 @@ function checkIfExist(){
 if [[ -f password ]];
 then
 echo -e "Please wait, chacking if PWR wallet is exist ... ⌛";
-sleep 5;
+
 checkWallet=$(sudo java -jar validator.jar get-private-key password | grep Private | awk '{print $3}');
 if [[ -z $checkWallet ]];
 then
@@ -147,16 +147,16 @@ sudo java -jar validator.jar --import-key ${pwrPK} password;
 echo -e "Wallet added ✅ \n"
 echo -e "Wallet added ✅" > pwrWallet;
 echo -e "Next step ... ⌛ \n"
-sleep 5;
+
 echo -e "Next step ... ⌛ \n"
-sleep 5;
+
 
 else
 myHeader;
 echo -e "Wallet found ✅ \n"
 echo -e "Wallet added ✅" > pwrWallet;
 echo -e "Next step ... ⌛ \n"
-sleep 5;
+
 fi
 # End of if check password file
 
@@ -183,7 +183,7 @@ sudo java -jar validator.jar --import-key ${pwrPK} password
 echo -e "Wallet found ✅ \n"
 echo -e "Wallet added ✅" > pwrWallet;
 echo -e "Next step ... ⌛ \n"
-sleep 5;
+
 fi
 }
 # End of checkIfExist function
@@ -194,7 +194,7 @@ function checkPwrWallet(){
 if [[ -f pwrWallet ]];
 then
 echo -e "Wallet found, next step ... ⌛";
-sleep 2;
+
 else
 checkIfExist;
 fi
@@ -215,7 +215,7 @@ echo $listDrops | sed 's/#/\&\& \n/g' | sed 's/-A/iptables -D /g' > listDrops.sh
 echo "echo 'Success ✅'" >> listDrops.sh;
 chmod  +x listDrops.sh && ./listDrops.sh;
 echo -e "Unblocked IPs successfully ✅ \n"
-sleep 2;
+
 fi
 }
 # End of unblockIPs
@@ -365,7 +365,7 @@ echo 'Telegram bot server is Standby, sleep for 3 minutes ... ⏳';
 echo;
 sleep 180;
 }
-while sleep 2;
+while 
 do
 showVer;
 { exStr=\$( curl \${urlCek}\${pwrAddr} | jq -r .validator ); } 2>/dev/null;
@@ -449,7 +449,7 @@ done
 
 echo "
 screen -X -S pwr quit;
-screen -dmS pwr bash -c \"sudo java -jar validator.jar password ${myIP}\"; sleep 5;
+screen -dmS pwr bash -c \"sudo java -jar validator.jar password ${myIP}\"; 
 bash ~/.mr9868/pwr/tgInit;
 " > ~/.mr9868/pwr/run_pwr;
 
@@ -458,7 +458,7 @@ echo '
 screen -X -S tgServer quit;
 screen -dmS tgServer bash -c "chmod +x ~/.mr9868/pwr/tgServer && bash ~/.mr9868/pwr/tgServer";
 echo "Starting screen ..."
-sleep 5;
+
 echo "Success ✅"
 ' > ~/.mr9868/pwr/tgInit;
 chmod 777 ~/.mr9868/pwr/tgInit && bash ~/.mr9868/pwr/tgInit;
@@ -547,9 +547,9 @@ if { grep -wq "tgApiQn" ~/.mr9868/pwr/config && grep -wq "tgIdQn" ~/.mr9868/pwr/
 then
 echo "Config file found ! Next ...";
 tgConf;
-sleep 2;
+
 echo "Telegram already configured ✅";
-sleep 2;
+
 else
 myHeader;
 entryPointTg;
@@ -608,12 +608,12 @@ fi
 myHeader;
 kill_apps;
 unblockIPs;
-sleep 2;
+
 
 # run PWR
 myHeader;
 echo -e "You're currently using $(java --version) \n"
-sleep 2;
+
 checkPwrWallet &&
 myHeader;
 echo -e "Running PWR node ... ⌛ \n"
@@ -623,12 +623,12 @@ sudo ufw allow 8231
 sudo ufw allow 8231/tcp;
 sudo ufw allow 7621
 sudo ufw allow 7621/udp;
-screen -dmS pwr bash -c "sudo java -jar validator.jar password $myIP" && sleep 5;
+screen -dmS pwr bash -c "sudo java -jar validator.jar password $myIP" && 
 echo "Please wait ... "
 sleep 10;
 checkPwr;
 varCheck;
-sleep 5;
+
 echo -e "PWR node running successfully ✅ \n"
 echo -e "To view your PWR logs, exec 'screen -r pwr' \n"
 
