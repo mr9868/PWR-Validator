@@ -32,7 +32,7 @@ pwrVer=$( sudo java -jar validator.jar password 2>/dev/null | grep version | awk
 pwrLtsVer=$( curl https://api.github.com/repos/pwrlabs/PWR-Validator/releases/latest 2>/dev/null | jq -r .html_url | sed "s/.*tag\///g" );
 myVer=$( echo $pwrVer | sed "s/\.//g" );
 ltsVer=$( echo $pwrLtsVer | sed "s/\.//g" );
-if [ "$ltsVer" -gt "$myVer" ];
+if [ "$ltsVer" -gt "$myVer" ] && [ -n "$pwrVer" ];
 then
 echo "Your PWR node version is : ${pwrVer}"
 echo "Latest PWR node version ${pwrLtsVer} found !";
@@ -40,7 +40,7 @@ else
 echo "Your PWR node version is : ${pwrVer}"
 fi
 else
-echo "Validator config not found ! Installing ...";
+echo "Validator not found ! Installing ...";
 install_pwr;
 fi
 }
