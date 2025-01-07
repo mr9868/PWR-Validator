@@ -542,7 +542,6 @@ if { grep -wq "tgApiQn" ~/.mr9868/pwr/config && grep -wq "tgIdQn" ~/.mr9868/pwr/
 then
 echo "Config file found ! Next ...";
 tgConf;
-
 echo "Telegram already configured ✅";
 
 else
