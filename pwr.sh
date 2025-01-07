@@ -69,7 +69,6 @@ echo;
 function checkVersion(){
 if [ -n "$pwrVer" ];
 then
-install_pwr;
 if [ "$ltsVer" -gt "$myVer" ];
 then
 echo "Latest version found ! installing ... ⏳"
