@@ -43,10 +43,10 @@ echo "Latest PWR node version ${pwrLtsVer} found !";
 else
 echo "Your PWR node version is : ${pwrVer}"
 fi
+fi
 else
 echo "Validator not found ! Installing ...";
 install_pwr;
-fi
 fi
 }
 
