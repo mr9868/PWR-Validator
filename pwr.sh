@@ -381,6 +381,8 @@ lastBT=\$( date -d \"\${lastBT}\" +%s);
 lastBTN=\$( TZ='Asia/Jakarta' date '+%Y-%m-%d %H:%M:%S');
 lastBTN=\$( date -d \"\$lastBTN\" +%s);
 diffBT=\$(( lastBTN - lastBT ));
+
+diffBTH=\$((\$diffBT/3600));
 if [[ \"\${diffBTH}\" -gt \"0\" ]];
 then
 diffBTH=\$( echo \$diffBTH ' hrs ');
