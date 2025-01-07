@@ -365,6 +365,8 @@ echo '[ERROR] Your node status is Standby, please restart your PWR node !';
 echo 'Telegram bot server is Standby, sleep for 3 minutes ... ⏳';
 echo;
 sleep 180;
+curl -s -X POST https://api.telegram.org/bot\${tgApiQn}/sendMessage -d chat_id=\${tgIdQn} -d text=\"\PWR telebot server is down\" -d parse_mode='HTML' | jq -r .result.text
+exit 1;
 }
 while sleep 5;
 do
