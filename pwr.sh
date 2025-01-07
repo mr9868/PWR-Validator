@@ -61,8 +61,6 @@ echo  "=                Your OS info : $(uname -s) $(uname -m)               ="
 echo  "=                 IP Address : ${myIP}               ="
 echo  "<=()====================================================()=>"
 echo;
-showVer;
-echo;
 }
 # End of myHeader
 
@@ -636,6 +634,8 @@ echo -e "To view your PWR logs, exec 'screen -r pwr' \n"
 # Main menu
 function main_Menu(){
 myHeader;
+showVer;
+echo;
 echo -e "<=======================( Main Menu )======================>\n"
 echo "1. Full Installation"
 echo "2. Setup or Re-configure TeleBot Monitor"
