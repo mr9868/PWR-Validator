@@ -32,7 +32,7 @@ pwrVer=$( sudo java -jar validator.jar password 2>/dev/null | grep version | awk
 pwrLtsVer=$( curl https://api.github.com/repos/pwrlabs/PWR-Validator/releases/latest 2>/dev/null | jq -r .html_url | sed "s/.*tag\///g" );
 myVer=$( echo $pwrVer | sed "s/\.//g" );
 ltsVer=$( echo $pwrLtsVer | sed "s/\.//g" );
-if [ -n "$pwrVer" ];
+if [ -z "$pwrVer" ];
 then
 install_pwr;
 else
@@ -71,6 +71,9 @@ echo;
 
 # checkVersion function 
 function checkVersion(){
+if [ -n "$pwrVer" ];
+then
+install_pwr;
 if [ "$ltsVer" -gt "$myVer" ];
 then
 echo "Latest version found ! installing ... ⏳"
@@ -82,7 +85,7 @@ then
 install_pwr;
 fi
 fi
-
+fi
 }
 # Enf of checkVersion
 
