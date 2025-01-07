@@ -6,6 +6,10 @@ then
 arch=x64;
 fi
 
+if [ -f validator.jar ];
+then
+valDir=$( pwd );
+fi
 
 
 
@@ -23,6 +27,7 @@ sudo rm -rf validator.jar config.json;
 echo "Downloading ... ⏳";
 wget https://github.com/pwrlabs/PWR-Validator/releases/latest/download/validator.jar 2>/dev/null;
 wget https://github.com/pwrlabs/PWR-Validator/raw/refs/heads/main/config.json 2>/dev/null;
+valDir=$( pwd );
 }
 
 function showVer(){
@@ -319,11 +324,12 @@ fi
 function tgConf(){
 screen -X -S tgServer quit;
 echo "
+valDir=\"${valDir}\";
 . ~/.mr9868/pwr/config
 urlCek=https://pwrrpc.pwrlabs.io//validator/?validatorAddress=
 
 function showVer(){
-pwrVer=\$( sudo java -jar validator.jar password 2>/dev/null | grep version | awk '{print \$3}' ) ;
+pwrVer=\$( cd \$valDir; sudo java -jar validator.jar password 2>/dev/null | grep version | awk '{print \$3}' ) ;
 pwrLtsVer=\$( curl https://api.github.com/repos/pwrlabs/PWR-Validator/releases/latest 2>/dev/null | jq -r .html_url | sed \"s/.*tag\///g\" );
 myVer=\$( echo \$pwrVer | sed \"s/\.//g\" );
 ltsVer=\$( echo \$pwrLtsVer | sed \"s/\.//g\" );
