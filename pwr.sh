@@ -360,7 +360,7 @@ echo 'Telegram bot server is Standby, sleep for 3 minutes ... ⏳';
 echo;
 sleep 180;
 }
-while 
+while sleep 5;
 do
 showVer;
 { exStr=\$( curl \${urlCek}\${pwrAddr} | jq -r .validator ); } 2>/dev/null;
