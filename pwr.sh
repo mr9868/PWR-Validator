@@ -616,7 +616,8 @@ unblockIPs;
 
 # run PWR
 myHeader;
-echo -e "You're currently using $(java --version) \n"
+exec bash;
+echo -e "You're currently using $( java --version) \n"
 
 checkPwrWallet &&
 myHeader;
