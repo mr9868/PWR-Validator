@@ -227,7 +227,7 @@ fi
 function install_java(){
 
 javaList=(https://download.oracle.com/java/23/latest/jdk-23_linux-${arch}_bin.tar.gz https://download.java.net/java/early_access/jdk24/27/GPL/openjdk-24-ea+27_linux-${arch}_bin.tar.gz);
-jdkList=(jdk-23.0.1 jdk-24);
+jdkList=(jdk-23.0.2 jdk-24);
 set | grep ^javaList=
 set | grep ^jdkList=
 
