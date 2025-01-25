@@ -249,7 +249,7 @@ cd /usr/local/java &&
 sudo tar zxvf javalts.tar.gz &&
 sudo rm -rf javalts.tar.gz &&
 sudo update-alternatives --install "/usr/bin/java" "java" "/usr/local/java/${jdkVer}/bin/java" 1 &&
-cd -;
+cd cd $OLDPWD;
 }
 
 # List JDK version provided by default apt list
@@ -611,7 +611,7 @@ fi
 # Accept all Drop rules
 myHeader;
 kill_apps;
-unblockIPs;
+#unblockIPs;
 
 
 # run PWR
