@@ -40,7 +40,7 @@ myVer=$( echo $pwrVer | sed "s/\.//g" );
 ltsVer=$( echo $pwrLtsVer | sed "s/\.//g" );
 if [ -n "$pwrVer" ];
 then
-if [ $ltsVer -gt $myVer ];
+if [ "$ltsVer" -gt $myVer ];
 then
 echo "Your PWR node version is : ${pwrVer}"
 echo "Latest PWR node version ${pwrLtsVer} found !";
@@ -81,7 +81,7 @@ echo "Latest version found ! installing ... ⏳"
 install_pwr;
 else
 read -p "There is no latest version found, Do you want to redownload config file ? (y/n) => " download
-if [[ $download == "y" ]];
+if [[ "$download" == "y" ]];
 then
 install_pwr;
 fi
@@ -94,11 +94,11 @@ fi
 function checkPwr(){
 { pwrAddr=$(curl localhost:8085/address/); } 2>/dev/null;
 myHeader;
-if [ -z $pwrAddr ];
+if [ -z "$pwrAddr" ];
 then
 echo "[ERROR] There is an error on your PWR node !"
 read -p "Do you want to run full installation ? (y/n) => " errQn
-if [ $errQn == "y" ]; 
+if [ "$errQn" == "y" ]; 
 then
 mainInstall;
 else
@@ -133,7 +133,7 @@ then
 echo -e "Please wait, chacking if PWR wallet is exist ... ⌛";
 
 checkWallet=$(sudo java -jar validator.jar get-private-key password | grep Private | awk '{print $3}');
-if [[ -z $checkWallet ]];
+if [[ -z "$checkWallet" ]];
 then
 myHeader;
 echo -e "Wallet not found, please generate PWR wallet first !";
@@ -165,7 +165,7 @@ fi
 else
 echo -e "Password file not found, You must create password File ! \n"
 read -p "Input your password => " pwrPass
-until [[ -n $pwrPass ]]
+until [[ -n "$pwrPass" ]]
 do
 echo -e "Password file cannot be NULL ! \n"
 read -p "Input your password => " pwrPass
@@ -290,28 +290,28 @@ read -p "Choose java version =>  " cJava
 done
 
 
-if [[ $cJava == "1" ]];
+if [[ "$cJava" == "1" ]];
 then
 jdkVer=17;
 listJdk;
-elif [[ $cJava == "2" ]];
+elif [[ "$cJava" == "2" ]];
 then
 jdkVer=18;
 listJdk;
-elif [[ $cJava == "3" ]];
+elif [[ "$cJava" == "3" ]];
 then
 jdkVer=19;
 listJdk;
-elif [[ $cJava == "4" ]];
+elif [[ "$cJava" == "4" ]];
 then
 jdkVer=21;
 listJdk;
-elif [[ $cJava == "5" ]];
+elif [[ "$cJava" == "5" ]];
 then
 javaVer=${javaList[0]};
 jdkVer=${jdkList[0]};
 jdkLts;
-elif [[ $cJava == "6" ]];
+elif [[ "$cJava" == "6" ]];
 then
 javaVer=${javaList[1]};
 jdkVer=${jdkList[1]};
