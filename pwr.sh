@@ -204,6 +204,7 @@ fi
 
 # Unblock IPs and domain that blocked by pwr node
 function unblockIPs(){
+echo "Please wait, unblocking blocked IP ..."
 if [ -f listDrops.sh ];
 then
 chmod  +x listDrops.sh && ./listDrops.sh;
@@ -562,6 +563,7 @@ fi
 }
 # End of varCheck
 
+
 # Main installation
 function mainInstall(){
 
@@ -612,7 +614,7 @@ fi
 # Accept all Drop rules
 myHeader;
 kill_apps;
-#unblockIPs;
+unblockIPs;
 
 
 # run PWR
