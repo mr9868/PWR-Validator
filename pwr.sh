@@ -1,6 +1,7 @@
 # Set variables and array URL JDK latest
 myIP=$( curl -w "\n" ifconfig.me 2>/dev/null );
 arch=$(uname -m);
+getPwd=${PWD}
 if [ $arch == "x86_64" ];
 then
 arch=x64;
@@ -249,7 +250,7 @@ cd /usr/local/java &&
 sudo tar zxvf javalts.tar.gz &&
 sudo rm -rf javalts.tar.gz &&
 sudo update-alternatives --install "/usr/bin/java" "java" "/usr/local/java/${jdkVer}/bin/java" 1 &&
-cd cd $OLDPWD;
+cd $getPwd;
 }
 
 # List JDK version provided by default apt list
