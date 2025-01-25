@@ -616,7 +616,6 @@ kill_apps;
 
 # run PWR
 myHeader;
-exec bash;
 echo -e "You're currently using $( java --version) \n"
 
 checkPwrWallet &&
