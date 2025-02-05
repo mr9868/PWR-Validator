@@ -256,7 +256,7 @@ valDir=\"${valDir}\";
 urlCek=https://pwrrpc.pwrlabs.io//validator/?validatorAddress=
 
 function showVer(){
-pwrVer=\$( cd \$valDir; sudo java -jar validator.jar password 2>/dev/null | grep version | awk '{print \$3}' ) ;
+pwrVer=\$( cd \$valDir; sudo java -jar validator.jar  2>/dev/null | grep version | awk '{print \$3}' ) ;
 pwrLtsVer=\$( curl https://api.github.com/repos/pwrlabs/PWR-Validator/releases/latest 2>/dev/null | jq -r .html_url | sed \"s/.*tag\///g\" );
 myVer=\$( echo \$pwrVer | sed \"s/\.//g\" );
 ltsVer=\$( echo \$pwrLtsVer | sed \"s/\.//g\" );
@@ -381,7 +381,7 @@ done
 
 echo "
 screen -X -S pwr quit;
-screen -dmS pwr bash -c \"sudo java -jar validator.jar password ${myIP}\"; 
+screen -dmS pwr bash -c \"sudo java -jar validator.jar  ${myIP}\"; 
 bash ~/.mr9868/pwr/tgInit;
 " > ~/.mr9868/pwr/run_pwr;
 
@@ -553,7 +553,7 @@ sudo ufw allow 8231
 sudo ufw allow 8231/tcp;
 sudo ufw allow 7621
 sudo ufw allow 7621/udp;
-screen -dmS pwr bash -c "sudo java -jar validator.jar password $myIP" && 
+screen -dmS pwr bash -c "sudo java -jar validator.jar  $myIP" && 
 echo "Please wait ... "
 sleep 10;
 checkPwr;
