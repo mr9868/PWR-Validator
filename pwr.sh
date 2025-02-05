@@ -540,6 +540,7 @@ fi
 myHeader;
 kill_apps;
 unblockIPs;
+sed -i "s/\"synchronizationIntervals\": 100,/\"synchronizationIntervals\": 10,/g" config.json;
 
 
 # run PWR
