@@ -1,11 +1,12 @@
 # Set variables and array URL JDK latest
-if [ ! -d pwrValidator ];
-then
-mkdir pwrValidator;
-cd pwrValidator;
-else
-cd pwrValidator;
-fi
+#cd $HOME;
+#if [ ! -d pwrValidator ];
+#then
+#mkdir pwrValidator;
+#cd pwrValidator;
+#else
+#cd pwrValidator;
+#fi
 
 myIP=$( curl -w "\n" ifconfig.me 2>/dev/null );
 arch=$(uname -m);
