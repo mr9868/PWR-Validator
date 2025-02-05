@@ -66,7 +66,7 @@ echo  "============================================================"
 echo  "=                Your OS info : $(uname -s) $(uname -m)               ="
 echo  "=                 IP Address : ${myIP}               ="
 echo  "<=()====================================================()=>"
-echo;
+echo
 }
 # End of myHeader
 
