@@ -34,7 +34,7 @@ valDir=$( pwd );
 function showVer(){
 if [ -f validator.jar ]; 
 then
-pwrVer=$( sudo java -jar validator.jar password 2>/dev/null | grep version | awk '{print $3}' ) ;
+pwrVer=$( sudo java -jar validator.jar 2>/dev/null | grep version | awk '{print $3}' ) ;
 pwrLtsVer=$( curl https://api.github.com/repos/pwrlabs/PWR-Validator/releases/latest 2>/dev/null | jq -r .html_url | sed "s/.*tag\///g" );
 myVer=$( echo $pwrVer | sed "s/\.//g" );
 ltsVer=$( echo $pwrLtsVer | sed "s/\.//g" );
@@ -126,81 +126,6 @@ echo "Kill previous session ..."
 # End of kill_apps
 
 
-# Check if PWR wallet password is exist
-function checkIfExist(){
-if [[ -f password ]];
-then
-echo -e "Please wait, chacking if PWR wallet is exist ... ⌛";
-
-checkWallet=$(sudo java -jar validator.jar get-private-key password | grep Private | awk '{print $3}');
-if [[ -z "$checkWallet" ]];
-then
-myHeader;
-echo -e "Wallet not found, please generate PWR wallet first !";
-read -p "Input your PWR Wallet Private Key without 0x => " pwrPK
-until [[ "${pwrPK}" =~ ^[0-9a-fA-F]{64}$ ]];
-do
-myHeader;
-echo -e "Please submit a valid private key !";
-read -p "Input your PWR Wallet Private Key without 0x => " pwrPK
-done
-sudo java -jar validator.jar --import-key ${pwrPK} password;
-echo -e "Wallet added ✅ \n"
-echo -e "Wallet added ✅" > pwrWallet;
-echo -e "Next step ... ⌛ \n"
-
-echo -e "Next step ... ⌛ \n"
-
-
-else
-myHeader;
-echo -e "Wallet found ✅ \n"
-echo -e "Wallet added ✅" > pwrWallet;
-echo -e "Next step ... ⌛ \n"
-
-fi
-# End of if check password file
-
-
-else
-echo -e "Password file not found, You must create password File ! \n"
-read -p "Input your password => " pwrPass
-until [[ -n "$pwrPass" ]]
-do
-echo -e "Password file cannot be NULL ! \n"
-read -p "Input your password => " pwrPass
-done
-echo $pwrPass > password;
-myHeader;
-echo -e "Wallet not found, please generate PWR wallet first !";
-read -p "Input your PWR Wallet Private Key without 0x => " pwrPK
-until [[ "${pwrPK}" =~ ^[0-9a-fA-F]{64}$ ]];
-do
-myHeader;
-echo -e "Please submit a valid private key !";
-read -p "Input your PWR Wallet Private Key without 0x => " pwrPK
-done
-sudo java -jar validator.jar --import-key ${pwrPK} password
-echo -e "Wallet found ✅ \n"
-echo -e "Wallet added ✅" > pwrWallet;
-echo -e "Next step ... ⌛ \n"
-
-fi
-}
-# End of checkIfExist function
-
-
-# Check if PWR wallet is exist
-function checkPwrWallet(){
-if [[ -f pwrWallet ]];
-then
-echo -e "Wallet found, next step ... ⌛";
-
-else
-checkIfExist;
-fi
-}
-# End of checkWallet
 
 # Unblock IPs and domain that blocked by pwr node
 function unblockIPs(){
@@ -621,8 +546,6 @@ unblockIPs;
 myHeader;
 echo -e "You're currently using $( java --version) \n"
 
-checkPwrWallet &&
-myHeader;
 echo -e "Running PWR node ... ⌛ \n"
 sudo ufw allow 8085;
 sudo ufw allow 8085/tcp
