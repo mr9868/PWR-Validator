@@ -539,7 +539,7 @@ fi
 # Accept all Drop rules
 myHeader;
 kill_apps;
-#unblockIPs;
+unblockIPs;
 
 
 # run PWR
