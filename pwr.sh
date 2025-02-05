@@ -568,7 +568,7 @@ echo -e "To view your PWR logs, exec 'screen -r pwr' \n"
 # Main menu
 function main_Menu(){
 myHeader;
-showVer;
+#showVer;
 echo;
 echo -e "<=======================( Main Menu )======================>\n"
 echo "1. Full Installation"
