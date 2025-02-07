@@ -533,18 +533,8 @@ sudo rm -rf rocksdb blocks;
 fi
 
 fi
-
-# Check if the file is exist
-if [ -f validator.jar ] && [ -f config.json ];
-then
-
 myHeader;
-checkVersion;
-else
 install_pwr;
-
-fi
-
 
 
 # Accept all Drop rules
