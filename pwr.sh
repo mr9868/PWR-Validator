@@ -540,6 +540,8 @@ then
 
 myHeader;
 checkVersion;
+else
+install_pwr;
 
 fi
 
