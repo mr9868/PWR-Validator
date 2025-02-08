@@ -482,8 +482,12 @@ fi
 function varCheck(){
 if { grep -wq "tgApiQn" ~/.mr9868/pwr/config && grep -wq "tgIdQn" ~/.mr9868/pwr/config; } 2>/dev/null;
 then
-echo "Config file found ! Next ...";
+read -p "Config file found, Do you want to reconfigure it ? (y/n) : " tgRec
+if [ $tgRec == "y" ]; then
+entryPointTg;
+else
 tgConf;
+fi
 echo "Telegram already configured ✅";
 else
 myHeader;
