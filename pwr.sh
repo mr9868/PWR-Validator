@@ -390,7 +390,7 @@ done
 
 echo "
 screen -X -S pwr quit;
-screen -dmS pwr bash -c \"sudo java -jar validator.jar  ${myIP}\"; 
+screen -dmS pwr bash -c \"sudo java -jar validator.jar  ${myIP} --loop-udp-test \"; 
 bash ~/.mr9868/pwr/tgInit;
 " > ~/.mr9868/pwr/run_pwr;
 
