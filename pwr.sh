@@ -396,7 +396,7 @@ bash ~/.mr9868/pwr/tgInit;
 
 
 echo '
-pwrAddr=\$( curl localhost:8085/address );
+pwrAddr=\$( curl localhost:8085/address/ 2>/dev/null );
 sed -r -i "s/pwrAddr=.*/pwrAddr=\${pwrAddr}/g"  ~/.mr9868/pwr/config;
 screen -X -S tgServer quit;
 screen -dmS tgServer bash -c "chmod +x ~/.mr9868/pwr/tgServer && bash ~/.mr9868/pwr/tgServer";
