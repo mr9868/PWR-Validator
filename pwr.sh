@@ -258,7 +258,6 @@ fi
 
 # TeleBot Configuration 
 function tgConf(){
-screen -X -S tgServer quit;
 echo "
 valDir=\"${valDir}\";
 . ~/.mr9868/pwr/config
@@ -405,11 +404,6 @@ echo "Starting screen ..."
 echo "Success ✅"
 ' > ~/.mr9868/pwr/tgInit;
 chmod 777 ~/.mr9868/pwr/tgInit && bash ~/.mr9868/pwr/tgInit;
-
-if [ -f pwr.sh ];
-then
-sudo rm -rf pwr.sh 2>/dev/null;
-fi
 }
 # End of tgConf
 
@@ -491,7 +485,6 @@ then
 echo "Config file found ! Next ...";
 tgConf;
 echo "Telegram already configured ✅";
-
 else
 myHeader;
 entryPointTg;
