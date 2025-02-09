@@ -471,8 +471,10 @@ echo "pwrAddr=${pwrAddr}" >> ~/.mr9868/pwr/config
 fi
 
 tgConf;
+echo "Telegram bot monitor configured ✅";
+echo "Telegram bot monitor is running ✅";
 else
-echo "See yaa ..."
+echo "Running without telegram bot monitor ..."
 fi
 }
 # end of entryPointTg function
@@ -484,12 +486,10 @@ then
 read -p "Config file found, Do you want to reconfigure it ? (y/n) : " tgQn
 entryPointTg;
 tgConf;
-echo "Telegram Bot configured ✅";
 else
 myHeader;
 read -p "Do you want to add telegram monitor ? (y/n)  : " tgQn
 entryPointTg;
-echo "Telegram Bot configured ✅";
 fi
 }
 # End of varCheck
