@@ -487,9 +487,9 @@ fi
 function varCheck(){
 if { grep -wq "tgApiQn" ~/.mr9868/pwr/config && grep -wq "tgIdQn" ~/.mr9868/pwr/config; } 2>/dev/null;
 then
+tgConfigured="Yes";
 read -p "Config file found, Do you want to reconfigure it ? (y/n) : " tgQn
 entryPointTg;
-tgConfigured="Yes";
 tgConf;
 else
 myHeader;
