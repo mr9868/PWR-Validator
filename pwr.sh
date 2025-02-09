@@ -474,7 +474,11 @@ tgConf;
 echo "Telegram bot monitor configured ✅";
 echo "Telegram bot monitor is running ✅";
 else
+if [ $tgConfigured == "Yes" ]; then
+echo "Telegram bot monitor is running ✅";
+else
 echo "Running without telegram bot monitor ..."
+fi
 fi
 }
 # end of entryPointTg function
@@ -485,6 +489,7 @@ if { grep -wq "tgApiQn" ~/.mr9868/pwr/config && grep -wq "tgIdQn" ~/.mr9868/pwr/
 then
 read -p "Config file found, Do you want to reconfigure it ? (y/n) : " tgQn
 entryPointTg;
+tgConfigured="Yes";
 tgConf;
 else
 myHeader;
