@@ -432,7 +432,6 @@ done
 
 # Entrypoint for telegram monitor question
 function entryPointTg(){
-read -p "Do you want to add telegram monitor ? (y/n)  : " tgQn
 if [[ "${tgQn}" =~ ^([yY][eE][sS]|[yY])$ ]];
 then   
 tgQnCheck
@@ -482,16 +481,15 @@ fi
 function varCheck(){
 if { grep -wq "tgApiQn" ~/.mr9868/pwr/config && grep -wq "tgIdQn" ~/.mr9868/pwr/config; } 2>/dev/null;
 then
-read -p "Config file found, Do you want to reconfigure it ? (y/n) : " tgRec
-if [ $tgRec == "y" ]; then
+read -p "Config file found, Do you want to reconfigure it ? (y/n) : " tgQn
 entryPointTg;
-else
 tgConf;
-fi
-echo "Telegram already configured ✅";
+echo "Telegram Bot configured ✅";
 else
 myHeader;
+read -p "Do you want to add telegram monitor ? (y/n)  : " tgQn
 entryPointTg;
+echo "Telegram Bot configured ✅";
 fi
 }
 # End of varCheck
