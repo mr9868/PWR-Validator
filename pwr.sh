@@ -262,6 +262,7 @@ echo "
 valDir=\"${valDir}\";
 . ~/.mr9868/pwr/config
 urlCek=https://pwrrpc.pwrlabs.io//validator/?validatorAddress=
+urlBlockCek=https://pwrrpc.pwrlabs.io//block/?blockDetails&blockNumber=
 nodeVer=\$( cd \$valDir; sudo java -jar validator.jar  2>/dev/null | grep version | sed 's/\./\\\\\\\\\./g' ) ;
 pwrVer=\$( cd \$valDir; sudo java -jar validator.jar  2>/dev/null | grep version | awk '{print \$3}' ) ;
 function showVer(){
@@ -346,16 +347,42 @@ fi
 
 diffBT=\$( echo  \${diffBTH}\${diffBTM}\${diffBTS2} 'ago');
 ipVal=\$( echo \$exStr | jq -r .ip );
-delCount=\$( echo \$exStr | jq -r .delegatorsCount );
+#delCount=\$( echo \$exStr | jq -r .delegatorsCount );
 lastCB=\$( echo \$exStr | jq -r .lastCreatedBlock );
-totalShr=\$( echo \$exStr | jq -r .totalShares );
+#totalShr=\$( echo \$exStr | jq -r .totalShares );
 status=\$( echo \$exStr | jq -r .status );
+
+{ blockDetails=\$( curl \${urlBlockCek}\${lastCB} | jq -r 'del(.block|.transactions)' ); } 2>/dev/null;
+blockHash=\$( echo \$blockDetails | jq -r .blockHash );
+blockSize=\$( echo \$blockDetails | jq -r .size );
+blockNetVtPwr=\$( echo \$blockDetails | jq -r .networkVotingPower );
+blockStatus=\$( echo \$blockDetails | jq -r .success );
+blockTxCount=\$( echo \$blockDetails | jq -r .transactionCount);
+blockReward=\$( echo \$blockDetails | jq -r .blockReward );
+blockReward=\$( echo \"scale=7; 0.0001 * 4409000*10^-5; scale=9\" | bc -l );
 
 if [ ! \$status == 'active' ];
 then
 standBy;
 else
-msgTg=\$( echo -e \"ℹ️ * Your PWR Validator Info * ℹ️ \n\n 🔸\${nodeVer} \n 🔸IP Address: \\\`\${ipVal}\\\` \n 🔸Address: \\\`0x\${addrPwr}\\\` \n 🔸Last Created Block: \${lastCB} \n 🔸Last Created Block Time: \${diffBT}  \n 🔸Delegators Count: \${delCount} \n 🔸Voting Power: \${votePwr} \n 🔸Status: \${status} \n 🔸Details: [Go to The Explorer](https://explorer\\.pwrlabs\\.io/address/0x\${addrPwr}) \n\nCreator: [Mr9868 ☕](https://www\\.github\\.com/mr9868)\");
+msgTg=\$( echo -e \" \
+ℹ️ * Your PWR Validator Info * ℹ️ \n\n \
+ 🔸\${nodeVer} \n \
+ 🔸IP address: \\\`\${ipVal}\\\` \n \
+ 🔸Address: \\\`0x\${addrPwr}\\\` \n \
+ 🔸Last created block: \${lastCB} \n \
+ 🔸Last created block time: \${diffBT}  \n \
+ 🔸Status: \${status} \n \
+ 🔸Details: [Go to the Explorer](https://explorer\\.pwrlabs\\.io/address/0x\${addrPwr}) \n\n \
+ 🔸Block details: \n \ 
+    🔹Block hash: \${blockHash} \n \ 
+    🔹Block size: \${blockSize} \n \ 
+    🔹Net voting power: \${blockNetVtPwr} \n \ 
+    🔹Block status: \${blockStatus} \n \ 
+    🔹Block transaction count: \${blockTxCount} \n \ 
+    🔹Block reward: \${blockReward} \n \ 
+    🔹Details: [Go to the Explorer](https://explorer\\.pwrlabs\\.io/blocks/\${lastCB}) \n\n \
+Creator: [Mr9868 ☕](https://www\\.github\\.com/mr9868)\");
 echo -e '[INFO] Sending telegram message ... ⏳';
 echo -e '[INFO] Message output details : \n';
 echo -e \"<=()=======================( BEGIN )=====================()=>\n\"
