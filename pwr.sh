@@ -557,7 +557,7 @@ sudo ufw allow 8231
 sudo ufw allow 8231/tcp;
 sudo ufw allow 7621
 sudo ufw allow 7621/udp;
-screen -L -Logfile pwrLog.txt -dmS pwr bash -c "sudo java -jar validator.jar  $myIP --loop-udp-test --enable-native-access=ALL-UNNAMED" && 
+screen -L -Logfile logs/pwr.log -dmS pwr bash -c "sudo java -jar validator.jar  $myIP --loop-udp-test --enable-native-access=ALL-UNNAMED" && 
 echo "Please wait ... "
 sleep 10;
 checkPwr;
