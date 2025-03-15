@@ -30,6 +30,7 @@ command -v tar >/dev/null 2>&1 || { echo >&2 "Tar is not found on this machine, 
 command -v iptables >/dev/null 2>&1 || { echo >&2 "Iptables is not found on this machine, Installing iptables ... "; sudo apt install -y iptables;}
 command -v ufw >/dev/null 2>&1 || { echo >&2 "Ufw is not found on this machine, Installing ufw ... "; sudo apt install -y ufw;}
 command -v jq >/dev/null 2>&1 || { echo >&2 "JQ is not found on this machine, Installing jq ... "; sudo apt install -y jq;}
+command -v bc >/dev/null 2>&1 || { echo >&2 "bc is not found on this machine, Installing bc ... "; sudo apt install -y bc;}
 
 
 function install_pwr(){
