@@ -353,14 +353,14 @@ lastCB=\$( echo \$exStr | jq -r .lastCreatedBlock );
 #totalShr=\$( echo \$exStr | jq -r .totalShares );
 status=\$( echo \$exStr | jq -r .status );
 
-{ blockDetails=\$( curl \${urlBlockCek}\${lastCB} | jq -r 'del(.block|.transactions)' ); } 2>/dev/null;
+{ blockDetails=\$( curl \${urlBlockCek}\${lastCB} | jq -r 'del(.block|.transactions)' | jq -r .block ); } 2>/dev/null;
 blockHash=\$( echo \$blockDetails | jq -r .blockHash );
 blockSize=\$( echo \$blockDetails | jq -r .size );
 blockNetVtPwr=\$( echo \$blockDetails | jq -r .networkVotingPower );
 blockStatus=\$( echo \$blockDetails | jq -r .success );
 blockTxCount=\$( echo \$blockDetails | jq -r .transactionCount);
 blockReward=\$( echo \$blockDetails | jq -r .blockReward );
-blockReward=\$( echo \"scale=7; 0.0001 * 4409000*10^-5; scale=9\" | bc -l );
+blockReward=\$( echo \"scale=7; 0.0001 * \${blockReward}*10^-5; scale=9\" | bc -l );
 blockReward=\$( echo \${blockReward} | sed \"s/\./0\\\./g\" );
 if [ ! \$status == 'active' ];
 then
