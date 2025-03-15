@@ -262,7 +262,8 @@ echo "
 valDir=\"${valDir}\";
 . ~/.mr9868/pwr/config
 urlCek=https://pwrrpc.pwrlabs.io//validator/?validatorAddress=
-
+nodeVer=\$( cd \$valDir; sudo java -jar validator.jar  2>/dev/null | grep version | sed 's/\./\\\\\\\\\./g' ) ;
+pwrVer=\$( cd \$valDir; sudo java -jar validator.jar  2>/dev/null | grep version | awk '{print \$3}' ) ;
 function showVer(){
 pwrVer=\$( cd \$valDir; sudo java -jar validator.jar  2>/dev/null | grep version | awk '{print \$3}' ) ;
 pwrLtsVer=\$( curl https://api.github.com/repos/pwrlabs/PWR-Validator/releases/latest 2>/dev/null | jq -r .html_url | sed \"s/.*tag\///g\" );
@@ -354,8 +355,7 @@ if [ ! \$status == 'active' ];
 then
 standBy;
 else
-
-msgTg=\$( echo -e \"ℹ️ * Your PWR Validator Info * ℹ️ \n\n 🔸Voting Power: \${votePwr} \n 🔸Address: \\\`0x\${addrPwr}\\\` \n 🔸Last Created Block Time: \${diffBT}  \n 🔸IP Address: \\\`\${ipVal}\\\` \n 🔸Delegators Count: \${delCount} \n 🔸Last Created Block: \${lastCB} \n 🔸Status: \${status} \n 🔸Details: [Go to The Explorer](https://explorer\\.pwrlabs\\.io/address/0x\${addrPwr}) \n\nCreator: [Mr9868 ☕](https://www\\.github\\.com/mr9868)\")
+msgTg=\$( echo -e \"ℹ️ * Your PWR Validator Info * ℹ️ \n\n 🔸\${nodeVer} \n 🔸IP Address: \\\`\${ipVal}\\\` \n 🔸Address: \\\`0x\${addrPwr}\\\` \n 🔸Last Created Block: \${lastCB} \n 🔸Last Created Block Time: \${diffBT}  \n 🔸Delegators Count: \${delCount} \n 🔸Voting Power: \${votePwr} \n 🔸Status: \${status} \n 🔸Details: [Go to The Explorer](https://explorer\\.pwrlabs\\.io/address/0x\${addrPwr}) \n\nCreator: [Mr9868 ☕](https://www\\.github\\.com/mr9868)\");
 echo -e '[INFO] Sending telegram message ... ⏳';
 echo -e '[INFO] Message output details : \n';
 echo -e \"<=()=======================( BEGIN )=====================()=>\n\"
