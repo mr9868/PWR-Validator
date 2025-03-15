@@ -263,7 +263,7 @@ echo "
 valDir=\"${valDir}\";
 . ~/.mr9868/pwr/config
 urlCek=https://pwrrpc.pwrlabs.io//validator/?validatorAddress=
-urlBlockCek=https://pwrrpc.pwrlabs.io//block/?blockDetails&blockNumber=
+urlBlockCek=https://pwrrpc.pwrlabs.io//block/?blockDetails\&blockNumber=
 nodeVer=\$( cd \$valDir; sudo java -jar validator.jar  2>/dev/null | grep version | sed 's/\./\\\\\\\\\./g' ) ;
 pwrVer=\$( cd \$valDir; sudo java -jar validator.jar  2>/dev/null | grep version | awk '{print \$3}' ) ;
 function showVer(){
