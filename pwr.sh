@@ -362,6 +362,8 @@ blockTxCount=\$( echo \$blockDetails | jq -r .transactionCount);
 blockReward=\$( echo \$blockDetails | jq -r .blockReward );
 blockReward=\$( echo \"scale=7; 0.0001 * \${blockReward}*10^-5; scale=9\" | bc -l );
 blockReward=\$( echo \${blockReward} | sed 's/\./0\\\\\\\\\./g' );
+{ totalBlocks=\$( curl https://pwrexplorerv2.pwrlabs.io/blocksCreated/?validatorAddress=0xC20C4C42EB50D83739DD0ED2D3E49376758BE5EB\&page=1\&count=1 | jq -r .metadata.totalItems ); } 2>/dev/null;
+
 if [ ! \$status == 'active' ];
 then
 standBy;
@@ -372,7 +374,8 @@ msgTg=\$( echo -e \" \
  🔸IP address: \\\`\${ipVal}\\\` \n \
  🔸Address: \\\`0x\${addrPwr}\\\` \n \
  🔸Last created block: \${lastCB} \n \
- 🔸Last created block time: \${diffBT}  \n \
+ 🔸Last created block time: \${diffBT}  \n  \
+ 🔸Total blocks created: \${totalBlocks} \n \
  🔸Status: \${status} \n \
  🔸Validator info: [Go to the Explorer](https://explorer\\.pwrlabs\\.io/address/0x\${addrPwr}) \n \
  🔸Block info: \n \
