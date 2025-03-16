@@ -382,7 +382,7 @@ msgTg=\$( echo -e \" \
  🔸New block info: \n \
     🔹Block number: \${blockNumber} \n \
     🔹Block transaction count: \${blockTxCount} Tx\n \
-    🔹Timestamp: \${lastBT} \n \
+    🔹Timestamp: \${diffBT} \n \
     🔹Block reward: \${blockReward} PWR \n \
     🔹Block Details: [Go to the Explorer](https://explorer\\.pwrlabs\\.io/blocks/\${lastCB}) \n\n \
 Creator: [Mr9868 ☕](https://www\\.github\\.com/mr9868)\");
