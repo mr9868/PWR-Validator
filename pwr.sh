@@ -349,8 +349,8 @@ fi
 diffBT=\$( echo  \${diffBTH}\${diffBTM}\${diffBTS2} 'ago');
 ipVal=\$( echo \$exStr | jq -r .ip );
 #delCount=\$( echo \$exStr | jq -r .delegatorsCount );
-lastCB=\$( curl https://pwrexplorerv2.pwrlabs.io/blocksCreated/?validatorAddress=0xC20C4C42EB50D83739DD0ED2D3E49376758BE5EB\&page=1\&count=2 | jq -r .blocks[1].blockHeight );
-newCB=\$( curl https://pwrexplorerv2.pwrlabs.io/blocksCreated/?validatorAddress=0xC20C4C42EB50D83739DD0ED2D3E49376758BE5EB\&page=1\&count=2 | jq -r .blocks[0].blockHeight );
+lastCB=\$( curl https://pwrexplorerv2.pwrlabs.io/blocksCreated/?validatorAddress=0xC20C4C42EB50D83739DD0ED2D3E49376758BE5EB\&page=1\&count=2 2>/dev/null | jq -r .blocks[1].blockHeight );
+newCB=\$( curl https://pwrexplorerv2.pwrlabs.io/blocksCreated/?validatorAddress=0xC20C4C42EB50D83739DD0ED2D3E49376758BE5EB\&page=1\&count=2 2>/dev/null | jq -r .blocks[0].blockHeight );
 #totalShr=\$( echo \$exStr | jq -r .totalShares );
 status=\$( echo \$exStr | jq -r .status );
 
