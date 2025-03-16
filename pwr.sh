@@ -391,14 +391,14 @@ msgTg=\$( echo -e \" \
  🔸Address: \\\`0x\${addrPwr}\\\` \n \
  🔸Last block number: \${lastCB} \n \
  🔸Status: \${status} \n \
+ 🔸Validator info: [Go to the Explorer](https://explorer\\.pwrlabs\\.io/address/0x\${addrPwr}) \n \ 
  🔸New block info: \n \
     🔹Block number: \${blockNumber} \n \
     🔹Block transaction count: \${blockTxCount} Tx\n \
     🔹Timestamp: \${diffBT} \n \
     🔹Block reward: \${blockReward} PWR \n \
     🔹Block Details: [Go to the Explorer](https://explorer\\.pwrlabs\\.io/blocks/\${lastCB}) \n \
- 🔸Total blocks created: \${totalBlocks} \n \
- 🔸Validator info: [Go to the Explorer](https://explorer\\.pwrlabs\\.io/address/0x\${addrPwr}) \n\n \
+ 🔸Total blocks created: \${totalBlocks} \n\n \
 Creator: [Mr9868 ☕](https://www\\.github\\.com/mr9868)\");
 
 echo -e '[INFO] Sending telegram message ... ⏳';
