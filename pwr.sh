@@ -262,6 +262,20 @@ function tgConf(){
 echo "
 valDir=\"${valDir}\";
 . ~/.mr9868/pwr/config
+API_TOKEN=\${tgApiQn}
+CHAT_ID=\${tgIdQn}
+msgTg=\$(echo -e \"<b>[ INFO ]</b> Authorized !\nPlease wait for up to 1 minute ... \")
+tgTest=\$(curl -s -X POST https://api.telegram.org/bot\${API_TOKEN}/sendMessage -d chat_id=\${CHAT_ID} -d text=\"\${msgTg}\" -d parse_mode=\"HTML\" | grep 'error_code') 
+tgTest=\$(echo \${tgTest})
+until [ -z \"\${tgTest}\" ];
+do
+echo -e \"[ ERROR ] Unauthorized !\nPlease recheck your API and CHAT ID and make sure you starting your bot\"
+tgQnCheck
+tgTest=\$(curl -s -X POST https://api.telegram.org/bot\${API_TOKEN}/sendMessage -d chat_id=\${CHAT_ID} -d text=\"\${msgTg}\" -d parse_mode=\"HTML\" | grep 'error_code')
+tgTest=\$(echo \${tgTest})
+done
+echo -e \${msgTg}
+
 urlCek=https://pwrrpc.pwrlabs.io//validator/?validatorAddress=
 urlBlockCek=https://pwrrpc.pwrlabs.io//block/?blockDetails\&blockNumber=
 nodeVer=\$( cd \$valDir; sudo java -jar validator.jar  2>/dev/null | grep version | sed 's/\./\\\\\\\\\./g' ) ;
@@ -382,7 +396,7 @@ msgTg=\$( echo -e \" \
     🔹Block transaction count: \${blockTxCount} Tx\n \
     🔹Timestamp: \${diffBT} \n \
     🔹Block reward: \${blockReward} PWR \n \
-    🔹Block Details: [Go to the Explorer](https://explorer\\.pwrlabs\\.io/blocks/\${lastCB}) \n\n \
+    🔹Block Details: [Go to the Explorer](https://explorer\\.pwrlabs\\.io/blocks/\${lastCB}) \n \
  🔸Total blocks created: \${totalBlocks} \n \
  🔸Validator info: [Go to the Explorer](https://explorer\\.pwrlabs\\.io/address/0x\${addrPwr}) \n\n \
 Creator: [Mr9868 ☕](https://www\\.github\\.com/mr9868)\");
@@ -477,8 +491,6 @@ do
 myHeader
 echo -e "[ ERROR ] Unauthorized !\nPlease recheck your API and CHAT ID and make sure you starting your bot"
 tgQnCheck
-API_TOKEN=${tgApiQn}
-CHAT_ID=${tgIdQn}
 tgTest=$(curl -s -X POST https://api.telegram.org/bot${API_TOKEN}/sendMessage -d chat_id=${CHAT_ID} -d text="${msgTg}" -d parse_mode="HTML" | grep 'error_code')
 tgTest=$(echo ${tgTest})
 done
