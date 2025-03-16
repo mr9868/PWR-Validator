@@ -375,7 +375,7 @@ msgTg=\$( echo -e \" \
  🔸\${nodeVer} \n \
  🔸IP address: \\\`\${ipVal}\\\` \n \
  🔸Address: \\\`0x\${addrPwr}\\\` \n \
- 🔸Last created block: \${lastCB} \n \
+ 🔸Last block number: \${lastCB} \n \
  🔸Total blocks created: \${totalBlocks} \n \
  🔸Status: \${status} \n \
  🔸Validator info: [Go to the Explorer](https://explorer\\.pwrlabs\\.io/address/0x\${addrPwr}) \n \
