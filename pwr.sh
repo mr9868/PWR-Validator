@@ -521,10 +521,11 @@ tgConfigured="Yes";
 read -p "Config file found, Do you want to reconfigure it ? (y/n) : " tgQn
 entryPointTg;
 tgConf;
+echo "Telegram bot reconfigured !";
 else
 myHeader;
-read -p "Do you want to add telegram monitor ? (y/n)  : " tgQn
-entryPointTg;
+tgConf;
+echo "Telegram bot updated !";
 fi
 }
 # End of varCheck
