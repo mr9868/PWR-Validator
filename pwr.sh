@@ -361,7 +361,7 @@ blockStatus=\$( echo \$blockDetails | jq -r .success );
 blockTxCount=\$( echo \$blockDetails | jq -r .transactionCount);
 blockReward=\$( echo \$blockDetails | jq -r .blockReward );
 blockReward=\$( echo \"scale=7; 0.0001 * \${blockReward}*10^-5; scale=9\" | bc -l );
-blockReward=\$( echo \${blockReward} | sed \"s/\./0\\\./g\" );
+blockReward=\$( echo \${blockReward} | sed 's/\./\\\\\\\\\./g' );
 if [ ! \$status == 'active' ];
 then
 standBy;
@@ -375,13 +375,13 @@ msgTg=\$( echo -e \" \
  🔸Last created block time: \${diffBT}  \n \
  🔸Status: \${status} \n \
  🔸Details: [Go to the Explorer](https://explorer\\.pwrlabs\\.io/address/0x\${addrPwr}) \n\n \
- 🔸Block details: \n \ 
-    🔹Block hash: \${blockHash} \n \ 
-    🔹Block size: \${blockSize} \n \ 
-    🔹Net voting power: \${blockNetVtPwr} \n \ 
-    🔹Block status: \${blockStatus} \n \ 
-    🔹Block transaction count: \${blockTxCount} \n \ 
-    🔹Block reward: \${blockReward} \n \ 
+ 🔸Block details: \n \
+    🔹Block hash: \${blockHash} \n \
+    🔹Block size: \${blockSize} \n \
+    🔹Net voting power: \${blockNetVtPwr} \n \
+    🔹Block status: \${blockStatus} \n \
+    🔹Block transaction count: \${blockTxCount} \n \
+    🔹Block reward: \${blockReward} \n \
     🔹Details: [Go to the Explorer](https://explorer\\.pwrlabs\\.io/blocks/\${lastCB}) \n\n \
 Creator: [Mr9868 ☕](https://www\\.github\\.com/mr9868)\");
 echo -e '[INFO] Sending telegram message ... ⏳';
