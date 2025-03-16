@@ -376,14 +376,13 @@ msgTg=\$( echo -e \" \
  🔸IP address: \\\`\${ipVal}\\\` \n \
  🔸Address: \\\`0x\${addrPwr}\\\` \n \
  🔸Last created block: \${lastCB} \n \
- 🔸New created block: \${newCB} \n
- 🔸Last created block time: \${diffBT}  \n  \
  🔸Total blocks created: \${totalBlocks} \n \
  🔸Status: \${status} \n \
  🔸Validator info: [Go to the Explorer](https://explorer\\.pwrlabs\\.io/address/0x\${addrPwr}) \n \
- 🔸Block info: \n \
-    🔹Block number: \${blockNumber} PWR \n \
+ 🔸New block info: \n \
+    🔹Block number: \${blockNumber} \n \
     🔹Block transaction count: \${blockTxCount} Tx\n \
+    🔹Timestamp: \${lastBT} \n \
     🔹Block reward: \${blockReward} PWR \n \
     🔹Block Details: [Go to the Explorer](https://explorer\\.pwrlabs\\.io/blocks/\${lastCB}) \n\n \
 Creator: [Mr9868 ☕](https://www\\.github\\.com/mr9868)\");
