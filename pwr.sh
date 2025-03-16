@@ -24,7 +24,7 @@ fi
 
 
 # Required package
-command -v screen >/dev/null 2>&1 || { echo >&2 "Screen is not found on this machine, Installing screen ... "; sudo apt install -y screen;}
+command -v screen >/dev/null 2>&1 || { echo >&2 "Screen is not found on this machine, Installing screen ... "; sudo apt update -y && sudo apt install -y screen;}
 command -v curl >/dev/null 2>&1 || { echo >&2 "Curl is not found on this machine, Installing curl ... "; sudo apt install -y curl;}
 command -v wget >/dev/null 2>&1 || { echo >&2 "Wget is not found on this machine, Installing wget ... "; sudo apt install -y wget;}
 command -v tar >/dev/null 2>&1 || { echo >&2 "Tar is not found on this machine, Installing tar ... "; sudo apt install -y tar;}
