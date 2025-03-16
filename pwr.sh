@@ -396,7 +396,7 @@ echo -e '[INFO] Telegram message sent ! ✅';
 
 { cekLastCB=\$( curl \$urlCek\$pwrAddr | jq -r .validator.lastCreatedBlock ); } 2>/dev/null;
 
-until [ \$cekLastCB -gt \$lastCB ];
+until [ \$cekLastCB -gt \$newCB ];
 do
 { cekStatus=\$( curl \$urlCek\$pwrAddr | jq -r .validator.status ); } 2>/dev/null;
 if [ ! \$cekStatus == 'active' ];
