@@ -25,6 +25,7 @@ fi
 
 # Required package
 command -v screen >/dev/null 2>&1 || { echo >&2 "Screen is not found on this machine, Installing screen ... "; sudo apt install -y screen;}
+command -v curl >/dev/null 2>&1 || { echo >&2 "Curl is not found on this machine, Installing curl ... "; sudo apt install -y curl;}
 command -v wget >/dev/null 2>&1 || { echo >&2 "Wget is not found on this machine, Installing wget ... "; sudo apt install -y wget;}
 command -v tar >/dev/null 2>&1 || { echo >&2 "Tar is not found on this machine, Installing tar ... "; sudo apt install -y tar;}
 command -v iptables >/dev/null 2>&1 || { echo >&2 "Iptables is not found on this machine, Installing iptables ... "; sudo apt install -y iptables;}
@@ -160,7 +161,7 @@ fi
 
 # Install java function
 function install_java(){
-
+sudo apt update -y && sudo apt upgrade -y;
 javaList=(https://download.oracle.com/java/23/latest/jdk-23_linux-${arch}_bin.tar.gz https://download.java.net/java/early_access/jdk24/27/GPL/openjdk-24-ea+27_linux-${arch}_bin.tar.gz);
 jdkList=(jdk-23.0.2 jdk-24);
 set | grep ^javaList=
@@ -191,7 +192,6 @@ cd $getPwd;
 
 # List JDK version provided by default apt list
 function listJdk(){
-sudo apt update -y  && sudo apt upgrade -y &&
 sudo apt install -y openjdk-${jdkVer}-jdk &&
 sudo apt install -y openjdk-${jdkVer}-jre &&
 sudo apt install -y java-common;
