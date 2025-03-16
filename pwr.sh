@@ -391,7 +391,7 @@ msgTg=\$( echo -e \" \
  🔸Address: \\\`0x\${addrPwr}\\\` \n \
  🔸Last block number: \${lastCB} \n \
  🔸Status: \${status} \n \
- 🔸Validator info: [Go to the Explorer](https://explorer\\.pwrlabs\\.io/address/0x\${addrPwr}) \n \ 
+ 🔸Validator info: [Go to the Explorer](https://explorer\\.pwrlabs\\.io/address/0x\${addrPwr}) \n \
  🔸New block info: \n \
     🔹Block number: \${blockNumber} \n \
     🔹Block transaction count: \${blockTxCount} Tx\n \
