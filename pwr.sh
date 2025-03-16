@@ -349,12 +349,14 @@ fi
 diffBT=\$( echo  \${diffBTH}\${diffBTM}\${diffBTS2} 'ago');
 ipVal=\$( echo \$exStr | jq -r .ip );
 #delCount=\$( echo \$exStr | jq -r .delegatorsCount );
-lastCB=\$( echo \$exStr | jq -r .lastCreatedBlock );
+lastCB=\$( curl https://pwrexplorerv2.pwrlabs.io/blocksCreated/?validatorAddress=0xC20C4C42EB50D83739DD0ED2D3E49376758BE5EB\&page=1\&count=2 | jq -r .blocks[1].blockHeight );
+newCB=\$( curl https://pwrexplorerv2.pwrlabs.io/blocksCreated/?validatorAddress=0xC20C4C42EB50D83739DD0ED2D3E49376758BE5EB\&page=1\&count=2 | jq -r .blocks[0].blockHeight );
 #totalShr=\$( echo \$exStr | jq -r .totalShares );
 status=\$( echo \$exStr | jq -r .status );
 
-{ blockDetails=\$( curl \${urlBlockCek}\${lastCB} | jq -r 'del(.block|.transactions)' | jq -r .block ); } 2>/dev/null;
+{ blockDetails=\$( curl \${urlBlockCek}\${newCB} | jq -r 'del(.block|.transactions)' | jq -r .block ); } 2>/dev/null;
 blockHash=\$( echo \$blockDetails | jq -r .blockHash );
+blockNumber=\$( echo \$blockDetails | jq -r .blockNumber );
 blockSize=\$( echo \$blockDetails | jq -r .size );
 blockNetVtPwr=\$( echo \$blockDetails | jq -r .networkVotingPower );
 blockStatus=\$( echo \$blockDetails | jq -r .success );
@@ -374,11 +376,13 @@ msgTg=\$( echo -e \" \
  🔸IP address: \\\`\${ipVal}\\\` \n \
  🔸Address: \\\`0x\${addrPwr}\\\` \n \
  🔸Last created block: \${lastCB} \n \
+ 🔸New created block: \${newCB} \n
  🔸Last created block time: \${diffBT}  \n  \
  🔸Total blocks created: \${totalBlocks} \n \
  🔸Status: \${status} \n \
  🔸Validator info: [Go to the Explorer](https://explorer\\.pwrlabs\\.io/address/0x\${addrPwr}) \n \
  🔸Block info: \n \
+    🔹Block number: \${blockNumber} PWR \n \
     🔹Block transaction count: \${blockTxCount} Tx\n \
     🔹Block reward: \${blockReward} PWR \n \
     🔹Block Details: [Go to the Explorer](https://explorer\\.pwrlabs\\.io/blocks/\${lastCB}) \n\n \
