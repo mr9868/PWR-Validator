@@ -520,13 +520,21 @@ if { grep -wq "tgApiQn" ~/.mr9868/pwr/config && grep -wq "tgIdQn" ~/.mr9868/pwr/
 then
 tgConfigured="Yes";
 read -p "Config file found, Do you want to reconfigure it ? (y/n) : " tgQn
+if [[ "${tgQn}" =~ ^([yY][eE][sS]|[yY])$ ]];
+then   
+myHeader;
 entryPointTg;
 tgConf;
 echo "Telegram bot reconfigured !";
 else
-myHeader;
+myHeader
 tgConf;
 echo "Telegram bot updated !";
+fi
+else
+myHeader;
+read -p "Do you want to add telegram monitor ? (y/n)  : " tgQn
+entryPointTg;
 fi
 }
 # End of varCheck
