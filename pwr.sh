@@ -264,7 +264,7 @@ valDir=\"${valDir}\";
 . ~/.mr9868/pwr/config
 API_TOKEN=\${tgApiQn}
 CHAT_ID=\${tgIdQn}
-msgTg=\$(echo -e \"<b>[ INFO ]</b> Authorized !\nPlease wait for up to 1 minute ... \")
+msgTg=\$(echo -e \"<b>[ INFO ]</b> Starting PWR bot server ... \")
 tgTest=\$(curl -s -X POST https://api.telegram.org/bot\${API_TOKEN}/sendMessage -d chat_id=\${CHAT_ID} -d text=\"\${msgTg}\" -d parse_mode=\"HTML\" | grep 'error_code') 
 tgTest=\$(echo \${tgTest})
 until [ -z \"\${tgTest}\" ];
