@@ -69,7 +69,7 @@ fi
 # My Header
 function myHeader(){
 clear;
-echo  "<=()====================================================()=>"
+echo  "<=()=====================================================()=>"
 echo  "=             PWR validator setup auto installer           ="
 echo  "=                    Created by : Mr9868                   ="
 echo  "=             Github : https://github.io/Mr9868            ="
@@ -631,7 +631,7 @@ echo -e "To view your PWR logs, exec 'screen -r pwr' \n"
 function dockerInstall(){
 myConHead='function myHeader(){ \\ \n
 clear; \\ \n
-echo  "<=()====================================================()=>" \\ \n
+echo  "<=()=====================================================()=>" \\ \n
 echo  "=             PWR validator setup auto installer           =" \\ \n
 echo  "=                    Created by : Mr9868                   =" \\ \n
 echo  "=             Github : https://github.io/Mr9868            =" \\ \n
