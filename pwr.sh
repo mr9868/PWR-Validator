@@ -637,7 +637,7 @@ echo  "=                 IP Address : ${myIP}               =" \\\n \
 echo  "<=()====================================================()=>" \\\n \
 echo \\\n \
 }'
-cmdInstall='${myConHead};myHeader;apt update -y && apt upgrade -y && apt install -y sudo curl wget && wget https://raw.githubusercontent.com/mr9868/PWR-Validator/refs/heads/main/pwr.sh && chmod +x pwr.sh && myHeader; ./pwr.sh; sudo rm pwr.sh;myHeader; echo "To exit the container press \'CTRL+P+Q\''
+cmdInstall='${myConHead};myHeader;apt update -y && apt upgrade -y && apt install -y sudo curl wget && wget https://raw.githubusercontent.com/mr9868/PWR-Validator/refs/heads/main/pwr.sh && chmod +x pwr.sh && myHeader; ./pwr.sh; sudo rm pwr.sh;myHeader; echo "To exit the container press \'CTRL+P+Q\'"'
 
 function docCmd(){
 myHeader;
