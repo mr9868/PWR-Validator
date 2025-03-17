@@ -626,7 +626,7 @@ echo -e "To view your PWR logs, exec 'screen -r pwr' \n"
 # End of Main install;
 function dockerInstall(){
 myHeader;
-command -v docker >/dev/null 2>&1 || { echo >&2 "docker is not found on this machine, Installing bc ... "; sudo apt update -y && sudo apt install -y docker.io docker;}
+command -v docker >/dev/null 2>&1 || { echo >&2 "docker is not found on this machine, Installing docker ... "; sudo apt update -y && sudo apt install -y docker.io docker;}
 
 function docCmd(){
 myHeader;
@@ -685,11 +685,12 @@ echo "2. Full Installation with docker"
 echo "3. Setup or Re-configure TeleBot Monitor"
 echo "4. Exit"
 echo;
-read -p "Your selection => " mainMenu
 }
+read -p "Your selection => " mainMenu
 until [[ "${mainMenu}" =~ ^[1-3]+$ ]];
 do
 yourSelect;
+read -p "Your selection => " mainMenu
 done
 if [[ $mainMenu == "1" ]];
 then
