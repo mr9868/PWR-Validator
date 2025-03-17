@@ -77,7 +77,11 @@ echo  "============================================================"
 echo  "=                Your OS info : $(uname -s) $(uname -m)               ="
 echo  "=                 IP Address : ${myIP}               ="
 echo  "<=()=====================================================()=>"
-echo
+if [ -f /.dockerenv ]; then
+echo  "                    PRESS CTRL+P+Q TO QUIT" 
+else
+    echo;
+fi
 }
 # End of myHeader
 
@@ -635,7 +639,7 @@ echo  "============================================================" \\ \n
 echo  "=                Your OS info : $(uname -s) $(uname -m)               =" \\ \n
 echo  "=                 IP Address : '${myIP}'               =" \\ \n
 echo  "<=()=====================================================()=>" \\ \n
-echo  "                    PRESS CTRL+P+Q TO QUIT"
+echo  "                    PRESS CTRL+P+Q TO QUIT" \\ \n
 echo \\ \n
 }\n'
 cmdInstall=$( echo -e "${myConHead}myHeader;echo 'Installing dependencies ...' ;apt update -y && apt upgrade -y && apt install -y sudo curl wget && wget https://raw.githubusercontent.com/mr9868/PWR-Validator/refs/heads/main/pwr.sh && chmod +x pwr.sh && myHeader; ./pwr.sh; sudo rm pwr.sh;myHeader; echo \"To exit the container press CTRL+P+Q\"" );
