@@ -698,7 +698,7 @@ echo;
 }
 yourSelect;
 read -p "Your selection => " mainMenu
-until [[ "${mainMenu}" =~ ^[1-3]+$ ]];
+until [[ "${mainMenu}" =~ ^[1-4]+$ ]];
 do
 yourSelect;
 read -p "Your selection => " mainMenu
