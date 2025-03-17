@@ -650,7 +650,7 @@ read -p "Set the docker port eg. 8080 : " pwrPort
 ${cekPort}
 done
 myHeader;
-sudo docker run -it -p ${pwrPort}:${pwrPort} -v /sys:/sys --privileged --name pwrNode ubuntu:22.04 && docCmd;
+sudo docker run -p ${pwrPort}:${pwrPort} -v /sys:/sys --privileged --name pwrNode ubuntu:22.04 && docCmd;
 }
 
 
