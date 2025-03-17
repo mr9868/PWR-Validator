@@ -664,6 +664,7 @@ sudo docker stop pwrNode && sudo docker rm pwrNode && mainDocInstall
 else
 docCmd
 fi
+else
 mainDocInstall
 fi
 
