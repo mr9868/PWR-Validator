@@ -663,17 +663,19 @@ if [ -n $dockerCheck ]; then
 read -p "There is pwrNode container found, do you want to remove first ?" qDocInstall
 if [[ "${qDocInstall}" =~ ^([yY][eE][sS]|[yY])$ ]];
 then
-sudo docker stop pwrNode && sudo docker rm pwrNode;
+sudo docker stop pwrNode && sudo docker rm pwrNode && \
 mainDocInstall
 else
 docCmd
 fi
 mainDocInstall
 fi
+
 }
 
 # Main menu
 function main_Menu(){
+
 function yourSelect(){
 myHeader;
 echo;
