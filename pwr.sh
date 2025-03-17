@@ -675,7 +675,10 @@ if [[ "${qDocInstall}" =~ ^([yY][eE][sS]|[yY])$ ]];
 then
 sudo docker stop pwrNode && sudo docker rm pwrNode && mainDocInstall
 else
-docCmd
+ifExtCont=$( sudo docker ps -f status=exited -f name=pwrNode );
+if [ -n "${ifExtCont}" ];
+then
+sudo docker start pwrNode && docCmd
 fi
 else
 mainDocInstall
