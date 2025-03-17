@@ -694,7 +694,7 @@ done
 if [[ $mainMenu == "1" ]];
 then
 mainInstall;
-if [[ $mainMenu == "2" ]];
+elif [[ $mainMenu == "2" ]];
 then
 dockerInstall;
 elif [[ $mainMenu == "3" ]];
