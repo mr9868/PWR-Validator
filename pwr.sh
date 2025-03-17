@@ -716,8 +716,12 @@ mainInstall;
 elif [[ $mainMenu == "2" ]];
 then
 myHeader;
-command -v docker >/dev/null 2>&1 || { echo >&2 "docker is not found on this machine, Installing docker ... "; sudo apt update -y && sudo apt install -y docker.io docker;}
-dockerInstall;
+if [ -f /.dockerenv ]; then
+    echo -e "You're inside the Matrix ! \nYou can'to do this inside the container ;(";
+else
+    command -v docker >/dev/null 2>&1 || { echo >&2 "docker is not found on this machine, Installing docker ... "; sudo apt update -y && sudo apt install -y docker.io docker;}
+    dockerInstall;
+fi
 elif [[ $mainMenu == "3" ]];
 then
 checkPwr;
