@@ -625,19 +625,19 @@ echo -e "To view your PWR logs, exec 'screen -r pwr' \n"
 }
 # End of Main install;
 function dockerInstall(){
-myConHead='function myHeader(){ \\\n \
-clear; \\\n \
-echo  "<=()====================================================()=>" \\\n \
-echo  "=             PWR validator setup auto installer           =" \\\n \
-echo  "=                    Created by : Mr9868                   =" \\\n \
-echo  "=             Github : https://github.io/Mr9868            =" \\\n \
-echo  "============================================================" \\\n \
-echo  "=                Your OS info : $(uname -s) $(uname -m)               =" \\\n \
-echo  "=                 IP Address : ${myIP}               =" \\\n \
-echo  "<=()====================================================()=>" \\\n \
-echo \\\n \
-}'
-cmdInstall='${myConHead};myHeader;apt update -y && apt upgrade -y && apt install -y sudo curl wget && wget https://raw.githubusercontent.com/mr9868/PWR-Validator/refs/heads/main/pwr.sh && chmod +x pwr.sh && myHeader; ./pwr.sh; sudo rm pwr.sh;myHeader; echo "To exit the container press CTRL+P+Q"'
+myConHead='function myHeader(){ \\ \n
+clear; \\ \n
+echo  "<=()====================================================()=>" \\ \n
+echo  "=             PWR validator setup auto installer           =" \\ \n
+echo  "=                    Created by : Mr9868                   =" \\ \n
+echo  "=             Github : https://github.io/Mr9868            =" \\ \n
+echo  "============================================================" \\ \n
+echo  "=                Your OS info : $(uname -s) $(uname -m)               =" \\ \n
+echo  "=                 IP Address : ${myIP}               =" \\ \n
+echo  "<=()====================================================()=>" \\ \n
+echo \\ \n
+}\n'
+cmdInstall=$( echo -e "${myConHead};myHeader;apt update -y && apt upgrade -y && apt install -y sudo curl wget && wget https://raw.githubusercontent.com/mr9868/PWR-Validator/refs/heads/main/pwr.sh && chmod +x pwr.sh && myHeader; ./pwr.sh; sudo rm pwr.sh;myHeader; echo \"To exit the container press CTRL+P+Q\"" );
 
 function docCmd(){
 myHeader;
