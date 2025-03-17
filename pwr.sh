@@ -652,6 +652,23 @@ myHeader;
 sudo docker exec -ti pwrNode bash -c "${cmdInstall}"
 }
 
+function chkDocWallet(){
+if [ -f wallet ]; then
+echo "Wallet file found !. Do you want to use it ? (y/n) : " qDocWallet
+if [[ "${qDocWallet}" =~ ^([yY][eE][sS]|[yY])$ ]];
+then
+sudo docker cp wallet pwrNode:/;
+echo "Your wallet imported !"
+else
+echo "You are using new wallet"
+fi
+else
+echo "Make sure you running this script as same directory with your PWR wallet..."
+sleep 3;
+echo "You are using new wallet"
+fi
+}
+
 function mainDocInstall(){
 myHeader;
 read -p "Set the docker port eg. 8080 : " pwrPort
@@ -671,7 +688,10 @@ read -p "Set the docker port eg. 8080 : " pwrPort
 ${cekPort}
 done
 myHeader;
-sudo docker run -it -p ${pwrPort}:${pwrPort} -v /sys:/sys --privileged --name pwrNode ubuntu:22.04 bash -c "${cmdInstall}";
+echo "Installing docker container"
+sudo docker run -it -d -p ${pwrPort}:${pwrPort} -v /sys:/sys --privileged --name pwrNode ubuntu:22.04;
+chkDocWallet;
+docCmd;
 }
 
 # If container exist
@@ -689,7 +709,6 @@ if [ -n "${ifExtCont}" ];
 then
 sudo docker start pwrNode && docCmd;
 fi
-
 fi
 else
 mainDocInstall
