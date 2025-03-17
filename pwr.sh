@@ -685,6 +685,7 @@ echo "3. Setup or Re-configure TeleBot Monitor"
 echo "4. Exit"
 echo;
 }
+yourSelect
 read -p "Your selection => " mainMenu
 until [[ "${mainMenu}" =~ ^[1-3]+$ ]];
 do
