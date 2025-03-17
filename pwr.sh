@@ -625,9 +625,6 @@ echo -e "To view your PWR logs, exec 'screen -r pwr' \n"
 }
 # End of Main install;
 function dockerInstall(){
-myHeader;
-command -v docker >/dev/null 2>&1 || { echo >&2 "docker is not found on this machine, Installing docker ... "; sudo apt update -y && sudo apt install -y docker.io docker;}
-
 function docCmd(){
 myHeader;
 cmdInstall='apt update -y && apt upgrade -y && apt install -y sudo curl wget && wget https://raw.githubusercontent.com/mr9868/PWR-Validator/refs/heads/main/pwr.sh && chmod +x pwr.sh && ./pwr.sh; sudo rm pwr.sh'
@@ -697,6 +694,8 @@ then
 mainInstall;
 elif [[ $mainMenu == "2" ]];
 then
+myHeader;
+command -v docker >/dev/null 2>&1 || { echo >&2 "docker is not found on this machine, Installing docker ... "; sudo apt update -y && sudo apt install -y docker.io docker;}
 dockerInstall;
 elif [[ $mainMenu == "3" ]];
 then
