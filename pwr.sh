@@ -680,6 +680,7 @@ if [ -n "${ifExtCont}" ];
 then
 sudo docker start pwrNode && docCmd
 fi
+fi
 else
 mainDocInstall
 fi
