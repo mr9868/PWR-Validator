@@ -640,7 +640,7 @@ echo  "============================================================" \\ \n
 echo  "=                Your OS info : $(uname -s) $(uname -m)               =" \\ \n
 echo  "=                 IP Address : '${myIP}'               =" \\ \n
 echo  "<=()=====================================================()=>" \\ \n
-echo  "              DON\'T INTERUPT THE INSTALLING PROCESS !" \\ \n
+echo  "              DONT INTERUPT THE INSTALLING PROCESS !" \\ \n
 echo  "                    PRESS CTRL+P+Q TO QUIT" \\ \n
 echo \\ \n
 }\n'
