@@ -666,7 +666,7 @@ myHeader;
 sudo docker run -it -p ${pwrPort}:${pwrPort} -v /sys:/sys --privileged --name pwrNode ubuntu:22.04 bash -c "${cmdInstall}";
 }
 
-
+# If container exist
 dockerCheck=$( sudo docker ps -a | grep "pwrNode" );
 if [ -n "$dockerCheck" ]; 
 then
@@ -675,11 +675,13 @@ if [[ "${qDocInstall}" =~ ^([yY][eE][sS]|[yY])$ ]];
 then
 sudo docker stop pwrNode && sudo docker rm pwrNode && mainDocInstall
 else
+# If container stopped
 ifExtCont=$( sudo docker ps -f status=exited -f name=pwrNode );
 if [ -n "${ifExtCont}" ];
 then
-sudo docker start pwrNode && docCmd
+sudo docker start pwrNode && docCmd;
 fi
+
 fi
 else
 mainDocInstall
