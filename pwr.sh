@@ -633,7 +633,7 @@ echo  "=                    Created by : Mr9868                   =" \\ \n
 echo  "=             Github : https://github.io/Mr9868            =" \\ \n
 echo  "============================================================" \\ \n
 echo  "=                Your OS info : $(uname -s) $(uname -m)               =" \\ \n
-echo  "=                 IP Address : ${myIP}               =" \\ \n
+echo  "=                 IP Address : '${myIP}'               =" \\ \n
 echo  "<=()====================================================()=>" \\ \n
 echo \\ \n
 }\n'
