@@ -624,6 +624,25 @@ echo -e "To view your PWR logs, exec 'screen -r pwr' \n"
 
 }
 # End of Main install;
+function dockerInstall(){
+read -p "Set the docker port eg. 8080 : " pwrPort
+cekPort=$(eval "lsof -Pi :${pwrPort} -sTCP:LISTEN -t")
+until [[ ${pwrPort} =~ ^[0-9]{4}$ ]]
+do
+echo "Please input in 4 digits number !"
+read -p "Set the docker port eg. 8080 : " pwrPort
+${cekPort}
+done
+until [[ -z "$cekPort" ]]
+do
+echo "Port ${pwrPort} is already in use !"
+read -p "Set the docker port eg. 8080 : " pwrPort
+${cekPort}
+done
+cmdInstall='apt update -y && apt upgrade -y && apt install -y sudo curl wget && wget https://raw.githubusercontent.com/mr9868/PWR-Validator/refs/heads/main/pwr.sh && chmod +x pwr.sh && ./pwr.sh; sudo rm pwr.sh'
+docker run -it -p ${pwrPort}:${pwrPort} -v /sys:/sys --privileged --name pwrNode ubuntu:22.04 && \
+docker exec -ti pwrNode bash -c '${cmdInstall}'
+}
 
 # Main menu
 function main_Menu(){
