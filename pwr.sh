@@ -559,7 +559,7 @@ myHeader;
 # Check if java is found
 function java_found(){
 read -p "Java already installed, do you want to reinstall them ? (y/n): " qJava
-if [[ $qJava == "y" ]];
+if [[ "${qJava}" =~ ^([yY][eE][sS]|[yY])$ ]];
 then
 install_java;
 fi
@@ -581,7 +581,7 @@ then
 myHeader;
 echo -e "If you remove blocks and rocksdb, the node will resync from the stratch! \n";
 read -p "Do you want to remove blocks and rocksdb directories ? (y/n): " hapus
-if [[ $hapus == "y" ]];
+if [[ "${hapus}" =~ ^([yY][eE][sS]|[yY])$ ]];
 then
 sudo rm -rf rocksdb blocks;
 fi
@@ -625,50 +625,77 @@ echo -e "To view your PWR logs, exec 'screen -r pwr' \n"
 }
 # End of Main install;
 function dockerInstall(){
+myHeader;
+command -v docker >/dev/null 2>&1 || { echo >&2 "docker is not found on this machine, Installing bc ... "; sudo apt update -y && sudo apt install -y docker.io docker;}
+
+function docCmd(){
+myHeader;
+cmdInstall='apt update -y && apt upgrade -y && apt install -y sudo curl wget && wget https://raw.githubusercontent.com/mr9868/PWR-Validator/refs/heads/main/pwr.sh && chmod +x pwr.sh && ./pwr.sh; sudo rm pwr.sh'
+sudo docker exec -ti pwrNode bash -c '${cmdInstall}'
+}
+
+function mainDocInstall(){
+myHeader;
 read -p "Set the docker port eg. 8080 : " pwrPort
-cekPort=$(eval "lsof -Pi :${pwrPort} -sTCP:LISTEN -t")
+cekPort=$( eval "sudo lsof -Pi :${pwrPort} -sTCP:LISTEN -t")
 until [[ ${pwrPort} =~ ^[0-9]{4}$ ]]
 do
+myHeader;
 echo "Please input in 4 digits number !"
 read -p "Set the docker port eg. 8080 : " pwrPort
 ${cekPort}
 done
 until [[ -z "$cekPort" ]]
 do
+myHeader;
 echo "Port ${pwrPort} is already in use !"
 read -p "Set the docker port eg. 8080 : " pwrPort
 ${cekPort}
 done
-cmdInstall='apt update -y && apt upgrade -y && apt install -y sudo curl wget && wget https://raw.githubusercontent.com/mr9868/PWR-Validator/refs/heads/main/pwr.sh && chmod +x pwr.sh && ./pwr.sh; sudo rm pwr.sh'
-docker run -it -p ${pwrPort}:${pwrPort} -v /sys:/sys --privileged --name pwrNode ubuntu:22.04 && \
-docker exec -ti pwrNode bash -c '${cmdInstall}'
+myHeader;
+sudo docker run -it -p ${pwrPort}:${pwrPort} -v /sys:/sys --privileged --name pwrNode ubuntu:22.04 && \
+docCmd;
+}
+
+
+dockerCheck=$( sudo docker ps | grep "pwrNode" );
+if [ -n $dockerCheck ]; then
+read -p "There is pwrNode container found, do you want to remove first ?" qDocInstall
+if [[ "${qDocInstall}" =~ ^([yY][eE][sS]|[yY])$ ]];
+then
+sudo docker stop pwrNode && sudo docker rm pwrNode;
+mainDocInstall
+else
+docCmd
+fi
+mainDocInstall
+fi
 }
 
 # Main menu
 function main_Menu(){
+function yourSelect(){
 myHeader;
-#showVer;
 echo;
 echo -e "<=======================( Main Menu )======================>\n"
 echo "1. Full Installation"
-echo "2. Setup or Re-configure TeleBot Monitor"
-echo "3. Exit"
+echo "2. Full Installation with docker"
+echo "3. Setup or Re-configure TeleBot Monitor"
+echo "4. Exit"
 echo;
 read -p "Your selection => " mainMenu
+}
 until [[ "${mainMenu}" =~ ^[1-3]+$ ]];
 do
-myHeader;
-echo -e "=( Main Menu )=\n"
-echo "1. Full Installation"
-echo "2. Setup or Re-configure TeleBot Monitor"
-echo "3. Exit"
-echo;
-read -p "Your selection => " mainMenu
+yourSelect;
 done
 if [[ $mainMenu == "1" ]];
 then
 mainInstall;
-elif [[ $mainMenu == "2" ]];
+if [[ $mainMenu == "" ]];
+then
+dockerInstall;
+elif [[ $mainMenu == "3" ]];
 then
 checkPwr;
 varCheck;
