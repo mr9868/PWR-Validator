@@ -654,7 +654,7 @@ sudo docker exec -ti pwrNode bash -c "${cmdInstall}"
 
 function chkDocWallet(){
 if [ -f wallet ]; then
-echo "Wallet file found !. Do you want to use it ? (y/n) : " qDocWallet
+read -p "Wallet file found !. Do you want to use it ? (y/n) : " qDocWallet
 if [[ "${qDocWallet}" =~ ^([yY][eE][sS]|[yY])$ ]];
 then
 sudo docker cp wallet pwrNode:/;
