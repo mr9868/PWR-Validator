@@ -7,6 +7,10 @@
 
 ## Changelog
 > [!NOTE]
+> v1.5
+> * You can run them inside docker container !
+> * Fix minor bug
+
 > v1.4
 > * Fix minor bug
 > * Add telegram bot monitor
