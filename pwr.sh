@@ -667,7 +667,7 @@ sudo docker run -it -p ${pwrPort}:${pwrPort} -v /sys:/sys --privileged --name pw
 }
 
 
-dockerCheck=$( sudo docker ps | grep "pwrNode" );
+dockerCheck=$( sudo docker ps -a | grep "pwrNode" );
 if [ -n "$dockerCheck" ]; 
 then
 read -p "There is pwrNode container found, do you want to remove first ?" qDocInstall
