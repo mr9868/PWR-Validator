@@ -80,6 +80,7 @@ echo  "<=()=====================================================()=>"
 if [ -f /.dockerenv ]; then
 echo  -e "\n            You're inside a container, always use"
 echo  -e "                    PRESS CTRL+P+Q TO QUIT" 
+echo
 else
     echo;
 fi
