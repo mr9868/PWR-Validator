@@ -1,3 +1,4 @@
+
 # Set variables and array URL JDK latest
 #cd $HOME;
 #if [ ! -d pwrValidator ];
