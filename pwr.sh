@@ -684,11 +684,12 @@ echo "2. Full Installation with docker"
 echo "3. Setup or Re-configure TeleBot Monitor"
 echo "4. Exit"
 echo;
-read -p "Your selection => " mainMenu
 }
+read -p "Your selection => " mainMenu
 until [[ "${mainMenu}" =~ ^[1-3]+$ ]];
 do
 yourSelect;
+read -p "Your selection => " mainMenu
 done
 if [[ $mainMenu == "1" ]];
 then
