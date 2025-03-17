@@ -658,7 +658,8 @@ sudo docker run -it -p ${pwrPort}:${pwrPort} -v /sys:/sys --privileged --name pw
 
 
 dockerCheck=$( sudo docker ps | grep "pwrNode" );
-if [ -n $dockerCheck ]; then
+if [ -n "$dockerCheck" ]; 
+then
 read -p "There is pwrNode container found, do you want to remove first ?" qDocInstall
 if [[ "${qDocInstall}" =~ ^([yY][eE][sS]|[yY])$ ]];
 then
@@ -683,17 +684,16 @@ echo "2. Full Installation with docker"
 echo "3. Setup or Re-configure TeleBot Monitor"
 echo "4. Exit"
 echo;
-}
 read -p "Your selection => " mainMenu
+}
 until [[ "${mainMenu}" =~ ^[1-3]+$ ]];
 do
 yourSelect;
-read -p "Your selection => " mainMenu
 done
 if [[ $mainMenu == "1" ]];
 then
 mainInstall;
-if [[ $mainMenu == "" ]];
+if [[ $mainMenu == "2" ]];
 then
 dockerInstall;
 elif [[ $mainMenu == "3" ]];
