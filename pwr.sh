@@ -769,7 +769,7 @@ if [ -f /.dockerenv ]; then
     then
     mainInstall;
     else
-    yourSelect
+    yourSelect;
     fi
 else
     command -v docker >/dev/null 2>&1 || { echo >&2 "docker is not found on this machine, Installing docker ... "; sudo apt update -y && sudo apt install -y docker.io docker;}
