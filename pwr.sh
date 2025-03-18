@@ -625,9 +625,6 @@ sleep 10;
 checkPwr;
 varCheck;
 
-echo -e "PWR node running successfully ✅ \n"
-echo -e "To view your PWR logs, exec 'screen -r pwr' \n"
-
 }
 # End of Main install;
 function dockerInstall(){
@@ -764,4 +761,13 @@ fi
 }
 # End of mainMenu
 main_Menu;
+
+if [ -f /.dockerenv ]; then
+    exit;
+    echo -e "PWR node running successfully ✅ \n"
+    echo -e "To view your PWR logs, exec => docker exec -ti pwrNode bash -c 'screen -r pwr' \n";
+else
+    echo -e "PWR node running successfully ✅ \n"
+    echo -e "To view your PWR logs, exec 'screen -r pwr' \n"
+fi
 
