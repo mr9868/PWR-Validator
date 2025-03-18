@@ -80,8 +80,9 @@ echo  "=                Your OS info : $(uname -s) $(uname -m)               ="
 echo  "=                 IP Address : ${myIP}               ="
 echo  "<=()=====================================================()=>"
 if [ -f /.dockerenv ]; then
-echo  -e "\n            You're inside a container, always use"
-echo  -e "                    PRESS CTRL+P+Q TO QUIT" 
+echo  -e "\n            You're inside a container, always"
+echo  -e "                   PRESS CTRL+P+Q TO QUIT" 
+echo  "<=()=====================================================()=>"
 echo
 else
     echo;
@@ -650,6 +651,7 @@ echo  "=                 IP Address : '${myIP}'               =" \\ \n
 echo  "<=()=====================================================()=>" \\ \n
 echo  "              DONT INTERUPT THE INSTALLING PROCESS !" \\ \n
 echo  "                    PRESS CTRL+P+Q TO QUIT" \\ \n
+echo  "<=()=====================================================()=>" \\ \n
 echo \\ \n
 }\n'
 cmdInstall=$( echo -e "${myConHead}myHeader; rm -rf pwr.sh* ; echo 'Installing dependencies ...' ;apt update -y && apt upgrade -y && apt install -y sudo curl wget && wget https://raw.githubusercontent.com/mr9868/PWR-Validator/refs/heads/main/pwr.sh && chmod +x pwr.sh && myHeader; ./pwr.sh; sudo rm pwr.sh;myHeader; echo \"To exit the container press CTRL+P+Q\"" );
