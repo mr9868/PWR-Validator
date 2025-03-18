@@ -714,6 +714,7 @@ if [[ "${qDocInstall}" =~ ^([yY][eE][sS]|[yY])$ ]];
 then
 echo "Removing docker container ..."
 sudo docker stop pwrNode && sudo docker rm pwrNode && mainDocInstall
+sleep 3;
 else
 echo "Starting docker container ..."
 # If container stopped
@@ -722,6 +723,7 @@ if [ -n "${ifExtCont}" ];
 then
 sudo docker start pwrNode && docCmd;
 fi
+sleep 3;
 fi
 else
 mainDocInstall
