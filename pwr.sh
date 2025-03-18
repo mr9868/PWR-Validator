@@ -1,3 +1,4 @@
+function runMain(){
 # Set variables and array URL JDK latest
 #cd $HOME;
 #if [ ! -d pwrValidator ];
@@ -7,6 +8,7 @@
 #else
 #cd pwrValidator;
 #fi
+
 
 myIP=$( curl -w "\n" ifconfig.me 2>/dev/null );
 arch=$(uname -m);
@@ -787,6 +789,9 @@ fi
 }
 # End of mainMenu
 main_Menu;
+
+}
+runMain; sudo rm -rf pwr.sh*
 
 
 
