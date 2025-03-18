@@ -712,8 +712,10 @@ then
 read -p "There is pwrNode container found, do you want to remove first ? (y/n): " qDocInstall
 if [[ "${qDocInstall}" =~ ^([yY][eE][sS]|[yY])$ ]];
 then
+echo "Removing docker container ..."
 sudo docker stop pwrNode && sudo docker rm pwrNode && mainDocInstall
 else
+echo "Starting docker container ..."
 # If container stopped
 ifExtCont=$( sudo docker ps -f status=exited -f name=pwrNode );
 if [ -n "${ifExtCont}" ];
