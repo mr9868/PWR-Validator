@@ -761,7 +761,7 @@ myHeader;
 if [ -f /.dockerenv ]; then
     echo -e "You're inside the Matrix ! \nYou can'to do this inside the container ;(";
     read -p "Do you want to run Full Installation ? (y/n): " qFI
-    if [[ "${qDocInstall}" =~ ^([yY][eE][sS]|[yY])$ ]];
+    if [[ "${qFI}" =~ ^([yY][eE][sS]|[yY])$ ]];
     then
     mainInstall;
     else
