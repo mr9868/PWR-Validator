@@ -655,14 +655,20 @@ read -p "Wallet file found !. Do you want to use it ? (y/n) : " qDocWallet
 if [[ "${qDocWallet}" =~ ^([yY][eE][sS]|[yY])$ ]];
 then
 sudo docker cp wallet pwrNode:/;
+echo "Copying your wallet file ..."
 echo "Your wallet imported !"
+echo "Please wait ..."
+sleep 3;
 else
+echo "Please wait ..."
+sleep 3;
 echo "You are using new wallet"
 fi
 else
 echo "Make sure you running this script as same directory with your PWR wallet..."
-sleep 3;
 echo "You are using new wallet"
+echo "Please wait ..."
+sleep 5;
 fi
 }
 
