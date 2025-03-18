@@ -743,14 +743,15 @@ echo "2. Full Installation with docker"
 echo "3. Setup or Re-configure TeleBot Monitor"
 echo "4. Exit"
 echo;
-}
-yourSelect;
+
 read -p "Your selection => " mainMenu
 until [[ "${mainMenu}" =~ ^[1-4]+$ ]];
 do
 yourSelect;
 read -p "Your selection => " mainMenu
 done
+}
+yourSelect;
 if [[ $mainMenu == "1" ]];
 then
 mainInstall;
@@ -759,6 +760,13 @@ then
 myHeader;
 if [ -f /.dockerenv ]; then
     echo -e "You're inside the Matrix ! \nYou can'to do this inside the container ;(";
+    read -p "Do you want to run Full Installation ? (y/n): " qFI
+    if [[ "${qDocInstall}" =~ ^([yY][eE][sS]|[yY])$ ]];
+    then
+    mainInstall;
+    else
+    yourSelect
+    fi
 else
     command -v docker >/dev/null 2>&1 || { echo >&2 "docker is not found on this machine, Installing docker ... "; sudo apt update -y && sudo apt install -y docker.io docker;}
     dockerInstall;
