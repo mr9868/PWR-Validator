@@ -298,7 +298,7 @@ if [ \$ltsVer -gt \$myVer ];
 then
 echo \"[INFO] Your PWR node version is : \${pwrVer}\"
 echo \"[INFO] Latest PWR node version \${pwrLtsVer} found, Please rerun the installation script !\";
-ltsFound=\$( echo -e \"Latest PWR node version \${pwrLtsVer} found !\nPlease rerun this script !\n<pre>wget https://raw.githubusercontent.com/mr9868/PWR-Validator/refs/heads/main/pwr.sh %26%26 chmod %2Bx pwr.sh %26%26 ./pwr.sh; sudo rm pwr.sh </pre>\n\" );
+ltsFound=\$( echo -e \"Latest PWR node version \${pwrLtsVer} found !\nPlease rerun this script !\n<pre>sudo rm -rf pwr.sh*; wget https://raw.githubusercontent.com/mr9868/PWR-Validator/refs/heads/main/pwr.sh %26%26 chmod %2Bx pwr.sh %26%26 ./pwr.sh; sudo rm pwr.sh </pre>\n\" );
 echo -e '[INFO] Sending telegram message ... ⏳';
 echo -e '[INFO] Message output details : \n';
 echo -e \"<=()=======================( BEGIN )=====================()=>\n\"
@@ -317,7 +317,7 @@ echo \"[ERROR] Your node can't create a block ! ❌\";
 echo -e '[INFO] Sending telegram message ... ⏳';
 echo -e '[INFO] Message output details : \n';
 echo -e \"<=()=======================( BEGIN )=====================()=>\n\"
-errFound=\$( echo -e \"Your node can't create a block ! ❌\nYour node status is Standby !\nPlease rerun this script !\n<pre>wget https://raw.githubusercontent.com/mr9868/PWR-Validator/refs/heads/main/pwr.sh %26%26 chmod %2Bx pwr.sh %26%26 ./pwr.sh; sudo rm pwr.sh </pre>\n\" );
+errFound=\$( echo -e \"Your node can't create a block ! ❌\nYour node status is Standby !\nPlease rerun this script !\n<pre>sudo rm -rf pwr.sh*; wget https://raw.githubusercontent.com/mr9868/PWR-Validator/refs/heads/main/pwr.sh %26%26 chmod %2Bx pwr.sh %26%26 ./pwr.sh; sudo rm pwr.sh </pre>\n\" );
 curl -s -X POST https://api.telegram.org/bot\${tgApiQn}/sendMessage -d chat_id=\${tgIdQn} -d text=\"\${errFound}\" -d parse_mode='HTML' | jq -r .result.text
 echo;
 echo -e \"<=()========================( END )======================()=>\n\"
@@ -782,10 +782,6 @@ varCheck;
 else
 myHeader;
 echo "Bye bye !";
-if [ -f pwr.sh ];
-then
-sudo rm -rf pwr.sh 2>/dev/null;
-fi
 exit 1;
 fi
 }
@@ -793,7 +789,7 @@ fi
 main_Menu;
 
 }
-runMain; sudo rm -rf pwr.sh*
+runMain;
 
 
 
