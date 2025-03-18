@@ -668,9 +668,9 @@ echo "Your wallet imported !"
 echo "Please wait ..."
 sleep 3;
 else
+echo "You are using new wallet"
 echo "Please wait ..."
 sleep 3;
-echo "You are using new wallet"
 fi
 else
 echo "Make sure you running this script as same directory with your PWR wallet..."
