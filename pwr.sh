@@ -80,8 +80,8 @@ echo  "=                Your OS info : $(uname -s) $(uname -m)               ="
 echo  "=                 IP Address : ${myIP}               ="
 echo  "<=()=====================================================()=>"
 if [ -f /.dockerenv ]; then
-echo  -e "\n            You're inside a container, always"
-echo  -e "                   PRESS CTRL+P+Q TO QUIT" 
+echo  -e "            You're inside a container, always"
+echo  -e "                  PRESS CTRL+P+Q TO QUIT" 
 echo  "<=()=====================================================()=>"
 echo
 else
