@@ -778,7 +778,7 @@ exit 1;
 fi
 }
 # End of mainMenu
-main_Menu; sudo rm -rf pwr.sh*
+main_Menu;
 
 
 
