@@ -334,7 +334,7 @@ do
 showVer;
 { exStr=\$( curl \${urlCek}\${pwrAddr} | jq -r .validator ); } 2>/dev/null;
 votePwr=\$( echo \$exStr | jq -r .votingPower );
-newCB=\$( echo \$exStr | jq -r jq -r .lastCreatedBlock );
+newCB=\$( echo \$exStr | jq -r .lastCreatedBlock );
 addrPwr=\$( echo \$exStr | jq -r .address );
 lastBT=\$( echo \$exStr | jq -r .lastCreatedBlockTime );
 lastBT=\$(( \$lastBT / 1000 ));                                                                            
